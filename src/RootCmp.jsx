@@ -1,8 +1,8 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import "../src/assets/main.css";
 import { AppHeader } from "./cmps/AppHeader.jsx";
 import { HomePage } from "./pages/HomePage.jsx";
 import { GiftCards } from "./pages/GiftCards.jsx";
+import { HelpCenter } from "./pages/HelpCenter.jsx";
 import { HostWelcomePage } from "./pages/HostWelcomePage.jsx";
 import { HostExperience } from "./pages/HostExperience.jsx";
 
