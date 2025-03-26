@@ -6,13 +6,13 @@
 
 /* Pages */
 @use "./pages/homepage.scss";
-@use "./pages/property-index.scss";
-@use "./pages/property-details.scss";
-@use "./pages/property-edit.scss";
+@use "./pages/stay-index.scss";
+@use "./pages/stay-details.scss";
+@use "./pages/stay-edit.scss";
 
 /* Components */
-@use "./cmps/property-list.scss";
-@use "./cmps/property-preview.scss";
-@use "./cmps/property-filter.scss";
+@use "./cmps/stay-list.scss";
+@use "./cmps/stay-preview.scss";
+@use "./cmps/stay-filter.scss";
 @use "./cmps/app-header.scss";
 @use "./cmps/app-footer.scss";
