@@ -1,0 +1,46 @@
+.upper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align the items in the center */
+    padding: 10px 20px; /* Adjust this padding as needed */
+    
+    button {
+        all: unset; /* Resets all styling */
+        display: inline; /* Keeps the button inline, like a regular text link */
+        cursor: pointer; /* Ensures it's still clickable */
+        padding: 0; /* Removes padding */
+        background: none; /* Removes background */
+        border: none; /* Removes the border */
+        font-size: 16px;
+        color: #333;
+        
+        &:hover {
+          color: #FF5A5F; /* Example hover color */
+        }
+    }
+
+    .logo {
+      /* Align to the left */
+      font-size: 24px; 
+      font-weight: bold;
+      color: #333; /* Adjust logo color */
+    }
+  
+    .categories {
+      display: flex;
+      justify-content: center; /* Center the items horizontally */
+      gap: 20px; /* Space between Stays and Experiences */
+      flex-grow: 1; /* Make it take available space in the middle */
+    }
+  
+    .profile {
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+      
+      &:hover {
+        color: #FF5A5F; /* Example hover color */
+      }
+    }
+  }
+  

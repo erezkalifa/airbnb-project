@@ -11,6 +11,7 @@
 @use "./pages/stay-edit.scss";
 
 /* Components */
+@use "./cmps/upper-filter.scss";
 @use "./cmps/stay-list.scss";
 @use "./cmps/stay-preview.scss";
 @use "./cmps/stay-filter.scss";
