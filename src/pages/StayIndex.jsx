@@ -17,7 +17,7 @@ export function StayIndex() {
 
   useEffect(() => {
     loadStays()
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err));x
   }, []);
 
   return (

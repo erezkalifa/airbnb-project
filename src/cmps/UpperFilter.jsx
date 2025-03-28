@@ -7,8 +7,8 @@ export function UpperFilter() {
           </a>
         </div>
         <div className="categories">
-          <button>Stays</button> 
-          <button>Experiences</button> 
+          <span className="btn-wrapper"><button>Stays</button></span> 
+          <span className="btn-wrapper"><button>Experiences</button></span>
         </div>
         <div className="profile">
           <button>Profile</button>

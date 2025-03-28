@@ -15,7 +15,10 @@
         color: #333;
         
         &:hover {
-          color: #FF5A5F; /* Example hover color */
+        //   color: #FF5A5F; /* Example hover color */
+            background-color: #f6f3f3;
+            border-radius:22px;
+            padding: 10px 20px;
         }
     }
 
@@ -29,8 +32,17 @@
     .categories {
       display: flex;
       justify-content: center; /* Center the items horizontally */
-      gap: 20px; /* Space between Stays and Experiences */
+      gap: 50px; /* Space between Stays and Experiences */
       flex-grow: 1; /* Make it take available space in the middle */
+
+      .btn-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 100px;
+        height: 50px;
+      }
     }
   
     .profile {
