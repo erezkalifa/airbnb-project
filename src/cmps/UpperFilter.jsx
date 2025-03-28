@@ -11,7 +11,7 @@ export function UpperFilter() {
     <section className="upper-header">
       <div className="logo">
         <a href="/">
-          <img src="your-logo-url.png" alt="Logo" />
+          <img src="src/assets/img/logo-with-text.svg" alt="Logo" />
         </a>
       </div>
       <div className="categories">
