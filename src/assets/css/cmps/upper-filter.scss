@@ -61,8 +61,10 @@
       cursor: pointer;
     
       button {
+        width: auto;
+        height: auto;
         display: flex;
-        alignItems: center;
+        align-items: center; /* Fixed typo: 'alignItems' should be 'align-items' */
         gap: 10px;
         background-color: white; /* White background inside the button */
         color: grey; /* Text color matching the original button color */
@@ -71,8 +73,13 @@
         border: 1px solid rgb(232, 229, 229); /* Border */
         border-radius: 25px; /* Rounded corners */
         cursor: pointer; /* Pointer cursor on hover */
-        transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
-        
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    
+        /* Add hover effect */
+        &:hover {
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+    
         /* Style the image inside the button */
         img {
           width: 30px;  /* Set the width of the image */
@@ -81,6 +88,7 @@
         }
       }
     }
+    
     
   }
   
