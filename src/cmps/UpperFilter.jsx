@@ -36,7 +36,7 @@ export function UpperFilter() {
       </div>
       <div className="profile">
         <button>
-            <img src="src/assets/img/Icons/three_lines.svg" alt="Icon" />
+            <img class="three-parallel" src="src/assets/img/Icons/three_lines.svg" alt="Icon" />
             <Avatar url="src/assets/img/profile.jpg"/>
         </button>
       </div>

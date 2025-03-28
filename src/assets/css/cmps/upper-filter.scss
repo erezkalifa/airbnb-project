@@ -86,14 +86,12 @@
         }
     
         /* Style the image inside the button */
-        img {
-          width: 30px;  /* Set the width of the image */
+        .three-parallel {
+          width: 13px;  /* Set the width of the image */
           height: auto; /* Set the height of the image */
           object-fit: contain; /* Ensure the image maintains aspect ratio */
         }
       }
     }
-    
-    
   }
   
