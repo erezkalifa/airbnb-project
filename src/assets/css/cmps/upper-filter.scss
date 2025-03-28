@@ -2,10 +2,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    height: 7vh;
+    width: 100%;
+    // background: green;
   
     .logo {
-      width: 100px;
+      padding-top:  1px;
+      padding-left: 3vw;
+      width: 130px;
       height: auto;
       img {
         width: 100%;  // Makes the image take the full width of the parent (.logo)
@@ -17,7 +21,7 @@
     .categories {
       display: flex;
       justify-content: center;
-      gap: 50px;
+      gap: 20px;
       flex-grow: 1;
 
       button {
@@ -59,6 +63,7 @@
       font-size: 16px;
       color: grey;
       cursor: pointer;
+      padding-right: 4.5vw;
     
       button {
         width: auto;
