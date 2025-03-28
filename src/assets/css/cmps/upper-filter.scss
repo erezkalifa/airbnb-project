@@ -1,45 +1,51 @@
 .upper-header {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Vertically align the items in the center */
-    padding: 10px 20px; /* Adjust this padding as needed */
-    
+    align-items: center;
+    padding: 10px 20px;
+  
     button {
-        all: unset; /* Resets all styling */
-        display: inline; /* Keeps the button inline, like a regular text link */
-        cursor: pointer; /* Ensures it's still clickable */
-        padding: 0; /* Removes padding */
-        background: none; /* Removes background */
-        border: none; /* Removes the border */
-        font-size: 16px;
-        color: #333;
-        
+      all: unset;
+      display: inline;
+      cursor: pointer;
+      padding: 0;
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: #333;
+  
+      &:hover {
+        background-color: #f6f3f3;
+        border-radius: 22px;
+        padding: 10px 20px;
+      }
+  
+      &.selected {
+        font-weight: bold;
+  
         &:hover {
-        //   color: #FF5A5F; /* Example hover color */
-            background-color: #f6f3f3;
-            border-radius:22px;
-            padding: 10px 20px;
+          background-color: transparent;
+          padding: 0;
         }
+      }
     }
-
+  
     .logo {
-      /* Align to the left */
-      font-size: 24px; 
+      font-size: 24px;
       font-weight: bold;
-      color: #333; /* Adjust logo color */
+      color: #333;
     }
   
     .categories {
       display: flex;
-      justify-content: center; /* Center the items horizontally */
-      gap: 50px; /* Space between Stays and Experiences */
-      flex-grow: 1; /* Make it take available space in the middle */
-
+      justify-content: center;
+      gap: 50px;
+      flex-grow: 1;
+  
       .btn-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
-
         width: 100px;
         height: 50px;
       }
@@ -49,9 +55,9 @@
       font-size: 16px;
       color: #333;
       cursor: pointer;
-      
+  
       &:hover {
-        color: #FF5A5F; /* Example hover color */
+        color: #FF5A5F;
       }
     }
   }
