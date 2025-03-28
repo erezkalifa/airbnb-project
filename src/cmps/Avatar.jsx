@@ -1,5 +1,5 @@
-export function Avatar() {
+export function Avatar({ url }) {
     return (<div className="avatar">
-                <img src="src/assets/img/profile.jpg" alt="Avatar" />
+                <img src={url} alt="Avatar" />
             </div>)
 }
