@@ -4,32 +4,6 @@
     align-items: center;
     padding: 10px 20px;
   
-    button {
-      all: unset;
-      display: inline;
-      cursor: pointer;
-      padding: 0;
-      background: none;
-      border: none;
-      font-size: 16px;
-      color: #333;
-  
-      &:hover {
-        background-color: #f6f3f3;
-        border-radius: 22px;
-        padding: 10px 20px;
-      }
-  
-      &.selected {
-        font-weight: bold;
-  
-        &:hover {
-          background-color: transparent;
-          padding: 0;
-        }
-      }
-    }
-  
     .logo {
       width: 100px;
       height: auto;
@@ -45,6 +19,32 @@
       justify-content: center;
       gap: 50px;
       flex-grow: 1;
+
+      button {
+        all: unset;
+        display: inline;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: 16px;
+        color: #333;
+    
+        &:hover {
+          background-color: #f6f3f3;
+          border-radius: 22px;
+          padding: 10px 20px;
+        }
+    
+        &.selected {
+          font-weight: bold;
+    
+          &:hover {
+            background-color: transparent;
+            padding: 0;
+          }
+        }
+      }
   
       .btn-wrapper {
         display: flex;
@@ -57,12 +57,30 @@
   
     .profile {
       font-size: 16px;
-      color: #333;
+      color: grey;
       cursor: pointer;
-  
-      &:hover {
-        color: #FF5A5F;
+    
+      button {
+        display: flex;
+        alignItems: center;
+        gap: 10px;
+        background-color: white; /* White background inside the button */
+        color: grey; /* Text color matching the original button color */
+        padding: 5px 13px; /* Padding for better spacing */
+        font-size: 16px; /* Font size */
+        border: 1px solid rgb(232, 229, 229); /* Border */
+        border-radius: 25px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+        
+        /* Style the image inside the button */
+        img {
+          width: 30px;  /* Set the width of the image */
+          height: auto; /* Set the height of the image */
+          object-fit: contain; /* Ensure the image maintains aspect ratio */
+        }
       }
     }
+    
   }
   

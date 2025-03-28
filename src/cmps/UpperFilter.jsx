@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Avatar } from "./Avatar.jsx"
+
 
 export function UpperFilter() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -33,7 +35,10 @@ export function UpperFilter() {
         </span>
       </div>
       <div className="profile">
-        <button>Profile</button>
+        <button>
+            <img src="src/assets/img/Icons/three_lines.svg" alt="Icon" />
+            <Avatar/>
+        </button>
       </div>
     </section>
   );
