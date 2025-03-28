@@ -1,0 +1,16 @@
+.avatar {
+    width: 35px; /* Set the size of the avatar */
+    height: auto; /* Set the size of the avatar */
+    border-radius: 50%; /* Make the div circular */
+    overflow: hidden; /* Ensure the image doesn't overflow the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    img {
+      width: 100%; /* Make the image fill the container */
+      height: 100%; /* Make the image fill the container */
+      object-fit: cover; /* Ensure the image covers the container without stretching */
+    }
+  }
+  
