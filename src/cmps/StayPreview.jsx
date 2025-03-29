@@ -6,24 +6,18 @@ export function StayPreview({ stay }) {
   if (stay == null || stay.imgUrls.length == 0)
     return (<div>Loading ...</div>)
 
-  console.log("URL not null: " + JSON.stringify(stay.imgUrls))
+  console.log("URL not null: " + JSON.stringify(stay))
 
   return (
     <div className="stay-preview">
 
       <ImageSlider urls={stay.imgUrls}/>
-      {/* <img src={stay.imgUrls[0]} alt={stay.name} className="stay-preview-img" />
-      <div className="stay-details">
-        <h2 className="stay-location">{stay.loc.city}</h2>
-        <p className="stay-description">{stay.description}</p>
-        <p className="stay-dates">{stay.dates}</p>
-        <div className="stay-price">
-          <span>{stay.price} ₪ night</span>
-        </div>
-        <div className="stay-rating">
-          <span>⭐ {stay.rating}</span>
-        </div>
-      </div> */}
+      <div style={{ fontSize: "12px", padding: "3px 10px", fontWeight: "bold" }}>
+        Bat Yam, Israel
+      </div>
+      <div style={{ fontSize: "12px", padding: "0px 10px"}}>Near Promenade Bat Yam</div>
+      <div style={{ fontSize: "12px", padding: "0px 10px"}}>Apr 5 - 10</div>
+      <div style={{ fontSize: "12px", padding: "0px 10px"}}>₪{stay.price}</div>
     </div>
   );
 }
