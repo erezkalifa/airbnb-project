@@ -23,18 +23,35 @@ const styles = {
     borderRadius: "50%", // Ensures the background is a perfect circle
     color: "white",
     display: "flex", // Ensures the icon is centered
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "center", // Centers the icon horizontally
+    alignItems: "center", // Centers the icon vertically
     width: "50px", // Set a fixed width for the circle
     height: "50px", // Set a fixed height for the circle
     opacity: 0, // Initially hidden
     transition: "opacity 0.3s ease-in-out", // Smooth transition when hovering
   },
   leftArrow: {
-    left: "10px",
+    left: "10px", // Positions the left arrow on the left
   },
   rightArrow: {
-    right: "10px",
+    right: "10px", // Positions the right arrow on the right
+  },
+  customDot: {
+    backgroundColor: "rgba(242, 241, 241, 0.8)", // Dot color
+    borderRadius: "50%", // Round dots
+    width: "10px", // Dot size
+    height: "10px", // Dot size
+    margin: "0 5px", // Space between dots
+  },
+  customDotsContainer: {
+    position: "absolute",
+    top: "40px", // Move the dots to the top of the carousel
+    left: "50%",
+    transform: "translateX(-50%)", // Centering the dots
+    zIndex: 20,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 };
 
@@ -110,7 +127,7 @@ export function ImageSlider({ urls }) {
         onMouseLeave={() => setHoveredArrow(null)}
         onClick={handleLeftArrowClick} // Handle left arrow click
       >
-        <ArrowBackIosIcon />
+        <ArrowBackIosIcon style={{ fontSize: "15px" }} />
       </Button>
 
       {/* Custom Right Arrow */}
@@ -124,8 +141,13 @@ export function ImageSlider({ urls }) {
         onMouseLeave={() => setHoveredArrow(null)}
         onClick={handleRightArrowClick} // Handle right arrow click
       >
-        <ArrowForwardIosIcon />
+        <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
       </Button>
+
+      {/* Custom Dots Container */}
+      <div style={styles.customDotsContainer}>
+        {/* The dots will automatically be placed here */}
+      </div>
     </div>
   );
 }
