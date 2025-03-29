@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css"; // Import carousel styles
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 // MUI styling (optional)
 const styles = {
@@ -11,20 +13,22 @@ const styles = {
     objectFit: "cover",
     borderRadius: "10px",
   },
-  description: {
-    position: "absolute",
-    bottom: "10px",
-    left: "10px",
-    color: "white",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    padding: "5px 10px",
-    borderRadius: "5px",
-  },
   arrow: {
     position: "absolute",
     top: "50%",
     transform: "translateY(-50%)",
     zIndex: 10,
+    backgroundColor: "rgba(242, 241, 241, 0.5)", // Optional: Adds a background to the arrows for better visibility
+    padding: "15px", // Adjust the padding to make the circle larger
+    borderRadius: "50%", // Ensures the background is a perfect circle
+    color: "white",
+    display: "flex", // Ensures the icon is centered
+    justifyContent: "center",
+    alignItems: "center",
+    width: "50px", // Set a fixed width for the circle
+    height: "50px", // Set a fixed height for the circle
+    opacity: 0, // Initially hidden
+    transition: "opacity 0.3s ease-in-out", // Smooth transition when hovering
   },
   leftArrow: {
     left: "10px",
@@ -35,50 +39,95 @@ const styles = {
 };
 
 export function ImageSlider({ urls }) {
-    // Define responsive settings for the carousel
-    const responsive = {
-      superLarge: {
-        // screens > 1600px
-        breakpoint: { max: 4000, min: 1600 },
-        items: 1,
-      },
-      large: {
-        // screens > 1024px
-        breakpoint: { max: 1600, min: 1024 },
-        items: 1,
-      },
-      medium: {
-        // screens > 464px
-        breakpoint: { max: 1024, min: 464 },
-        items: 1,
-      },
-      small: {
-        // screens <= 464px
-        breakpoint: { max: 464, min: 0 },
-        items: 1,
-      },
-    };
+  const [hoveredArrow, setHoveredArrow] = useState(null);
+  const carouselRef = useRef(null); // Create a ref to interact with the carousel
 
-  if (urls == null)
-    return (<div>Image slider Loading ...</div>)
+  // Define responsive settings for the carousel
+  const responsive = {
+    superLarge: {
+      breakpoint: { max: 4000, min: 1600 },
+      items: 1,
+    },
+    large: {
+      breakpoint: { max: 1600, min: 1024 },
+      items: 1,
+    },
+    medium: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    small: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+  if (urls == null) return <div>Image slider Loading ...</div>;
+
+  // Handle left arrow click (move to previous slide)
+  const handleLeftArrowClick = () => {
+    if (carouselRef.current) {
+      carouselRef.current.previous(); // Go to the previous slide
+    }
+  };
+
+  // Handle right arrow click (move to next slide)
+  const handleRightArrowClick = () => {
+    if (carouselRef.current) {
+      carouselRef.current.next(); // Go to the next slide
+    }
+  };
 
   return (
-    <div className="image-slider">
+    <div
+      className="image-slider"
+      onMouseEnter={() => setHoveredArrow(null)} // Reset when entering the container
+      style={{ position: "relative" }}
+    >
       <Carousel
+        ref={carouselRef} // Attach the ref to the carousel component
         responsive={responsive}
-        arrows={true}
+        arrows={false} // Disable the default arrows
         infinite={true}
         autoPlay={false}
         showDots={true}
-        customLeftArrow={<Button style={{ ...styles.arrow, ...styles.leftArrow }}>←</Button>}
-        customRightArrow={<Button style={{ ...styles.arrow, ...styles.rightArrow }}>→</Button>}
       >
         {urls.map((url, index) => (
-          <div key={index} style={{ position: "relative" }}>
+          <div key={index}>
             <img src={url} style={styles.image} />
           </div>
         ))}
       </Carousel>
+
+      {/* Custom Left Arrow */}
+      <Button
+        style={{
+          ...styles.arrow,
+          ...styles.leftArrow,
+          opacity: hoveredArrow === "left" ? 1 : 0, // Show only when hovering the left arrow
+        }}
+        onMouseEnter={() => setHoveredArrow("left")}
+        onMouseLeave={() => setHoveredArrow(null)}
+        onClick={handleLeftArrowClick} // Handle left arrow click
+      >
+        <ArrowBackIosIcon />
+      </Button>
+
+      {/* Custom Right Arrow */}
+      <Button
+        style={{
+          ...styles.arrow,
+          ...styles.rightArrow,
+          opacity: hoveredArrow === "right" ? 1 : 0, // Show only when hovering the right arrow
+        }}
+        onMouseEnter={() => setHoveredArrow("right")}
+        onMouseLeave={() => setHoveredArrow(null)}
+        onClick={handleRightArrowClick} // Handle right arrow click
+      >
+        <ArrowForwardIosIcon />
+      </Button>
     </div>
   );
 }
+
+export default ImageSlider;
