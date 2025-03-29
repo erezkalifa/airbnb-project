@@ -1,16 +1,18 @@
+import { ImageSlider } from "./ImageSlider"
+
 export function StayPreview({ stay }) {
 
 
   if (stay == null || stay.imgUrls.length == 0)
     return (<div>Loading ...</div>)
 
-  console.log(JSON.stringify(stay))
-  console.log(JSON.stringify(stay.imgUrls))
-  console.log(JSON.stringify(stay.loc))
+  console.log("URL not null: " + JSON.stringify(stay.imgUrls))
 
   return (
     <div className="stay-preview">
-      <img src={stay.imgUrls[0]} alt={stay.name} className="stay-preview-img" />
+
+      <ImageSlider urls={stay.imgUrls}/>
+      {/* <img src={stay.imgUrls[0]} alt={stay.name} className="stay-preview-img" />
       <div className="stay-details">
         <h2 className="stay-location">{stay.loc.city}</h2>
         <p className="stay-description">{stay.description}</p>
@@ -21,7 +23,7 @@ export function StayPreview({ stay }) {
         <div className="stay-rating">
           <span>⭐ {stay.rating}</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
