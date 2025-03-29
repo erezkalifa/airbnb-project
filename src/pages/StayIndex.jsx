@@ -2,9 +2,8 @@ import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { loadStays } from "../store/stay/stay.actions.js";
 import { StayPreview } from "../cmps/stayPreview.jsx";
+import { Filters } from "../cmps/Filters"
 import { LabelsScrollerBar } from "../cmps/LabelsScrollerBar.jsx"
-import { UpperFilter } from "../cmps/UpperFilter.jsx"
-
 
 // Demo data creation
 import { _createLoggedInUser } from "../services/user.service.js";
@@ -22,7 +21,7 @@ export function StayIndex() {
 
   return (
     <section className="stay-index">
-      <UpperFilter/>
+      <Filters/>
       <LabelsScrollerBar selectedLabel={selectedLabel} onLabelSelect={(label) => {
           console.log(label.name)
           setSelectedLabel(label)

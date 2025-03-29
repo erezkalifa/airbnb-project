@@ -1,0 +1,38 @@
+.MobileFilter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px; /* Rounded corners */
+    background-color: transparent;
+    border: 0.5px solid #ccc; /* Light border for visibility */
+    cursor: pointer;
+    width: 100%; /* Make the width of the button 100% of the window width */
+    height: 45px;
+    box-sizing: border-box; /* Ensure padding and border are included in the total width */
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px; /* Adjust padding as needed */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  
+    /* Icon and text container */
+    .MobileFilter__content {
+      display: flex;
+      align-items: center;
+      width: 100%; /* Make sure the content takes the full width */
+      justify-content: center; /* Center the content within the full width */
+    }
+  
+    .MobileFilter__icon {
+      margin-right: 10px; /* Space between icon and text */
+      font-size: 12px; /* Size of the search icon */
+      color: #333; /* Icon color */
+    }
+  
+    .MobileFilter__text {
+      font-size: 14px;
+      color: #333; /* Text color */
+      font-weight: 500; /* Slightly bold text */
+    }
+  }
+  
