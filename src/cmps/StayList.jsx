@@ -1,1 +1,5 @@
-export function StayList({ stays }) {}
+export function StayList({ stays }) {
+    return (<section className="stays-list">
+                
+            </section>) 
+}

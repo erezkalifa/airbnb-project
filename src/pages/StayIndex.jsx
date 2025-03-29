@@ -1,8 +1,9 @@
 import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { loadStays } from "../store/stay/stay.actions.js";
-import { StayPreview } from "../cmps/stayPreview.jsx";
-import { Filters } from "../cmps/Filters"
+import { Filters } from "../cmps/Filters.jsx"
+import { StayList } from "../cmps/StayList.jsx"
+import { StayPreview } from "../cmps/StayPreview.jsx";
 import { LabelsScrollerBar } from "../cmps/LabelsScrollerBar.jsx"
 
 // Demo data creation
@@ -19,6 +20,8 @@ export function StayIndex() {
     .catch((err) => console.log(err));
   }, []);
 
+  // console.log(JSON.stringify(stays[0]))
+
   return (
     <section className="stay-index">
       <Filters/>
@@ -26,7 +29,8 @@ export function StayIndex() {
           console.log(label.name)
           setSelectedLabel(label)
           }} />
-      <StayPreview />
+      <StayPreview stay={stays[0]}/>
+      <StayList stays={stays}/>    
     </section>
   );
 }
