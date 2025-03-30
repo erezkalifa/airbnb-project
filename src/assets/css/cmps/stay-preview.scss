@@ -1,9 +1,15 @@
+// .stay-card {
+//   width: 250px;
+//   font-family: "Arial", sans-serif;
+//   border-radius: 12px;
+//   overflow: hidden;
+//   cursor: pointer;
+// }
+
 .stay-card {
-  width: 250px;
-  font-family: "Arial", sans-serif;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: pointer;
+  width: 100%; /* לא 250px – תן ל־grid לקבוע */
+  margin: 0;
+  padding: 0;
 }
 
 .stay-card-img-container {

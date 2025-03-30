@@ -1,4 +1,4 @@
-export function StayPreview() {
+export function StayPreview({ stay }) {
   return (
     <div className="stay-card">
       <div className="stay-card-img-container">
@@ -10,13 +10,13 @@ export function StayPreview() {
       </div>
       <div className="stay-card-info">
         <div className="stay-card-title-row">
-          <span className="stay-card-location">location</span>
-          <span className="stay-card-rating">Rating</span>
+          <span className="stay-card-location">{`${stay.loc.country}, ${stay.loc.city}`}</span>
+          <span className="stay-card-rating">{`${4}`}</span>
         </div>
-        <div className="stay-card-distance">Distance</div>
-        <div className="stay-card-dates">Dates</div>
+        <div className="stay-card-distance">5000 kilometers away</div>
+        <div className="stay-card-dates">jan 15-29</div>
         <div className="stay-card-price">
-          <span className="night">Price</span>
+          <span className="night">{`${stay.price}€`}</span>
         </div>
       </div>
     </div>
