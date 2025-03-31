@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaStar,
+  FaChevronLeft,
+  FaChevronRight,
+  FaRegHeart,
+} from "react-icons/fa";
 
 // Temporary test images
 import img1 from "../assets/img/stay/1.avif";
@@ -39,6 +44,10 @@ export function StayPreview({ stay }) {
         <button className="carousel-btn right" onClick={nextImg}>
           <FaChevronRight />
         </button>
+        <button className="like-btn">
+          {" "}
+          <FaRegHeart />
+        </button>
 
         <div className="carousel-dots">
           {testImages.map((_, idx) => (
@@ -59,7 +68,7 @@ export function StayPreview({ stay }) {
           </span>
           <span className="stay-card-rating">
             <FaStar style={{ color: "#222", fontSize: "12px" }} />{" "}
-            {stay?.rating || 4}
+            {stay?.reviews[0]?.rate || 4}
           </span>
         </div>
         <div className="stay-card-distance">

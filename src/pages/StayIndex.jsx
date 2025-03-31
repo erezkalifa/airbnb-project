@@ -28,8 +28,7 @@ export function StayIndex() {
           setSelectedLabel(label);
         }}
       />
-      {/* {stays.length ? <StayPreview stays={stays} /> : <div>Loading..</div>} */}
-      {stays.length ? <StayList stays={stays} /> : <div>Loading..</div>}
+      {stays.length ? <StayList stays={stays} /> : ""}
     </section>
   );
 }
