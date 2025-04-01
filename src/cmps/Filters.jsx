@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { UpperFilter } from "../cmps/UpperFilter.jsx";
 import { MiddleFilter } from "../cmps/MiddleFilter.jsx";
+import { SmallFilter } from "../cmps/SmallFilter.jsx";
 import { MobileFilter } from "../cmps/MobileFilter.jsx";
-import useIsMobile from '../hooks/useIsMobile';
+import useIsMobile from "../hooks/useIsMobile";
 
 export function Filters() {
   const isMobile = useIsMobile(); // Check if screen width is <= 768px
@@ -12,7 +13,8 @@ export function Filters() {
       {!isMobile ? (
         <>
           <UpperFilter />
-          <MiddleFilter />
+          {/* <MiddleFilter /> */}
+          <SmallFilter />
         </>
       ) : (
         <MobileFilter />
