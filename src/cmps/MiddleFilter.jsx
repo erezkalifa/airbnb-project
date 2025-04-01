@@ -5,6 +5,7 @@ export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [searchBoxWidth, setSearchBoxWidth] = useState(0);
+  const [selectedDestination, setSelectedDestination] = useState(null);
 
   const firstArgRef = useRef(null);
   const thirdArgRef = useRef(null);
@@ -104,16 +105,42 @@ export function MiddleFilter() {
 
       {/* Modals */}
       {openModal === "where" && (
-        <Modal
-          title="Choose Destination"
-          onClose={closeModal}
-          position={modalPosition}
-          width={`${searchBoxWidth}px`}
-          height="500px"
-        >
-          <p>Destination modal content</p>
-        </Modal>
-      )}
+      <Modal
+        title="Choose Destination"
+        onClose={closeModal}
+        position={modalPosition}
+        width={`${searchBoxWidth}px`}
+        height="500px"
+      >
+        <div className="modal-scrollable-list">
+          {[
+            "Paris",
+            "London",
+            "Rome",
+            "New York",
+            "Tokyo",
+            "Barcelona",
+            "Berlin",
+            "Amsterdam",
+            "Dubai",
+            "Bangkok",
+            "Lisbon",
+            "Athens",
+          ].map((destination, i) => (
+            <div
+              key={i}
+              className={`destination-item ${
+                selectedDestination === destination ? "selected" : ""
+              }`}
+              onClick={() => setSelectedDestination(destination)}
+            >
+              {destination}
+            </div>
+          ))}
+        </div>
+      </Modal>
+    )}
+
       {openModal === "checkin" && (
         <Modal
           title="Select Check In Date"
