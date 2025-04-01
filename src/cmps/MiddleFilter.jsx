@@ -90,22 +90,22 @@ export function MiddleFilter() {
 
       {/* Modals */}
       {openModal === "where" && (
-        <Modal title="Choose Destination" onClose={closeModal} position={modalPosition}>
+        <Modal title="Choose Destination" onClose={closeModal} position={modalPosition} width="428px" height="500px">
           <p>Destination modal content</p>
         </Modal>
       )}
       {openModal === "checkin" && (
-        <Modal title="Select Check In Date" onClose={closeModal} position={modalPosition}>
+        <Modal title="Select Check In Date" onClose={closeModal} position={modalPosition} width="1000px" height="500px">
           <p>Check-in modal content</p>
         </Modal>
       )}
       {openModal === "checkout" && (
-        <Modal title="Select Check Out Date" onClose={closeModal} position={modalPosition}>
+        <Modal title="Select Check Out Date" onClose={closeModal} position={modalPosition} width="1000px" height="500px">
           <p>Check-out modal content</p>
         </Modal>
       )}
       {openModal === "who" && (
-        <Modal title="Add Guests" onClose={closeModal} position={modalPosition}>
+        <Modal title="Add Guests" onClose={closeModal} position={modalPosition } width="200px" height="500px">
           <p>Guests modal content</p>
         </Modal>
       )}

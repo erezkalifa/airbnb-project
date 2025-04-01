@@ -1,6 +1,13 @@
 import React from "react";
 
-export default function Modal({ title, children, onClose, position }) {
+export default function Modal({
+  title,
+  children,
+  onClose,
+  position,
+  width = "300px", // default width
+  height = "auto",  // default height
+}) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div
@@ -10,6 +17,8 @@ export default function Modal({ title, children, onClose, position }) {
           position: "absolute",
           top: `${position.top}px`,
           left: `${position.left}px`,
+          width: width,
+          height: height,
         }}
       >
         <h2>{title}</h2>
