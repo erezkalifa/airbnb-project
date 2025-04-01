@@ -1,14 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal.jsx";
 
 export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const [searchBoxWidth, setSearchBoxWidth] = useState(0);
 
   const firstArgRef = useRef(null);
   const thirdArgRef = useRef(null);
+  const searchBoxRef = useRef(null);
 
   const closeModal = () => setOpenModal(null);
+
+  // Get search-box width on load & resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (searchBoxRef.current) {
+        setSearchBoxWidth(searchBoxRef.current.getBoundingClientRect().width);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const handleClick = (type) => {
     let targetRef;
@@ -31,7 +45,7 @@ export function MiddleFilter() {
   return (
     <>
       <section className="middle-filter">
-        <div className="search-box">
+        <div className="search-box" ref={searchBoxRef}>
           <div
             className="search-box-arg"
             ref={firstArgRef}
@@ -90,22 +104,46 @@ export function MiddleFilter() {
 
       {/* Modals */}
       {openModal === "where" && (
-        <Modal title="Choose Destination" onClose={closeModal} position={modalPosition} width="428px" height="500px">
+        <Modal
+          title="Choose Destination"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth}px`}
+          height="500px"
+        >
           <p>Destination modal content</p>
         </Modal>
       )}
       {openModal === "checkin" && (
-        <Modal title="Select Check In Date" onClose={closeModal} position={modalPosition} width="1000px" height="500px">
+        <Modal
+          title="Select Check In Date"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth}px`}
+          height="500px"
+        >
           <p>Check-in modal content</p>
         </Modal>
       )}
       {openModal === "checkout" && (
-        <Modal title="Select Check Out Date" onClose={closeModal} position={modalPosition} width="1000px" height="500px">
+        <Modal
+          title="Select Check Out Date"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth}px`}
+          height="500px"
+        >
           <p>Check-out modal content</p>
         </Modal>
       )}
       {openModal === "who" && (
-        <Modal title="Add Guests" onClose={closeModal} position={modalPosition } width="200px" height="500px">
+        <Modal
+          title="Add Guests"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth}px`}
+          height="500px"
+        >
           <p>Guests modal content</p>
         </Modal>
       )}

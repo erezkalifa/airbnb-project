@@ -10,8 +10,8 @@
   
   .modal-content {
     background: red;
-    padding: 20px;
+    padding: 10px; /* reduce padding */
     border-radius: 8px;
-    min-width: 300px;
+    box-sizing: border-box; /* VERY IMPORTANT */
   }
   
