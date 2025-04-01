@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal.jsx";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+
 
 export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
@@ -149,20 +153,46 @@ export function MiddleFilter() {
           width={`${searchBoxWidth}px`}
           height="500px"
         >
-          <p>Check-in modal content</p>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DateCalendar onChange={(date) => console.log(date)} />
+        </LocalizationProvider>
         </Modal>
       )}
-      {openModal === "checkout" && (
-        <Modal
-          title="Select Check Out Date"
-          onClose={closeModal}
-          position={modalPosition}
-          width={`${searchBoxWidth}px`}
-          height="500px"
-        >
-          <p>Check-out modal content</p>
-        </Modal>
-      )}
+
+
+
+
+
+
+
+
+
+
+
+
+  {openModal === "checkout" && (
+    <Modal
+      title="Select Check Out Date"
+      onClose={closeModal}
+      position={modalPosition}
+      width={`${searchBoxWidth}px`}
+      height="500px"
+    >
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DateCalendar onChange={(date) => console.log(date)} />
+      </LocalizationProvider>
+    </Modal>
+  )}
+
+
+
+
+
+
+
+
+
+
       {openModal === "who" && (
         <Modal
           title="Add Guests"
