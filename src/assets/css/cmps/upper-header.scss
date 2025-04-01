@@ -1,0 +1,97 @@
+.upper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7vh;
+  width: 100%;
+  margin-top: 20px;
+  // background: green;
+
+  .logo {
+    padding-top: 1px;
+    padding-left: 3vw;
+    width: 130px;
+    height: auto;
+    img {
+      width: 100%; // Makes the image take the full width of the parent (.logo)
+      height: 100%; // Ensures it scales with the parent
+      object-fit: contain; // Keeps aspect ratio inside the box
+    }
+  }
+
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-grow: 1;
+
+    button {
+      all: unset;
+      display: inline;
+      cursor: pointer;
+      padding: 0;
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: #333;
+
+      &:hover {
+        background-color: #f6f3f3;
+        border-radius: 22px;
+        padding: 10px 20px;
+      }
+
+      &.selected {
+        font-weight: bold;
+
+        &:hover {
+          background-color: transparent;
+          padding: 0;
+        }
+      }
+    }
+
+    .btn-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 50px;
+    }
+  }
+
+  .profile {
+    font-size: 16px;
+    color: grey;
+    cursor: pointer;
+    padding-right: 4.5vw;
+
+    button {
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center; /* Fixed typo: 'alignItems' should be 'align-items' */
+      gap: 10px;
+      background-color: white; /* White background inside the button */
+      color: grey; /* Text color matching the original button color */
+      padding: 5px 13px; /* Padding for better spacing */
+      font-size: 16px; /* Font size */
+      border: 1px solid rgb(232, 229, 229); /* Border */
+      border-radius: 25px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+
+      /* Add hover effect */
+      &:hover {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+      }
+
+      /* Style the image inside the button */
+      .three-parallel {
+        width: 13px; /* Set the width of the image */
+        height: auto; /* Set the height of the image */
+        object-fit: contain; /* Ensure the image maintains aspect ratio */
+      }
+    }
+  }
+}

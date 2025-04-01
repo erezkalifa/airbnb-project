@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Avatar } from "./Avatar.jsx";
 import { SmallFilter } from "./SmallFilter.jsx";
 
-export function UpperFilter() {
+export function UpperHeader() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  //const [isScrolling, setIsScrolling] = useState(false);
+  // const [isScrolling, setIsScrolling] = useState(false);
 
   const handleSelect = (category) => {
     setSelectedCategory(category);
   };
 
   // addEventListener("scroll", (event) => {
-  //   console.log(event);
+  //   setIsScrolling(true);
   // });
 
   return (
