@@ -21,9 +21,7 @@ export default function Modal({
           height: height,
         }}
       >
-        <h2>{title}</h2>
         {children}
-        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );
