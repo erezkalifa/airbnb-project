@@ -121,17 +121,17 @@ export function MiddleFilter() {
           <div className="searches-sub-title">Recent searches</div>
           {[
             "Paris",
-            "London",
-            "Rome",
-            "New York",
-            "Tokyo",
-            "Barcelona",
           ].map((destination, i) => (
             <SearchLocation location={destination} index={i}/>
           ))}
           <div className="searches-sub-title">Suggested Destinations</div>
             {[
               "Berlin",
+              "London",
+              "Rome",
+              "New York",
+              "Tokyo",
+              "Barcelona",
               "Amsterdam",
               "Dubai",
               "Bangkok",
