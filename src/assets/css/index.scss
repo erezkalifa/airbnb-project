@@ -22,3 +22,13 @@
 @use "./cmps/middle-filter.scss";
 @use "./cmps/small-filter.scss";
 @use "./cmps/modal.scss";
+@use "./cmps/search-location.scss";
+
+
+/* Fonts */
+@font-face {
+    font-family: 'AirbnbCereal';
+    src: url('/src/assets/fonts/AirbnbCereal.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }

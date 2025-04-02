@@ -3,6 +3,7 @@ import Modal from "./Modal.jsx";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { SearchLocation } from "./SearchLocation.jsx"
 
 
 export function MiddleFilter() {
@@ -113,10 +114,11 @@ export function MiddleFilter() {
         title="Choose Destination"
         onClose={closeModal}
         position={modalPosition}
-        width={`${searchBoxWidth}px`}
+        width={`${searchBoxWidth/2}px`}
         height="500px"
       >
         <div className="modal-scrollable-list">
+          <div className="searches-sub-title">Recent searches</div>
           {[
             "Paris",
             "London",
@@ -124,22 +126,19 @@ export function MiddleFilter() {
             "New York",
             "Tokyo",
             "Barcelona",
-            "Berlin",
-            "Amsterdam",
-            "Dubai",
-            "Bangkok",
-            "Lisbon",
-            "Athens",
           ].map((destination, i) => (
-            <div
-              key={i}
-              className={`destination-item ${
-                selectedDestination === destination ? "selected" : ""
-              }`}
-              onClick={() => setSelectedDestination(destination)}
-            >
-              {destination}
-            </div>
+            <SearchLocation location={destination} index={i}/>
+          ))}
+          <div className="searches-sub-title">Suggested Destinations</div>
+            {[
+              "Berlin",
+              "Amsterdam",
+              "Dubai",
+              "Bangkok",
+              "Lisbon",
+              "Athens",
+            ].map((destination, i) => (
+            <SearchLocation location={destination} index={i}/>
           ))}
         </div>
       </Modal>
