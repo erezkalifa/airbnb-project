@@ -4,6 +4,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { SearchLocation } from "./SearchLocation.jsx"
+import { addMonths } from "date-fns";
 
 
 export function MiddleFilter() {
@@ -152,9 +153,26 @@ export function MiddleFilter() {
           width={`${searchBoxWidth}px`}
           height="500px"
         >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DateCalendar onChange={(date) => console.log(date)} />
-        </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <div style={{ display: "flex", gap: "16px" }}>
+              <DateCalendar 
+                sx={{
+                  "& .MuiPickersArrowSwitcher-root": {
+                    display: "none",
+                  },
+                }}
+                dayOfWeekFormatter={(date) =>
+                  date.toLocaleDateString("en-US", { weekday: "short" }).slice(0, 2)
+                }
+                defaultValue={new Date()}
+                onChange={(date) => console.log("First month:", date)}
+              />
+              <DateCalendar
+                defaultValue={addMonths(new Date(), 1)} // next month
+                onChange={(date) => console.log("Second month:", date)}
+              />
+            </div>
+          </LocalizationProvider>
         </Modal>
       )}
 
