@@ -1,12 +1,14 @@
 .modal-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3); /* optional: semi-transparent background */
+  overflow-y: auto; /* enable scrolling */
 }
+
 
 .modal-content {
   background: white; /* Changed from red */
@@ -19,9 +21,16 @@
 
 // Scrollable (childrens - TODO refactoring)
 .modal-scrollable-list {
-  overflow-y: auto;
-  max-height: 400px;
+  width: 100%;
+  height: 100%;
   padding-right: 5px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+}
+
+.modal-scrollable-list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .destination-item {
