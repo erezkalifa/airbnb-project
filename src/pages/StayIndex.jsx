@@ -15,7 +15,7 @@ export function StayIndex() {
   const stays = useSelector((storeState) => storeState.stayModule.stays);
 
   useEffect(() => {
-    loadStays().catch((err) => console.log(err));
+    loadStays().catch((err) => console.log(err))
   }, []);
 
   return (
@@ -24,8 +24,8 @@ export function StayIndex() {
       <LabelsScrollerBar
         selectedLabel={selectedLabel}
         onLabelSelect={(label) => {
-          console.log(label.name);
-          setSelectedLabel(label);
+          console.log(label.name)
+          setSelectedLabel(label)
         }}
       />
       {stays.length ? <StayList stays={stays} /> : ""}

@@ -5,56 +5,93 @@
     align-items: center;
   }
 
+  .carousel-item-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 12px; 
+    box-sizing: border-box;
+  }
+
   .carousel-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 0 10px;
+    justify-content: flex-start;
+    padding: 12px;
     max-width: 90px;
     box-sizing: border-box;
     text-align: center;
     color: #717171; // default gray
     cursor: pointer;
     transition: color 0.2s ease;
+    width: 96px;
 
     img {
-      width: 100%;
-      max-width: 30px;
+      width: 30px;
       height: auto;
-      margin: 0 auto;
-      filter: grayscale(100%) brightness(0.5);
+      margin-bottom: 6px;
+      filter: brightness(0) saturate(100%) invert(44%) sepia(0%) saturate(600%) hue-rotate(180deg) brightness(90%) contrast(85%);
       transition: filter 0.2s ease;
     }
 
     p {
-      font-size: 12px;
-      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Urbanist', sans-serif;
+      color: #717171;
+      margin: 0;
+      //margin-top: 6px;
+      position: relative;
+      //margin-bottom: 10px;
+      text-align: center;
+      display: inline-block;
+
+      // ✨ This is the key combo:
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
+      //overflow: hidden;
+      //text-overflow: clip;
+
+      //max-width: 100%;
+
+      &::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: transparent;
+        margin-top: 15px;
+        transition: background-color 0.2s ease;
+      }
     }
 
     &:hover {
-      color: #000;
+      p {
+        color: #000;
+        font-weight: 600;
+
+        &::after {
+          background-color: #DDDDDD; // light gray underline on hover
+        }
+      }
 
       img {
         filter: none;
       }
+    }
 
+    // Active (also underline)
+    &.active {
       p {
+        color: #000;
         font-weight: 600;
-        position: relative;
 
         &::after {
-          content: "";
-          display: block;
-          height: 2px;
-          width: 16px;
-          background-color: #000;
-          margin: 4px auto 0;
+          background-color: #DDDDDD;
         }
+      }
+
+      img {
+        filter: none;
       }
     }
   }

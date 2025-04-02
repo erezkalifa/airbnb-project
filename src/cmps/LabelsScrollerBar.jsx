@@ -42,6 +42,7 @@ export function LabelsScrollerBar({selectedLabel, onLabelSelect}){
 
     const currentBreakPoint = getBreakPoint()
     const countVisibleItem = responsive[currentBreakPoint].items
+    const getSlidesPerPage = labels.length % countVisibleItem
 
 
     return(
@@ -50,14 +51,16 @@ export function LabelsScrollerBar({selectedLabel, onLabelSelect}){
         swipeable={windowWidth < 768}
         draggable={windowWidth < 768}
         className='labels-carousel'
-        itemClass='carousel-item'
+        itemClass='carousel-item-container'
         containerClass='carousel-container'
         dotListClass='custom-dot-list-style'
         arrows={windowWidth >= 768}
         rewind={false}
+        infinite={false}
+        slidesToSlide={getSlidesPerPage > 0 ? getSlidesPerPage : 7}
         >
             {labels.map((label , idx) => (
-                <div className="carousel-item" key={idx} onClick={() => onLabelSelect(label.name)}
+                <div className={`carousel-item ${selectedLabel === label.name ? 'active' : ''}`} key={idx} onClick={() => onLabelSelect(label.name)}
                   style={{ listStyle: 'none' }}
                   >
                     <img src={label.img} alt={label.name} />
