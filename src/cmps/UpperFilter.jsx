@@ -1,18 +1,8 @@
-import { useState } from "react";
 import { Avatar } from "./Avatar.jsx";
 import { SmallFilter } from "./SmallFilter.jsx";
+import { StaysExperiencesFilter } from "./StaysExpriencesFilter.jsx";
 
-export function UpperFilter() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  //const [isScrolling, setIsScrolling] = useState(false);
-
-  const handleSelect = (category) => {
-    setSelectedCategory(category);
-  };
-
-  // addEventListener("scroll", (event) => {
-  //   console.log(event);
-  // });
+export function UpperFilter({ isAtTop }) {
 
   return (
     <section className="upper-header">
@@ -22,26 +12,8 @@ export function UpperFilter() {
         </a>
       </div>
 
-      {/* <SmallFilter /> */}
-
-      <div className="categories">
-        <span className="btn-wrapper">
-          <button
-            className={selectedCategory === "Stays" ? "selected" : ""}
-            onClick={() => handleSelect("Stays")}
-          >
-            Stays
-          </button>
-        </span>
-        <span className="btn-wrapper">
-          <button
-            className={selectedCategory === "Experiences" ? "selected" : ""}
-            onClick={() => handleSelect("Experiences")}
-          >
-            Experiences
-          </button>
-        </span>
-      </div>
+      {isAtTop ? <StaysExperiencesFilter /> : <SmallFilter /> }
+      
       <div className="profile">
         <button>
           <img
