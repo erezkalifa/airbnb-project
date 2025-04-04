@@ -118,7 +118,7 @@ export function MiddleFilter() {
           {[
             "Paris",
           ].map((destination, i) => (
-            <SearchLocation location={destination} index={i}/>
+            <SearchLocation location={destination} key={i}/>
           ))}
           <div className="searches-sub-title">Suggested Destinations</div>
             {[
@@ -134,7 +134,7 @@ export function MiddleFilter() {
               "Lisbon",
               "Athens",
             ].map((destination, i) => (
-            <SearchLocation location={destination} index={i}/>
+            <SearchLocation location={destination} key={i}/>
           ))}
         </div>
       </Modal>
