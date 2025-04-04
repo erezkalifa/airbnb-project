@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal.jsx";
 import { SearchLocation } from "./SearchLocation.jsx"
 import { CalendarRangePicker } from "./CalendarRangePicker.jsx"
+import { GuestPicker } from "./GuestPicker.jsx"
 
 export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
@@ -177,11 +178,11 @@ export function MiddleFilter() {
           title="Add Guests"
           onClose={closeModal}
           position={modalPosition}
-          width={`${searchBoxWidth}px`}
+          width="500px"
           height="500px"
         >
-          <p>Guests modal content</p>
-        </Modal>
+        <GuestPicker />
+      </Modal>
       )}
     </>
   );
