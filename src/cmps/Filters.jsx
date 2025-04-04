@@ -5,20 +5,25 @@ import { MobileFilter } from "../cmps/MobileFilter.jsx";
 import useIsMobile from "../hooks/useIsMobile";
 import useScrollTop from "../hooks/useScrollTop.jsx";
 
-
 export function Filters({ filterBy, onSetFilter }) {
-  const isMobile = useIsMobile(); // Check if screen width is <= 768px
-  const isAtTop =  useScrollTop();
+  const isMobile = useIsMobile();
+  const isAtTop = useScrollTop();
 
   return (
     <>
       {isMobile ? (
-        <MobileFilter filterBy={filterBy} onSetFilter={onSetFilter}/>
+        <MobileFilter filterBy={filterBy} onSetFilter={onSetFilter} />
       ) : (
-              <>
-              <UpperFilter isAtTop={isAtTop} filterBy={filterBy} onSetFilter={onSetFilter}/>
-              {isAtTop && <MiddleFilter filterBy={filterBy} onSetFilter={onSetFilter}/>}
-            </>
+        <>
+          <UpperFilter
+            isAtTop={isAtTop}
+            filterBy={filterBy}
+            onSetFilter={onSetFilter}
+          />
+          { !isAtTop && <MiddleFilter
+                      filterBy={filterBy}
+                      onSetFilter={onSetFilter}/> }
+        </>
       )}
     </>
   );
