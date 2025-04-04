@@ -1,19 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal.jsx";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { SearchLocation } from "./SearchLocation.jsx"
-import { DateToggleGroup } from "./DateToggleGroup.jsx"
-import { addMonths } from "date-fns";
-import { DateFlexibilityToggle } from "./DateFlexibilityToggle.jsx";
-
+import { CalendarRangePicker } from "./CalendarRangePicker.jsx"
 
 export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [searchBoxWidth, setSearchBoxWidth] = useState(0);
-  const [selectedDestination, setSelectedDestination] = useState(null);
 
   const firstArgRef = useRef(null);
   const thirdArgRef = useRef(null);
@@ -147,101 +140,37 @@ export function MiddleFilter() {
       </Modal>
     )}
 
+    {openModal === "checkin" && (
+      <Modal
+        title="Select Check In Date"
+        onClose={closeModal}
+        position={modalPosition}
+        width={`${searchBoxWidth}px`}
+        height="500px"
+      >
+        <CalendarRangePicker
+          onChange={(date, calendarIndex) =>
+            console.log("Check-in:", date, "Calendar:", calendarIndex)
+          }
+        />
+      </Modal>
+    )}
 
-
-
-
-
-
-
-
-
-
-      {openModal === "checkin" && (
-        <Modal
-          title="Select Check In Date"
-          onClose={closeModal}
-          position={modalPosition}
-          width={`${searchBoxWidth}px`}
-          height="500px"
-        >
-          <div className="modal-date-header">
-            <DateToggleGroup/>
-          </div>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ display: "flex" }}>
-              <DateCalendar 
-                views={["day"]}
-                sx={{
-                  "& .MuiPickersArrowSwitcher-root": {
-                    display: "none",
-                  },
-                }}
-                dayOfWeekFormatter={(date) =>
-                  date.toLocaleDateString("en-US", { weekday: "short" }).slice(0, 2)
-                }
-                defaultValue={new Date()}
-                onChange={(date) => console.log("First month:", date)}
-              />
-              <DateCalendar 
-                views={["day"]}
-                sx={{
-                  "& .MuiPickersArrowSwitcher-root": {
-                    display: "none",
-                  },
-                }}
-                dayOfWeekFormatter={(date) =>
-                  date.toLocaleDateString("en-US", { weekday: "short" }).slice(0, 2)
-                }
-                defaultValue={new Date()}
-                onChange={(date) => console.log("First month:", date)}
-              />
-            </div>
-          </LocalizationProvider>
-
-          <div className="modal-date-header">
-            <DateFlexibilityToggle/>
-          </div>
-
-        </Modal>
-      )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  {openModal === "checkout" && (
-    <Modal
-      title="Select Check Out Date"
-      onClose={closeModal}
-      position={modalPosition}
-      width={`${searchBoxWidth}px`}
-      height="500px"
-    >
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DateCalendar onChange={(date) => console.log(date)} />
-      </LocalizationProvider>
-    </Modal>
-  )}
-
-
-
-
-
-
-
-
-
+    {openModal === "checkout" && (
+      <Modal
+        title="Select Check Out Date"
+        onClose={closeModal}
+        position={modalPosition}
+        width={`${searchBoxWidth}px`}
+        height="500px"
+      >
+        <CalendarRangePicker
+          onChange={(date, calendarIndex) =>
+            console.log("Check-out:", date, "Calendar:", calendarIndex)
+          }
+        />
+      </Modal>
+    )}
 
       {openModal === "who" && (
         <Modal
