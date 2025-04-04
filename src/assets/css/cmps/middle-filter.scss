@@ -5,8 +5,8 @@
 
 .search-box {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
-  align-items: center;
+  grid-template-columns: 2fr 1fr 1fr 2fr auto;
+  align-items: stretch;
   gap: 10px;
   padding: 7px;
   border: 1px solid #ddd;
@@ -26,11 +26,7 @@
   justify-content: center;
   padding: 0 16px;
   border-right: 1px solid gray;
-  height: 70%;
-}
-
-.section:last-of-type {
-  border-right: none;
+  height: 100%;
 }
 
 .section span {

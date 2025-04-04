@@ -11,7 +11,7 @@ export function UpperFilter() {
   };
 
   // addEventListener("scroll", (event) => {
-  //   console.log(event);
+  //   console.log(window.scrollY);
   // });
 
   return (
