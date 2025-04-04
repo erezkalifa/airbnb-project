@@ -11,7 +11,7 @@ export function UpperFilter({ isAtTop }) {
         </a>
       </div>
 
-      {isAtTop ? <SmallFilter /> : <StaysExperiencesFilter /> }
+      {isAtTop ? <StaysExperiencesFilter /> : <SmallFilter /> }
 
       <div className="profile">
         <button>

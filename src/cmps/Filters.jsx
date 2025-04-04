@@ -20,7 +20,7 @@ export function Filters({ filterBy, onSetFilter }) {
             filterBy={filterBy}
             onSetFilter={onSetFilter}
           />
-          { !isAtTop && <MiddleFilter
+          { isAtTop && <MiddleFilter
                       filterBy={filterBy}
                       onSetFilter={onSetFilter}/> }
         </>
