@@ -156,6 +156,7 @@ export function MiddleFilter() {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <div style={{ display: "flex", gap: "16px" }}>
               <DateCalendar 
+                views={["day"]}
                 sx={{
                   "& .MuiPickersArrowSwitcher-root": {
                     display: "none",
@@ -167,9 +168,18 @@ export function MiddleFilter() {
                 defaultValue={new Date()}
                 onChange={(date) => console.log("First month:", date)}
               />
-              <DateCalendar
-                defaultValue={addMonths(new Date(), 1)} // next month
-                onChange={(date) => console.log("Second month:", date)}
+              <DateCalendar 
+                views={["day"]}
+                sx={{
+                  "& .MuiPickersArrowSwitcher-root": {
+                    display: "none",
+                  },
+                }}
+                dayOfWeekFormatter={(date) =>
+                  date.toLocaleDateString("en-US", { weekday: "short" }).slice(0, 2)
+                }
+                defaultValue={new Date()}
+                onChange={(date) => console.log("First month:", date)}
               />
             </div>
           </LocalizationProvider>
