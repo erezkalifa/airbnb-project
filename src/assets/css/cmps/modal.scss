@@ -1,0 +1,49 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.3); /* optional: semi-transparent background */
+  overflow-y: auto; /* enable scrolling */
+}
+
+
+.modal-content {
+  background: white; /* Changed from red */
+  padding: 10px;
+  border-radius: 32px; /* Adjust radius corners as you like */
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: Add soft shadow */
+}
+
+
+// Scrollable (childrens - TODO refactoring)
+.modal-scrollable-list {
+  width: 100%;
+  height: 100%;
+  padding-right: 5px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+}
+
+.modal-scrollable-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.destination-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.destination-item:hover {
+  background-color: #f7f7f7;
+}
+
+.destination-item.selected {
+  background-color: #ff385c;
+  color: white;
+}
