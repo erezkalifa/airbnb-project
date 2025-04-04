@@ -4,6 +4,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { SearchLocation } from "./SearchLocation.jsx"
+import { DateToggleGroup } from "./DateToggleGroup.jsx"
 import { addMonths } from "date-fns";
 
 
@@ -145,6 +146,16 @@ export function MiddleFilter() {
       </Modal>
     )}
 
+
+
+
+
+
+
+
+
+
+
       {openModal === "checkin" && (
         <Modal
           title="Select Check In Date"
@@ -153,8 +164,11 @@ export function MiddleFilter() {
           width={`${searchBoxWidth}px`}
           height="500px"
         >
+          <div className="modal-date-header">
+            <DateToggleGroup/>
+          </div>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div style={{ display: "flex", gap: "16px" }}>
+            <div style={{ display: "flex" }}>
               <DateCalendar 
                 views={["day"]}
                 sx={{
@@ -185,6 +199,9 @@ export function MiddleFilter() {
           </LocalizationProvider>
         </Modal>
       )}
+
+
+
 
 
 
