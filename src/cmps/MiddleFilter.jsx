@@ -6,6 +6,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { SearchLocation } from "./SearchLocation.jsx"
 import { DateToggleGroup } from "./DateToggleGroup.jsx"
 import { addMonths } from "date-fns";
+import { DateFlexibilityToggle } from "./DateFlexibilityToggle.jsx";
 
 
 export function MiddleFilter() {
@@ -197,6 +198,11 @@ export function MiddleFilter() {
               />
             </div>
           </LocalizationProvider>
+
+          <div className="modal-date-header">
+            <DateFlexibilityToggle/>
+          </div>
+
         </Modal>
       )}
 

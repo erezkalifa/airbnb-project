@@ -1,0 +1,25 @@
+.flexibility-toggle-group {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background-color: transparent;
+    width: fit-content;
+  }
+  
+  .flexibility-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 999px;
+    border: 1px solid #ccc; /* always thin */
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .flexibility-btn:hover,
+  .flexibility-btn.selected {
+    box-shadow: 0 0 0 1px black; /* adds extra border look without changing size */
+    border-color: black; /* optional: make border darker on hover/selected */
+  }
+  
