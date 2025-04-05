@@ -1,4 +1,16 @@
+import { useState } from "react";
+import {CalendarRangePicker} from "../cmps/CalendarRangePicker.jsx"
+
 export function StayDetails() {
+  const [checkIn, setCheckIn] = useState(null)
+  const [checkOut, setCheckOut] = useState(null)
+  const [showCalendar, setShowCalendar] = useState(false)
+  const [showGuests, setShowGuests] = useState(false);
+  const handleDateChange = (date, index) => {
+    if (index === 0) setCheckIn(date);
+    else setCheckOut(date);
+  }
+
   return (
     <section className="stay-details">
       <div className="container">
@@ -33,7 +45,22 @@ export function StayDetails() {
             <div className="place-details">
               <div className="place">Castle in Gualdo Cattaneo, Italy</div>
               <div className="guests">3 guests1 bedroom2 beds1 bath</div>
-              <div className="rate">5.0 · 3 reviews</div>
+              <div className="rate" style ={{display: "flex", alignItems: "center", gap: "4px"}}>
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 32 32"
+                  aria-hidden="true"
+                  role="presentation"
+                  focusable="false"
+                  style={{
+                    height: "16px",
+                    width: "16px",
+                    fill: "currentcolor",
+                  }}
+                >
+                  <path d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
+                </svg>
+                5.0 · 3 reviews</div>
             </div>
             <div className="host-info">
               <img
@@ -130,12 +157,93 @@ export function StayDetails() {
             </div>
           </div>
           <div className="sticky">
-            <div className="price">
+            {/* <div className="price">
               ₪395 ₪340
               <span>night</span>
+            </div> */}
+           <div className="price">
+              ₪362 <span>night</span>
             </div>
-          </div>
+
+            {/* Selectors */}
+            <div className="selectors">
+              <div
+                className="date-field"
+                onClick={() => {
+                  setShowCalendar(!showCalendar);
+                  setShowGuests(false);
+                }}
+              >
+                <div className="label">CHECK-IN</div>
+                <div className="value">{checkIn ? checkIn.toLocaleDateString() : "Add date"}</div>
+              </div>
+              <div
+                className="date-field"
+                onClick={() => {
+                  setShowCalendar(!showCalendar);
+                  setShowGuests(false);
+                }}
+              >
+                <div className="label">CHECKOUT</div>
+                <div className="value">{checkOut ? checkOut.toLocaleDateString() : "Add date"}</div>
+              </div>
+              <div
+                className="guest-field"
+                onClick={() => {
+                  setShowGuests(!showGuests);
+                  setShowCalendar(false);
+                }}
+              >
+                <div className="label">GUESTS</div>
+                <div className="value">1 guest</div>
+              </div>
+            </div>
+
+            {/* Show calendar */}
+            {showCalendar && (
+              <div className="calendar-dropdown">
+                <CalendarRangePicker onChange={handleDateChange} />
+                <div className="calendar-actions">
+                  <button className="link-btn" onClick={() => { setCheckIn(null); setCheckOut(null); }}>
+                    Clear dates
+                  </button>
+                  <button className="close-btn" onClick={() => setShowCalendar(false)}>Close</button>
+                </div>
+              </div>
+            )}
+
+            {/* Show guest dropdown */}
+            {showGuests && (
+              <div className="guest-dropdown">
+                {/* Your existing guest UI here */}
+              </div>
+            )}
+
+            <button className="reserve-btn">Reserve</button>
+            <p className="note">You won't be charged yet</p>
+
+            <div className="fees">
+              <div className="fee-row">
+                <span>₪362 x 5 nights</span>
+                <span>₪1,810</span>
+              </div>
+              <div className="fee-row">
+                <span>Cleaning fee</span>
+                <span>₪199</span>
+              </div>
+              <div className="fee-row">
+                <span>Airbnb service fee</span>
+                <span>₪284</span>
+              </div>
+              <hr />
+              <div className="fee-row total">
+                <span>Total</span>
+                <span>₪2,293</span>
+              </div>
+            </div>
+          {/* /*!!*/}
         </div>
+      </div>
       </div>
     </section>
   );
