@@ -1,0 +1,35 @@
+.flexibility-toggle-group {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background-color: transparent;
+    width: fit-content;
+  }
+  
+  .flexibility-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 999px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    transition: transform 0.1s ease, border-color 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .flexibility-btn:hover {
+    border-color: #999;
+  }
+  
+  /* ✅ Click (press) effect */
+  .flexibility-btn:active {
+    transform: scale(0.96); /* slight shrink */
+    border-color: #333;     /* optional: darker on press */
+  }
+  
+  .flexibility-btn.selected {
+    border-color: black;
+    background: #f7f7f7;
+  }
+  
+  

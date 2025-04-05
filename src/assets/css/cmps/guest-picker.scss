@@ -1,0 +1,60 @@
+.guest-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px;
+  }
+  
+  .guest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+  }
+  
+  .guest-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .guest-label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .guest-sub {
+    color: #717171;
+    font-size: 14px;
+  }
+  
+  .guest-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .counter-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: white;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1;
+    transition: all 0.2s ease;
+  }
+  
+  .counter-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .guest-count {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+  }
+  

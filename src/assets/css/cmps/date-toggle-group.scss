@@ -1,0 +1,45 @@
+.modal-date-header {
+    padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;  /* centers horizontally */
+    align-items: center;      /* centers vertically */
+}
+.toggle-group {
+  display: flex;
+  background-color: #eee;
+  border-radius: 999px;
+  padding: 4px;
+  gap: 8px; /* adds space between buttons */
+  width: fit-content;
+}
+
+.toggle-btn {
+  min-width: 100px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 999px; /* fully rounded pill-like */
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+/* Hover effect */
+.toggle-btn:hover {
+  background-color: #dfdede;
+  // border-color: #ccc;
+}
+
+/* Click press effect */
+.toggle-btn:active {
+  transform: scale(0.96);
+}
+
+/* Active (selected) state */
+.toggle-btn.active {
+  background: white;
+  border-color: #c7c4c4;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}

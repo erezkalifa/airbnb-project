@@ -20,7 +20,7 @@
   margin-bottom: 25px;
 }
 
-.section {
+.search-box-arg {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,11 +29,11 @@
   height: 70%;
 }
 
-.section:last-of-type {
+.search-box-arg:last-of-type {
   border-right: none;
 }
 
-.section span {
+.search-box-arg span {
   color: gray;
   font-size: 16px;
   font-weight: 400;
