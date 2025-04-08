@@ -34,9 +34,9 @@ export function LabelsScrollerBar({selectedLabel, onLabelSelect}){
 
     const responsive = {
         superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 18 },
-        desktop: { breakpoint: { max: 3000, min: 1024 }, items: 13 },
-        tablet: { breakpoint: { max: 1024, min: 464 }, items: 7 },
-        mobile: { breakpoint: { max: 464, min: 0 }, items: 6 },
+        desktop: { breakpoint: { max: 3000, min: 1024 }, items: 19 },
+        tablet: { breakpoint: { max: 1024, min: 464 }, items: 10 },
+        mobile: { breakpoint: { max: 464, min: 0 }, items: 10 },
     }
 
     
