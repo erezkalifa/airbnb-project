@@ -17,8 +17,6 @@ function ProfileButton() {
   );
 }
 
-
-
 export function UpperFilter({ isAtTop }) {
   return (
     <section className="upper-header">

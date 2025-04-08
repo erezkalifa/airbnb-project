@@ -1,29 +1,17 @@
 import { useState } from "react";
-import {
-  FaStar,
-  FaChevronLeft,
-  FaChevronRight,
-  FaRegHeart,
-} from "react-icons/fa";
-
-// Temporary test images
-import img1 from "../assets/img/stay/1.avif";
-import img2 from "../assets/img/stay/2.avif";
-import img3 from "../assets/img/stay/3.avif";
-import img4 from "../assets/img/stay/4.avif";
-
-const testImages = [img1, img2, img3, img4];
+import { FaStar } from "react-icons/fa";
 
 export function StayPreview({ stay }) {
-  const images = testImages;
   const [currIdx, setCurrIdx] = useState(0);
 
   const nextImg = () => {
-    setCurrIdx((currIdx + 1) % images.length);
+    setCurrIdx((currIdx + 1) % stay.imgUrls.length);
   };
 
   const prevImg = () => {
-    setCurrIdx((currIdx - 1 + images.length) % images.length);
+    currIdx === 0
+      ? ""
+      : setCurrIdx((currIdx - 1 + stay.imgUrls.length) % stay.imgUrls.length);
   };
 
   return (
@@ -33,16 +21,58 @@ export function StayPreview({ stay }) {
           className="carousel-track"
           style={{ transform: `translateX(-${currIdx * 100}%)` }}
         >
-          {testImages.map((url, idx) => (
+          {stay.imgUrls.map((url, idx) => (
             <img key={idx} src={url} alt="" className="carousel-img" />
           ))}
         </div>
 
-        <button className="carousel-btn left" onClick={prevImg}>
-          <FaChevronLeft />
-        </button>
+        {currIdx === 0 ? (
+          ""
+        ) : (
+          <button className="carousel-btn left" onClick={prevImg}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              aria-hidden="true"
+              role="presentation"
+              focusable="false"
+              style={{
+                display: "block",
+                fill: "none",
+                height: "12px",
+                width: "12px",
+                stroke: "currentColor",
+                strokeWidth: 4,
+                overflow: "visible",
+              }}
+            >
+              <path fill="none" d="M20 28 8.7 16.7a1 1 0 0 1 0-1.4L20 4" />
+            </svg>
+          </button>
+        )}
+
         <button className="carousel-btn right" onClick={nextImg}>
-          <FaChevronRight />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+            role="presentation"
+            focusable="false"
+            style={{
+              display: "block",
+              fill: "none",
+              height: "12px",
+              width: "12px",
+              stroke: "currentColor",
+              strokeWidth: 4,
+              overflow: "visible",
+            }}
+          >
+            <path
+              fill="none"
+              d="M12 4 L23.3 15.3 A1 1 0 0 1 23.3 16.7 L12 28"
+            />
+          </svg>
         </button>
         <button className="like-btn">
           <svg
@@ -66,7 +96,7 @@ export function StayPreview({ stay }) {
         </button>
 
         <div className="carousel-dots">
-          {testImages.map((_, idx) => (
+          {stay.imgUrls.map((_, idx) => (
             <span
               key={idx}
               className={idx === currIdx ? "dot active" : "dot"}
