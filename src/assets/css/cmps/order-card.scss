@@ -58,24 +58,7 @@
     color: #000;
     margin-top: 2px;
   }
-  
-  .calendar-dropdown,
-  // .guest-dropdown {
-  //   // padding: 16px;
-  //   // border-radius: 12px;
-  //   // background: white;
-  //   // box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  //   // margin-bottom: 16px;
-  //   width: 100%;
-  //   min-width: 320px;
-  //   max-width: 100%;
-  //   padding: 16px;
-  //   border-radius: 12px;
-  //   background: white;
-  //   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  //   margin-bottom: 16px;
-  //   overflow-x: auto;
-  // }
+
   
   .calendar-actions {
     display: flex;
@@ -168,11 +151,96 @@
     grid-column: span 2;
   }
 
-  .calendar-popup {
-    border-radius: 24px;
+  .calendar-inline {
     background: white;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    padding: 20px;
-    font-family: "Nunito", "Helvetica Neue", sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    padding: 16px;
   }
+
+  .calendar-popup {
+    position: absolute;
+    z-index: 999;
+    width: 600px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .calendar-header {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .date-picker-popup {
+    position: absolute;
+    z-index: 999;
+    width: 700px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    
+    .calendar-body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 24px;
+    }
+  
+    .rdp {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      width: 100%;
+      padding: 0 16px;
+    }
+    
+    .rdp-months {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 24px;
+      flex-wrap: nowrap !important;
+    }
+    
+    /* Optional: Make sure calendar fits and doesn't stretch */
+    .rdp-month {
+      flex: 1;
+    }
+    .rdp-nav {
+      justify-content: space-between !important;
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .rdp-nav_button {
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      background: white;
+      width: 36px;
+      height: 36px;
+      // font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    svg {
+      fill: #222;
+      width: 16px;
+      height: 16px;
+    }
+  
+    &:hover {
+      background: #f7f7f7;
+      border-color: #999;
+    }
+  }
+
+ 

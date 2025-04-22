@@ -1,157 +1,146 @@
-import {useState,useRef, useEffect} from "react";
-import {CalendarRangePicker} from "../CalendarRangePicker.jsx"
-import {GuestPicker} from "../GuestPicker.jsx"
-import Modal from "../Modal.jsx"
+import { useState , useRef,useEffect } from "react";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 
-export function OrderCard(){
-  const [checkIn, setCheckIn] = useState(null)
-  const [checkOut, setCheckOut] = useState(null)
-  const [openModal, setOpenModal] = useState(null);
-  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-  const [dateFieldsWidth, setDateFieldsWidth] = useState(0);
-  // const checkInRef = useRef(null);
-  // const checkOutRef = useRef(null);
-  const guestRef = useRef(null);
+export function OrderCard() {
+  const [checkIn, setCheckIn] = useState(null);
+  const [checkOut, setCheckOut] = useState(null);
+  const [isDatesModal, setIsDatesModal] = useState(false);
+  const [modalPosition, setModalPosition] = useState(null);
+  const [selectedRange, setSelectedRange] = useState({ from: null, to: null });
+
+  const calculateNights = (from, to) => {
+    if (!from || !to) return 0;
+    const diffTime = Math.abs(to - from);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
+
   const dateFieldsRef = useRef(null);
-  // const handleDateChange = (date, index) => {
-  //   if (index === 0) setCheckIn(date);
-  //   else setCheckOut(date);
-  // }
-  const closeModal = () => setOpenModal(null);
-
-  const handleClick = (type) => {
-    let targetRef;
-    if (type === "checkIn" || type === "checkOut") {
-      targetRef = dateFieldsRef;
-    } else if (type === "guests") {
-      targetRef = guestRef;
-    }
-    console.log(targetRef.current)
-    if (targetRef.current) {
-      const rect = targetRef.current.getBoundingClientRect();
-      console.log(rect)
-      const modalWidth = rect.width +500; 
-      console.log(modalWidth)
-      setModalPosition({
-        top: rect.bottom + window.scrollY +12,
-        left: rect.left + window.scrollX,
-      });
-      setDateFieldsWidth(modalWidth);
-    }
-    setOpenModal(type);
-  };
+  const popupRef = useRef(null);
 
   useEffect(() => {
-      const updateWidth = () => {
-        if (dateFieldsRef.current) {
-          setDateFieldsWidth(dateFieldsRef.current.getBoundingClientRect().width);
-        }
-      };
-      updateWidth();
-      window.addEventListener("resize", updateWidth);
-      return () => window.removeEventListener("resize", updateWidth);
-    }, []);
+    if (isDatesModal && dateFieldsRef.current) {
+      const parentEl = dateFieldsRef.current.offsetParent;
+      const triggerBox = dateFieldsRef.current.getBoundingClientRect();
+      const parentBox = parentEl.getBoundingClientRect();
+  
+      setModalPosition({
+        top: triggerBox.bottom - parentBox.top + 8, // + spacing
+        left: triggerBox.left - parentBox.left - 10,
+      });
+    }
+  }, [isDatesModal])
 
   return (
     <div className="order-card-wrapper">
-    <div className="sticky" >
-      <div className="price">
-        ₪362 <span>night</span>
-      </div>
+      <div className="sticky">
+        <div className="price">
+          ₪362 <span>night</span>
+        </div>
 
-      <div className="selectors">
-        <div className="date-range-group" ref={dateFieldsRef}>
-        <div
-          className="date-field" onClick={() => handleClick("checkIn")} >
-          <div className="label" >CHECK-IN</div>
-          <div className="value">
-            {checkIn ? checkIn.toLocaleDateString() : "Add date"}
+        <div className="selectors">
+          <div className="date-range-group" ref={dateFieldsRef}>
+            <div className="date-field" onClick={() => setIsDatesModal(true)}>
+              <div className="label">CHECK-IN</div>
+              <div className="value">
+                {selectedRange.from
+                  ? selectedRange.from.toLocaleDateString()
+                  : "Add date"}
+              </div>
+            </div>
+            <div className="date-field" onClick={() => setIsDatesModal(true)}>
+              <div className="label">CHECKOUT</div>
+              <div className="value">
+                {selectedRange.to
+                  ? selectedRange.to.toLocaleDateString()
+                  : "Add date"}
+              </div>
+            </div>
+          </div>
+
+          <div className="guest-field">
+            <div className="label">GUESTS</div>
+            <div className="value">1 guest</div>
           </div>
         </div>
-        <div
-          className="date-field" onClick={() => handleClick("checkOut")} >
-          <div className="label">CHECKOUT</div>
-          <div className="value">
-            {checkOut ? checkOut.toLocaleDateString() : "Add date"}
+
+        <button className="reserve-btn">Reserve</button>
+        <p className="note">You won't be charged yet</p>
+
+        <div className="fees">
+          <div className="fee-row">
+            <span>₪362 x 5 nights</span>
+            <span>₪1,810</span>
+          </div>
+          <div className="fee-row">
+            <span>Cleaning fee</span>
+            <span>₪199</span>
+          </div>
+          <div className="fee-row">
+            <span>Airbnb service fee</span>
+            <span>₪284</span>
+          </div>
+          <hr />
+          <div className="fee-row total">
+            <span>Total</span>
+            <span>₪2,293</span>
           </div>
         </div>
-        </div>
-        <div className="guest-field" onClick={() => handleClick("guests")} ref={guestRef}>
-          <div className="label">GUESTS</div>
-          <div className="value">1 guest</div>
-        </div>
       </div>
-      <button className="reserve-btn">Reserve</button>
-      <p className="note">You won't be charged yet</p>
 
-      <div className="fees">
-        <div className="fee-row">
-          <span>₪362 x 5 nights</span>
-          <span>₪1,810</span>
+      {isDatesModal && modalPosition && (
+        <div
+          className="date-picker-popup"
+          ref={popupRef}
+          style={{
+            position: "absolute",
+            top: `${modalPosition.top}px`,
+            left: `${modalPosition.left}px`,
+            zIndex: 999,
+          }}
+        >
+          {/* Optional header */}
+          <div className="calendar-header">
+            <h2>
+              {selectedRange.from && selectedRange.to
+                ? `${calculateNights(selectedRange.from, selectedRange.to)} nights`
+                : "Select your stay"}
+            </h2>
+            <p>
+              {selectedRange.from?.toLocaleDateString() || "Check-in"} –{" "}
+              {selectedRange.to?.toLocaleDateString() || "Check-out"}
+            </p>
+          </div>
+          <div className="calendar-body">
+          <DayPicker
+            mode="range"
+            numberOfMonths={2}
+            selected={selectedRange}
+            onDayClick={(date) => {
+              if (!selectedRange.from || (selectedRange.from && selectedRange.to)) {
+                setSelectedRange({ from: date, to: null });
+              } else {
+                setSelectedRange({ ...selectedRange, to: date });
+                setIsDatesModal(false);
+              }
+            }}
+            modifiers={{
+              disabled: [{ before: new Date() }],
+            }}
+          />
+          </div>
+
+          <div className="calendar-actions">
+            <button
+              className="link-btn"
+              onClick={() => setSelectedRange({ from: null, to: null })}
+            >
+              Clear dates</button>
+            <button className="close-btn" onClick={() => setIsDatesModal(false)}>
+              Close</button>
+          </div>
         </div>
-        <div className="fee-row">
-          <span>Cleaning fee</span>
-          <span>₪199</span>
-        </div>
-        <div className="fee-row">
-          <span>Airbnb service fee</span>
-          <span>₪284</span>
-        </div>
-        <hr />
-        <div className="fee-row total">
-          <span>Total</span>
-          <span>₪2,293</span>
-        </div>
-      </div>
+      )}
     </div>
-    {openModal === "checkIn" && (
-      <div className="calendar-popup">
-          <Modal
-            title="Select Check In Date"
-            onClose={closeModal}
-            position={modalPosition}
-            width={`${dateFieldsWidth}px`}
-            height="500px"
-          >
-            <CalendarRangePicker
-              onChange={(date, calendarIndex) =>
-                console.log("Check-in:", date, "Calendar:", calendarIndex)
-              }
-            />
-          </Modal>
-          </div>
-        )}
-    
-        {openModal === "checkOut" && (
-          <div>
-          <Modal
-            title="Select Check Out Date"
-            onClose={closeModal}
-            position={modalPosition}
-            width={`${dateFieldsWidth}px`}
-            height="500px"
-          >
-            <CalendarRangePicker
-              onChange={(date, calendarIndex) =>
-                console.log("Check-out:", date, "Calendar:", calendarIndex)
-              }
-            />
-          </Modal>
-          </div>
-        )}
-
-       {openModal === "guests" && (
-              <Modal
-                title="Add Guests"
-                onClose={closeModal}
-                position={modalPosition}
-                width="500px"
-                height="500px"
-              >
-              <GuestPicker />
-            </Modal>
-            )}
-  </div>
   );
 }
-
