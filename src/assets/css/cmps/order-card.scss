@@ -30,21 +30,21 @@
     margin-bottom: 12px;
   }
   
-  .date-field,
-.guest-field {
+//   .date-field,
+// .guest-field {
+//   padding: 12px;
+//   border-bottom: 1px solid #ddd;
+//   cursor: pointer;
+// }
+
+.date-field {
+  border-right: 1px solid #ddd;
   padding: 12px;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
 }
 
-.date-field {
-  border-right: 1px solid #ddd;
-}
 
-.guest-field {
-  grid-column: span 2; /* this ensures it takes up full width */
-  border-top: 1px solid #ddd;
-}
   
   .label {
     font-size: 10px;
@@ -133,15 +133,17 @@
     position: relative;
   }
   
-  .guest-popup {
+  .guest-picker-popup {
     position: absolute;
-    top: 60px;
+    top: 100%;
     left: 0;
-    z-index: 1000;
+    z-index: 999;
+    width: 100%;
+    max-width: 400px;
     background: white;
     border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   }
 
   .date-range-group {
@@ -207,7 +209,6 @@
       flex-wrap: nowrap !important;
     }
     
-    /* Optional: Make sure calendar fits and doesn't stretch */
     .rdp-month {
       flex: 1;
     }

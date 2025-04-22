@@ -1,0 +1,53 @@
+.guest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .guest-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .guest-label {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .guest-desc {
+    font-size: 14px;
+    color: #717171;
+  }
+  
+  .guest-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  
+    button {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 50%;
+      cursor: pointer;
+  
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+    }
+  
+    span {
+      min-width: 24px;
+      text-align: center;
+    }
+  }
+  
+  .guest-note {
+    font-size: 12px;
+    color: #717171;
+    margin-top: 16px;
+  }
