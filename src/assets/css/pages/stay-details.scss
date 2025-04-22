@@ -22,6 +22,8 @@
 .middle-section {
   display: flex;
   justify-content: space-between;
+  gap:40px;
+  align-items: flex-start;
 }
 
 .img-section img {
@@ -129,142 +131,23 @@
   color: #717171;
 }
 
-.sticky {
-  // height: 400px;
-  // width: 300px;
-  // border-radius: 12px;
-  // background: white;
-  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  // padding: 24px 24px;
-  width: 300px;
-  padding: 24px;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-}
-
 .price {
   font-size: 24px;
 }
 
+.first-col > *:not(:last-child) {
+  margin-bottom: 32px;
+}
 
-//filter-dates
-.price {
-  font-size: 22px;
-  font-weight: bold;
+.first-col {
+  flex: 1;
+  max-width: 700px;
+}
+
+.middle-section > div:last-child {
+  flex-shrink: 0;
+}
+.sticky > *:not(:last-child) {
   margin-bottom: 16px;
 }
 
-.price span {
-  font-weight: normal;
-}
-
-.selectors {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.date-field,
-.guest-field {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.date-field {
-  border-right: 1px solid #ddd;
-}
-
-.guest-field {
-  grid-column: span 2;
-}
-
-.label {
-  font-size: 10px;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #222;
-}
-
-.value {
-  font-size: 14px;
-  color: #000;
-  margin-top: 2px;
-}
-
-.calendar-dropdown,
-.guest-dropdown {
-  padding: 16px;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
-  margin-bottom: 16px;
-}
-
-.calendar-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 12px;
-}
-
-.link-btn {
-  background: none;
-  border: none;
-  color: #222;
-  font-size: 13px;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.close-btn {
-  background: #222;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.reserve-btn {
-  width: 100%;
-  background: linear-gradient(to right, #e61e4d, #d70466);
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 12px;
-}
-
-.note {
-  text-align: center;
-  font-size: 12px;
-  color: #717171;
-  margin-bottom: 16px;
-}
-
-.fees {
-  font-size: 14px;
-  color: #222;
-}
-
-.fee-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.total {
-  font-weight: 600;
-  font-size: 16px;
-  margin-top: 12px;
-}

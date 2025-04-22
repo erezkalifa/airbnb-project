@@ -1,7 +1,7 @@
 import { useState ,useEffect } from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import '../assets/css/cmps/label-scroller-bar.scss'
+//import '../assets/css/cmps/label-scroller-bar.scss'
 import {stayService} from '../services/stay.service.js'
 
 export function LabelsScrollerBar({selectedLabel, onLabelSelect}){
