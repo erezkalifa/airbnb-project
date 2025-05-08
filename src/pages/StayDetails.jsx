@@ -1,15 +1,22 @@
-import { useState } from "react";
-// import {CalendarRangePicker} from "../cmps/CalendarRangePicker.jsx"
 import {OrderCard} from "../cmps/stayDetails/OrderCard.jsx"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { stayService } from "../services/stay.service.js"
 
 export function StayDetails() {
- 
-  // const [showCalendar, setShowCalendar] = useState(false)
-  // const [showGuests, setShowGuests] = useState(false);
-  // const handleDateChange = (date, index) => {
-  //   if (index === 0) setCheckIn(date);
-  //   else setCheckOut(date);
-  // }
+  const { stayId } = useParams()
+  const [stay, setStay] = useState(null)
+
+  useEffect(() => {
+    async function loadStay() {
+      const fetchedStay = await stayService.getById(stayId)
+      setStay(fetchedStay)
+    }
+
+    loadStay()
+  }, [stayId])
+
+  // if (!stay) return <div>Loading...</div>
 
   return (
     <section className="stay-details">
@@ -159,6 +166,16 @@ export function StayDetails() {
           <div>
            <OrderCard/>
         </div>
+      </div>
+      <div className="amenities-section">
+        <h2>What this place offers</h2>
+        <ul className="amenities-list">
+          {stay.amenities.map((amenity, idx) => (
+            <li key={idx} className="amenity-item">
+              <span>{amenity}</span>
+            </li>
+          ))}
+        </ul>
       </div>
       </div>
     </section>
