@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import {Link} from "react-router-dom"
 
 export function StayPreview({ stay }) {
   const [currIdx, setCurrIdx] = useState(0);
@@ -15,7 +16,7 @@ export function StayPreview({ stay }) {
   };
 
   return (
-    <div className="stay-card">
+    <Link to={`/stay/${stay._id}`} className="stay-card">
       <div className="carousel-window">
         <div
           className="carousel-track"
@@ -114,7 +115,9 @@ export function StayPreview({ stay }) {
           </span>
           <span className="stay-card-rating">
             <FaStar style={{ color: "#222", fontSize: "12px" }} />{" "}
-            {(stay?.reviews[0]?.rate).toFixed(1) || null}
+            {typeof stay?.reviews?.[0]?.rate === 'number'
+              ? stay.reviews[0].rate.toFixed(1)
+              : 'N/A'}
           </span>
         </div>
         <div className="stay-card-distance">
@@ -128,6 +131,7 @@ export function StayPreview({ stay }) {
           <span className="night"> night</span>
         </div>
       </div>
-    </div>
+    
+    </Link>
   );
 }

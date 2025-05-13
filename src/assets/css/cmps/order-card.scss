@@ -1,0 +1,247 @@
+//filter-dates
+.sticky {
+    width: 300px;
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+    font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .price span {
+    font-weight: normal;
+  }
+  
+  .selectors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  
+//   .date-field,
+// .guest-field {
+//   padding: 12px;
+//   border-bottom: 1px solid #ddd;
+//   cursor: pointer;
+// }
+
+.date-field {
+  border-right: 1px solid #ddd;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+
+  
+  .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #222;
+  }
+  
+  .value {
+    font-size: 14px;
+    color: #000;
+    margin-top: 2px;
+  }
+
+  
+  .calendar-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+  
+  .link-btn {
+    background: none;
+    border: none;
+    color: #222;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .close-btn {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .reserve-btn {
+    width: 100%;
+    background: linear-gradient(to right, #e61e4d, #d70466);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  
+  .note {
+    text-align: center;
+    font-size: 12px;
+    color: #717171;
+    margin-bottom: 16px;
+  }
+  
+  .fees {
+    font-size: 14px;
+    color: #222;
+  }
+  
+  .fee-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .total {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 12px;
+  }
+
+
+  .calendar-actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .order-card-wrapper {
+    position: relative;
+  }
+  
+  .guest-picker-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .date-range-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    grid-column: span 2;
+  }
+
+  .calendar-inline {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+  }
+
+  .calendar-popup {
+    position: absolute;
+    z-index: 999;
+    width: 600px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .calendar-header {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .date-picker-popup {
+    position: absolute;
+    z-index: 999;
+    width: 700px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    
+    .calendar-body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 24px;
+    }
+  
+    .rdp {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      width: 100%;
+      padding: 0 16px;
+    }
+    
+    .rdp-months {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 24px;
+      flex-wrap: nowrap !important;
+    }
+    
+    .rdp-month {
+      flex: 1;
+    }
+    .rdp-nav {
+      justify-content: space-between !important;
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .rdp-nav_button {
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      background: white;
+      width: 36px;
+      height: 36px;
+      // font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    svg {
+      fill: #222;
+      width: 16px;
+      height: 16px;
+    }
+  
+    &:hover {
+      background: #f7f7f7;
+      border-color: #999;
+    }
+  }
+
+ 

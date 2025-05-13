@@ -1,4 +1,4 @@
-import { StayPreview } from "./stayPreview";
+import { StayPreview } from "./stayPreview"
 
 export function StayList({ stays }) {
   return (
@@ -8,8 +8,8 @@ export function StayList({ stays }) {
           <li className="stay-preview" key={idx}>
             <StayPreview stay={stay} />
           </li>
-        );
+        )
       })}
     </ul>
-  );
+  )
 }

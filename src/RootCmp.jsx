@@ -15,8 +15,11 @@ export function RootCmp() {
           <main>
             <Routes>
               <Route path="/" element={<StayIndex />} />
+
               <Route path="/details" element={<StayDetails />} />
               <Route path="/backoffice" element={<MainMenu />} />
+
+              <Route path="/stay/:stayId" element={<StayDetails />} />
             </Routes>
           </main>
         </section>
