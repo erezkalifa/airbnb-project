@@ -16,42 +16,25 @@ export function StayDetails() {
     loadStay()
   }, [stayId])
 
-  // if (!stay) return <div>Loading...</div>
+  if (!stay) return <div>Loading...</div>
 
   return (
     <section className="stay-details">
       <div className="container">
         <div className="img-section">
-          <img
-            className="img1"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img2"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img3"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img4"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img5"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
+        {stay.imgUrls.slice(0, 5).map((url, idx) => (
+          <img key={idx} className={`img${idx + 1}`} src={url} alt={`stay image ${idx + 1}`} />
+          ))}
         </div>
         <div className="middle-section">
           <div className="first-col">
             <div className="place-details">
-              <div className="place">Castle in Gualdo Cattaneo, Italy</div>
-              <div className="guests">3 guests1 bedroom2 beds1 bath</div>
+              <div className="place">{stay.type} in {stay.loc.city}, {stay.loc.country}</div>
+              <div className="guests">
+                    {stay.capacity} guests · {stay.bedrooms} 
+                    bedroom{stay.bedrooms !== 1 ? 's' : ''} · 
+                    {stay.bathrooms} bath{stay.bathrooms !== 1 ? 's' : ''}
+              </div>
               <div className="rate" style ={{display: "flex", alignItems: "center", gap: "4px"}}>
               <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,17 +50,17 @@ export function StayDetails() {
                 >
                   <path d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
                 </svg>
-                5.0 · 3 reviews</div>
+                5.0 · {stay.reviews?.length || 0} reviews</div>
             </div>
             <div className="host-info">
               <img
                 className="host-avatar"
                 src="https://a0.muscache.com/im/pictures/user/User-588392326/original/42363699-5fe6-4677-ab8c-c90bb3da6100.jpeg?im_w=240"
-                alt="Host avatar"
+                alt={stay.host?.fullname}
               />
               <div className="host-text">
                 <div className="hosted-by">
-                  Hosted by <strong>Castello Di Cisterna</strong>
+                  Hosted by <strong>{stay.host?.fullname}</strong>
                 </div>
                 <div className="host-meta">
                   <span className="superhost">Superhost</span>
@@ -164,7 +147,7 @@ export function StayDetails() {
             </div>
           </div>
           <div>
-           <OrderCard/>
+           <OrderCard stay={stay}/>
         </div>
       </div>
       <div className="amenities-section">

@@ -1,66 +1,74 @@
-import { useState , useRef,useEffect } from "react";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
-import { GuestRow } from "./GuestRow.jsx";
+import { useState , useRef,useEffect } from "react"
+import { DayPicker } from "react-day-picker"
+import "react-day-picker/dist/style.css"
+import { GuestRow } from "./GuestRow.jsx"
 
 
-export function OrderCard() {
+export function OrderCard({stay}) {
   const [guests, setGuests] = useState({
     adults: 1,
     children: 0,
     infants: 0,
     pets: 0,
-  });
-  const [isDatesModal, setIsDatesModal] = useState(false);
-  const [isGuestsModal, setIsGuestsModal] = useState(false);
-  const [modalPosition, setModalPosition] = useState(null);
-  const [guestModalPosition, setGuestModalPosition] = useState(null);
-  const [selectedRange, setSelectedRange] = useState({ from: null, to: null });
+  })
+  const [isDatesModal, setIsDatesModal] = useState(false)
+  const [isGuestsModal, setIsGuestsModal] = useState(false)
+  const [modalPosition, setModalPosition] = useState(null)
+  const [guestModalPosition, setGuestModalPosition] = useState(null)
+  const [selectedRange, setSelectedRange] = useState({ from: null, to: null })
 
   const calculateNights = (from, to) => {
-    if (!from || !to) return 0;
-    const diffTime = Math.abs(to - from);
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  };
+    if (!from || !to) return 0
+    const diffTime = Math.abs(to - from)
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  }
 
-  const dateFieldsRef = useRef(null);
-  const guestFieldRef = useRef(null);
-  const popupRef = useRef(null);
-  const guestPopupRef = useRef(null);
+  const nightlyRate = stay?.price || 0
+  const nights = calculateNights(selectedRange.from, selectedRange.to)
+  const cleaningFee = 199
+  const serviceFee = 284
+  const totalPrice = nights * nightlyRate + cleaningFee + serviceFee
+
+  const dateFieldsRef = useRef(null)
+  const guestFieldRef = useRef(null)
+  const popupRef = useRef(null)
+  const guestPopupRef = useRef(null)
 
  
 
   useEffect(() => {
     if (isDatesModal && dateFieldsRef.current) {
-      const parentEl = dateFieldsRef.current.offsetParent;
-      const triggerBox = dateFieldsRef.current.getBoundingClientRect();
-      const parentBox = parentEl.getBoundingClientRect();
+      const parentEl = dateFieldsRef.current.offsetParent
+      const triggerBox = dateFieldsRef.current.getBoundingClientRect()
+      const parentBox = parentEl.getBoundingClientRect()
 
       setModalPosition({
         top: triggerBox.bottom - parentBox.top + 8,
         left: triggerBox.left - parentBox.left - 10,
       });
     }
-  }, [isDatesModal]);
+  }, [isDatesModal])
 
   useEffect(() => {
     if (isGuestsModal && guestFieldRef.current) {
-      const parentEl = guestFieldRef.current.offsetParent;
-      const triggerBox = guestFieldRef.current.getBoundingClientRect();
-      const parentBox = parentEl.getBoundingClientRect();
+      const parentEl = guestFieldRef.current.offsetParent
+      const triggerBox = guestFieldRef.current.getBoundingClientRect()
+      const parentBox = parentEl.getBoundingClientRect()
 
       setGuestModalPosition({
         top: triggerBox.bottom - parentBox.top + 8,
         left: triggerBox.left - parentBox.left,
-      });
+      })
     }
-  }, [isGuestsModal]);
+  }, [isGuestsModal])
+
+  
 
   return (
     <div className="order-card-wrapper">
       <div className="sticky">
         <div className="price">
-          ₪362 <span>night</span>
+          ₪{nightlyRate} <span>night</span>
         </div>
 
         <div className="selectors">
@@ -97,21 +105,21 @@ export function OrderCard() {
 
         <div className="fees">
           <div className="fee-row">
-            <span>₪362 x 5 nights</span>
-            <span>₪1,810</span>
+            <span>₪{nightlyRate} x {nights || 0}  nights</span>
+            <span>₪{nights * nightlyRate || 0}</span>
           </div>
           <div className="fee-row">
             <span>Cleaning fee</span>
-            <span>₪199</span>
+            <span>₪{cleaningFee}</span>
           </div>
           <div className="fee-row">
             <span>Airbnb service fee</span>
-            <span>₪284</span>
+            <span>₪{serviceFee}</span>
           </div>
           <hr />
           <div className="fee-row total">
             <span>Total</span>
-            <span>₪2,293</span>
+            <span>₪{totalPrice || 0}</span>
           </div>
         </div>
       </div>

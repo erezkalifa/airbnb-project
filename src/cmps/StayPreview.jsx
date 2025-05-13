@@ -115,7 +115,9 @@ export function StayPreview({ stay }) {
           </span>
           <span className="stay-card-rating">
             <FaStar style={{ color: "#222", fontSize: "12px" }} />{" "}
-            {(stay?.reviews[0]?.rate).toFixed(1) || null}
+            {typeof stay?.reviews?.[0]?.rate === 'number'
+              ? stay.reviews[0].rate.toFixed(1)
+              : 'N/A'}
           </span>
         </div>
         <div className="stay-card-distance">
