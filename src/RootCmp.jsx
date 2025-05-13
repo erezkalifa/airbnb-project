@@ -1,6 +1,7 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { AppHeader } from "./cmps/AppHeader.jsx";
+// import { AppHeader } from "./cmps/AppHeader.jsx";
+import { MainMenu } from "./pages/back-office/MainMenu.jsx";
 import { StayIndex } from "./pages/StayIndex.jsx";
 import { StayDetails } from "./pages/StayDetails.jsx";
 import { store } from "./store/store.js";
@@ -15,6 +16,7 @@ export function RootCmp() {
             <Routes>
               <Route path="/" element={<StayIndex />} />
               <Route path="/details" element={<StayDetails />} />
+              <Route path="/backoffice" element={<MainMenu />} />
             </Routes>
           </main>
         </section>

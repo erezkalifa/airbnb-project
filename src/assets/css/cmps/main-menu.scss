@@ -1,0 +1,154 @@
+.main-menu {
+  padding: 16px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 2fr;
+  gap: 16px;
+  border-radius: 12px;
+  margin-bottom: 22px;
+}
+
+.metric-card {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-title {
+  color: #717171;
+  font-size: 14px;
+  margin-bottom: 4px;
+  padding-bottom: 10px;
+}
+
+.metric-value-change {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+}
+
+.metric-change {
+  font-size: 12px;
+  color: #22c55e;
+}
+
+.metric-dots {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.yellow {
+  background-color: #fbbf24;
+}
+.dot.green {
+  background-color: #4ade80;
+}
+.dot.blue {
+  background-color: #3b82f6;
+}
+.dot.red {
+  background-color: #ef4444;
+}
+
+.bottom-dashboard {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stay-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.left-section {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 40%;
+  border-bottom: 1px solid #e5e0e0;
+  padding-bottom: 20px;
+}
+
+.stay-title {
+  font-size: 22px;
+  color: #717171;
+  width: 40%;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e0e0;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* מרווח בין share ל-save */
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* מרווח בין ה- SVG לטקסט */
+  cursor: pointer;
+  color: #222;
+  transition: color 0.2s ease;
+}
+
+.action-item:hover {
+  color: #ff385c; /* צבע משתנה בהובר */
+}
+
+.action-icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.img-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.underline-input {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  background-color: transparent;
+  padding: 4px 0;
+  width: 100%;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
