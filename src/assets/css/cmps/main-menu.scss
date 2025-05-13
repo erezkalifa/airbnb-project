@@ -1,7 +1,42 @@
 .main-menu {
-  padding: 16px;
-  width: 80%;
-  margin: 0 auto;
+  flex: 1;
+  padding: 24px;
+  box-sizing: border-box;
+  max-width: 1000px;
+  // margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .main-menu {
+    padding: 16px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .stay-info,
+  .img-section,
+  .info-item,
+  .desc textarea,
+  .underline-input {
+    width: 100% !important;
+  }
+
+  .img-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+  }
+
+  .dashboard-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stay-title {
+    font-size: 18px;
+    width: 100%;
+  }
 }
 
 .dashboard-metrics {
@@ -70,32 +105,32 @@
 }
 
 .bottom-dashboard {
-  background-color: #ffffff;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e5e5;
 }
 
 .stay-info {
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  margin-bottom: 25px;
+  // margin-bottom: 25px;
 }
 
 .left-section {
   display: flex;
   gap: 8px;
   align-items: center;
-  width: 40%;
-  border-bottom: 1px solid #e5e0e0;
+  // border-bottom: 1px solid #e5e0e0;
   padding-bottom: 20px;
 }
 
 .stay-title {
   font-size: 22px;
   color: #717171;
-  width: 40%;
+  width: 100%;
   padding: 10px 0;
   margin-bottom: 20px;
   border-bottom: 1px solid #e5e0e0;
@@ -104,13 +139,14 @@
 .right-section {
   display: flex;
   align-items: center;
-  gap: 12px; /* מרווח בין share ל-save */
+  gap: 12px;
+  padding-bottom: 20px;
 }
 
 .action-item {
   display: flex;
   align-items: center;
-  gap: 4px; /* מרווח בין ה- SVG לטקסט */
+  gap: 4px;
   cursor: pointer;
   color: #222;
   transition: color 0.2s ease;
@@ -151,4 +187,35 @@
   width: 100%;
   font-size: 16px;
   transition: border-color 0.3s;
+}
+
+.info-item {
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 16px;
+}
+
+.extra-info:last-child {
+  padding-bottom: 14px;
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+}
+
+.desc span {
+  margin-bottom: 8px;
+}
+
+textarea {
+  width: 40%;
+  min-height: 120px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  box-sizing: border-box;
 }

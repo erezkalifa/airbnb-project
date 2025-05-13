@@ -9,6 +9,7 @@
 @use "./pages/stay-index.scss";
 @use "./pages/stay-details.scss";
 @use "./pages/stay-edit.scss";
+@use "./pages/back-office.scss";
 
 /* Components */
 @use "./cmps/upper-filter.scss";
@@ -27,8 +28,8 @@
 @use "./cmps/date-toggle-group.scss";
 @use "./cmps/date-flexibility-toggle.scss";
 @use "./cmps/guest-picker.scss";
-
 @use "./cmps/main-menu.scss";
+@use "./cmps/side-menu.scss";
 
 @use "./cmps/label-scroller-bar.scss";
 @use "./cmps/order-card.scss";

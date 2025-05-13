@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Modal from "./Modal.jsx";
-import { SearchLocation } from "./SearchLocation.jsx"
-import { CalendarRangePicker } from "./CalendarRangePicker.jsx"
-import { GuestPicker } from "./GuestPicker.jsx"
+import { SearchLocation } from "./SearchLocation.jsx";
+import { CalendarRangePicker } from "./CalendarRangePicker.jsx";
+import { GuestPicker } from "./GuestPicker.jsx";
+import { useDispatch, useSelector } from "react-redux";
 
 export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
@@ -13,7 +14,13 @@ export function MiddleFilter() {
   const thirdArgRef = useRef(null);
   const searchBoxRef = useRef(null);
 
+  const dispatch = useDispatch();
+
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy);
   const closeModal = () => setOpenModal(null);
+  function onSetFilter(filterBy) {
+    dispatch({ type: SET_FILTER_BY, filterBy });
+  }
 
   // Get search-box width on load & resize
   useEffect(() => {
@@ -72,10 +79,7 @@ export function MiddleFilter() {
             Check out
             <span>Add dates</span>
           </div>
-          <div
-            className="search-box-arg"
-            onClick={() => handleClick("who")}
-          >
+          <div className="search-box-arg" onClick={() => handleClick("who")}>
             Who
             <span>Add guests</span>
           </div>
@@ -107,21 +111,19 @@ export function MiddleFilter() {
 
       {/* Modals */}
       {openModal === "where" && (
-      <Modal
-        title="Choose Destination"
-        onClose={closeModal}
-        position={modalPosition}
-        width={`${searchBoxWidth/2}px`}
-        height="500px"
-      >
-        <div className="modal-scrollable-list">
-          <div className="searches-sub-title">Recent searches</div>
-          {[
-            "Paris",
-          ].map((destination, i) => (
-            <SearchLocation location={destination} key={i}/>
-          ))}
-          <div className="searches-sub-title">Suggested Destinations</div>
+        <Modal
+          title="Choose Destination"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth / 2}px`}
+          height="500px"
+        >
+          <div className="modal-scrollable-list">
+            <div className="searches-sub-title">Recent searches</div>
+            {["Paris"].map((destination, i) => (
+              <SearchLocation location={destination} key={i} />
+            ))}
+            <div className="searches-sub-title">Suggested Destinations</div>
             {[
               "Berlin",
               "London",
@@ -135,43 +137,43 @@ export function MiddleFilter() {
               "Lisbon",
               "Athens",
             ].map((destination, i) => (
-            <SearchLocation location={destination} key={i}/>
-          ))}
-        </div>
-      </Modal>
-    )}
+              <SearchLocation location={destination} key={i} />
+            ))}
+          </div>
+        </Modal>
+      )}
 
-    {openModal === "checkin" && (
-      <Modal
-        title="Select Check In Date"
-        onClose={closeModal}
-        position={modalPosition}
-        width={`${searchBoxWidth}px`}
-        height="500px"
-      >
-        <CalendarRangePicker
-          onChange={(date, calendarIndex) =>
-            console.log("Check-in:", date, "Calendar:", calendarIndex)
-          }
-        />
-      </Modal>
-    )}
+      {openModal === "checkin" && (
+        <Modal
+          title="Select Check In Date"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth}px`}
+          height="500px"
+        >
+          <CalendarRangePicker
+            onChange={(date, calendarIndex) =>
+              console.log("Check-in:", date, "Calendar:", calendarIndex)
+            }
+          />
+        </Modal>
+      )}
 
-    {openModal === "checkout" && (
-      <Modal
-        title="Select Check Out Date"
-        onClose={closeModal}
-        position={modalPosition}
-        width={`${searchBoxWidth}px`}
-        height="500px"
-      >
-        <CalendarRangePicker
-          onChange={(date, calendarIndex) =>
-            console.log("Check-out:", date, "Calendar:", calendarIndex)
-          }
-        />
-      </Modal>
-    )}
+      {openModal === "checkout" && (
+        <Modal
+          title="Select Check Out Date"
+          onClose={closeModal}
+          position={modalPosition}
+          width={`${searchBoxWidth}px`}
+          height="500px"
+        >
+          <CalendarRangePicker
+            onChange={(date, calendarIndex) =>
+              console.log("Check-out:", date, "Calendar:", calendarIndex)
+            }
+          />
+        </Modal>
+      )}
 
       {openModal === "who" && (
         <Modal
@@ -181,8 +183,8 @@ export function MiddleFilter() {
           width="500px"
           height="500px"
         >
-        <GuestPicker />
-      </Modal>
+          <GuestPicker />
+        </Modal>
       )}
     </>
   );
