@@ -11,7 +11,6 @@ export function RootCmp() {
     <Provider store={store}>
       <Router>
         <section className="main-container">
-          {/* <AppHeader /> This component is commented out because the app header is a filter and should be located in the StayIndex */}
           <main>
             <Routes>
               <Route path="/" element={<StayIndex />} />

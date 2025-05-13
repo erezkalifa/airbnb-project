@@ -1,14 +1,15 @@
-import { storageService } from "./async-storage.service.js"
-import { utilService } from "./util.service.js"
-import Axios from 'axios'
+import { storageService } from "./async-storage.service.js";
+import { utilService } from "./util.service.js";
+import Axios from "axios";
 
 const axios = Axios.create({
   withCredentials: true,
-})
+});
 
-const BASE_URL = (process.env.NODE_ENV !== 'development')
-  ? '/api/stay/'
-  : 'http://localhost:3030/api/stay/'
+const BASE_URL =
+  process.env.NODE_ENV !== "development"
+    ? "/api/stay/"
+    : "http://localhost:3030/api/stay/";
 
 export const stayService = {
   query,
@@ -18,8 +19,8 @@ export const stayService = {
   addMsg,
   removeMsg,
   getLabels,
-  getDefaultFilter
-}
+  getDefaultFilter,
+};
 
 const testImages = [
   [
@@ -65,51 +66,40 @@ const testImages = [
     "https://a0.muscache.com/im/ml/photo_enhancement/pictures/6fec1995-f042-4902-83a8-9795821b6204.jpg?im_w=720",
     "https://a0.muscache.com/im/ml/photo_enhancement/pictures/0771ea1d-148a-4bd2-8069-713149c9b6d5.jpg?im_w=720",
   ],
-]
+];
 
-const API = '/api/stay';
+const API = "/api/stay";
 // _createStays();
 
 async function query(filterBy = {}) {
   try {
-    const { data: stays } = await axios.get(BASE_URL, { params: filterBy })
-    return stays
+    const { data: stays } = await axios.get(BASE_URL, { params: filterBy });
+    return stays;
   } catch (err) {
-    console.error('Failed to load stays:', err)
-    throw err
+    console.error("Failed to load stays:", err);
+    throw err;
   }
-  // return storageService.query(STAY_KEY).then((stays) => {
-  //   if (filterBy.txt) {
-  //     const regExp = new RegExp(filterBy.txt, "i");
-  //     stays = stays.filter((stay) => regExp.test(stay.name));
-  //   }
-
-  //   return stays;
-  // });
 }
 
-  
-
-
-async function getById (stayId){
+async function getById(stayId) {
   try {
-    const { data: stay } = await axios.get(BASE_URL + stayId)
-    return stay
+    const { data: stay } = await axios.get(BASE_URL + stayId);
+    return stay;
   } catch (err) {
-    console.error(`Failed to get stay ${stayId}:`, err)
-    throw err
+    console.error(`Failed to get stay ${stayId}:`, err);
+    throw err;
   }
 }
 
 async function save(stay) {
-  const method = stay._id ? 'put' : 'post'
-  const url = BASE_URL + (stay._id || '')
+  const method = stay._id ? "put" : "post";
+  const url = BASE_URL + (stay._id || "");
   try {
-    const { data: savedStay } = await axios[method](url, stay)
-    return savedStay
+    const { data: savedStay } = await axios[method](url, stay);
+    return savedStay;
   } catch (err) {
-    console.error(`Failed to ${method} stay:`, err)
-    throw err
+    console.error(`Failed to ${method} stay:`, err);
+    throw err;
   }
   // if (stay.id) {
   //   return storageService.put(STAY_KEY, stay);
@@ -118,21 +108,21 @@ async function save(stay) {
   // }
 }
 
-async function remove(stayId){
+async function remove(stayId) {
   try {
-    return await axios.delete(BASE_URL + stayId)
+    return await axios.delete(BASE_URL + stayId);
   } catch (err) {
-    console.error(`Failed to remove stay ${stayId}:`, err)
-    throw err
+    console.error(`Failed to remove stay ${stayId}:`, err);
+    throw err;
   }
 }
 
 function addMsg(stayId, msg) {
-  return axios.post(`${API}/${stayId}/msg`, msg).then(res => res.data)
+  return axios.post(`${API}/${stayId}/msg`, msg).then((res) => res.data);
 }
 
 function removeMsg(stayId, msgId) {
-  return axios.delete(`${API}/${stayId}/msg/${msgId}`).then(res => res.data)
+  return axios.delete(`${API}/${stayId}/msg/${msgId}`).then((res) => res.data);
 }
 
 function getRandomLocation(id) {
@@ -201,13 +191,13 @@ function getRandomLocation(id) {
 }
 
 function getRandomItems(array, count) {
-  const shuffled = array.sort(() => 0.5 - Math.random())
-  return shuffled.slice(0, count)
+  const shuffled = array.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
 }
 
 function getRandomName(namesArray) {
-  const randomIndex = Math.floor(Math.random() * namesArray.length)
-  return namesArray[randomIndex]
+  const randomIndex = Math.floor(Math.random() * namesArray.length);
+  return namesArray[randomIndex];
 }
 
 function _createStay(id) {
@@ -223,7 +213,7 @@ function _createStay(id) {
     "Gym",
     "Parking",
     "Breakfast included",
-  ]
+  ];
   const labelsList = [
     "Top of the world",
     "Trending",
@@ -235,7 +225,7 @@ function _createStay(id) {
     "Seaside",
     "Mountain View",
     "Downtown",
-  ]
+  ];
   const fullNames = [
     "Davit Pok",
     "Alexandra Mendez",
@@ -257,7 +247,7 @@ function _createStay(id) {
     "Henry Kim",
     "Chloe Stewart",
     "William Scott",
-  ]
+  ];
 
   return {
     _id: utilService.makeId(),
@@ -288,19 +278,19 @@ function _createStay(id) {
       },
     ],
     likedByUsers: ["mini-user"],
-  }
+  };
 }
 
 function _createStays() {
-  let stays = utilService.loadFromStorage(STAY_KEY)
+  let stays = utilService.loadFromStorage(STAY_KEY);
 
   if (!stays || !stays.length) {
-    stays = []
+    stays = [];
     for (let i = 0; i < 20; i++) {
-      stays.push(_createStay(i))
+      stays.push(_createStay(i));
     }
 
-    utilService.saveToStorage(STAY_KEY, stays)
+    utilService.saveToStorage(STAY_KEY, stays);
   }
 }
 
@@ -312,11 +302,11 @@ function getLabels() {
     },
     {
       img: "https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg",
-      name: "OMG!",
+      name: "OMG",
     },
     {
       img: "https://a0.muscache.com/pictures/732edad8-3ae0-49a8-a451-29a8010dcc0c.jpg",
-      name: "Cabins!",
+      name: "Cabins",
     },
     {
       img: "https://a0.muscache.com/pictures/ee9e2a40-ffac-4db9-9080-b351efc3cfc4.jpg",
@@ -411,16 +401,16 @@ function getLabels() {
 
 function getDefaultFilter() {
   return {
-    txt: '',
-    city: '',
+    txt: "",
+    city: "",
     minPrice: 0,
     maxPrice: 1000,
     bathrooms: 0,
     bedrooms: 0,
     capacity: 0,
-    roomType: '',
-    sortField: '',
+    roomType: "",
+    sortField: "",
     sortDir: 1,
-    pageIdx: 0
-  }
+    pageIdx: 0,
+  };
 }
