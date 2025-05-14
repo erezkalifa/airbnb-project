@@ -183,7 +183,7 @@ export function MainMenu() {
 
         <div className="desc">
           <span>Description</span>
-          <label for="description"></label>
+          <label htmlFor="description"></label>
           <textarea id="description" name="description"></textarea>
         </div>
       </div>
