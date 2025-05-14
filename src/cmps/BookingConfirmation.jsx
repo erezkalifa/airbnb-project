@@ -1,6 +1,4 @@
-// BookingConfirmationModal.jsx
 import { useState } from "react";
-import "./BookingConfirmationModal.css";
 
 export function BookingConfirmationModal() {
   const [isOpen, setIsOpen] = useState(false);
