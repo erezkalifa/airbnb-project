@@ -14,7 +14,7 @@ function ProfileButton() {
         <Avatar url="src/assets/img/profile.jpg" />
       </button>
     </div>
-  );
+  )
 }
 
 export function UpperFilter({ isAtTop }) {

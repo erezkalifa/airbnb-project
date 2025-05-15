@@ -73,7 +73,8 @@ const API = "/api/stay";
 
 async function query(filterBy = {}) {
   try {
-    const { data: stays } = await axios.get(BASE_URL, { params: filterBy });
+    const { data: stays } = await axios.get(BASE_URL, { params: filterBy })
+    console.log('stay service:',filterBy)
     return stays;
   } catch (err) {
     console.error("Failed to load stays:", err);
@@ -101,11 +102,6 @@ async function save(stay) {
     console.error(`Failed to ${method} stay:`, err);
     throw err;
   }
-  // if (stay.id) {
-  //   return storageService.put(STAY_KEY, stay);
-  // } else {
-  //   return storageService.post(STAY_KEY, stay);
-  // }
 }
 
 async function remove(stayId) {
@@ -412,5 +408,5 @@ function getDefaultFilter() {
     sortField: "",
     sortDir: 1,
     pageIdx: 0,
-  };
+  }
 }

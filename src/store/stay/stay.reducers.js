@@ -4,7 +4,11 @@ export const SET_FILTER_BY = "SET_FILTER_BY"
 
 const initialState = {
   stays: [],
-  filterBy : {},
+  filterBy : {
+    checkIn: '',
+    checkOut: '',
+    guests: 0,
+    labels: '',},
 }
 
 export function stayReducer(state = initialState, cmd = {}) {

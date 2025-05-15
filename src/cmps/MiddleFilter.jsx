@@ -1,56 +1,70 @@
-import React, { useState, useRef, useEffect } from "react";
-import Modal from "./Modal.jsx";
-import { SearchLocation } from "./SearchLocation.jsx";
-import { CalendarRangePicker } from "./CalendarRangePicker.jsx";
-import { GuestPicker } from "./GuestPicker.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useRef, useEffect } from "react"
+import Modal from "./Modal.jsx"
+import { SearchLocation } from "./SearchLocation.jsx"
+import { CalendarRangePicker } from "./CalendarRangePicker.jsx"
+import { GuestPicker } from "./GuestPicker.jsx"
+import { useDispatch, useSelector } from "react-redux"
+import { SET_FILTER_BY } from "../store/stay/stay.reducers.js"
+import { loadStays } from "../store/stay/stay.actions.js"
 
 export function MiddleFilter() {
-  const [openModal, setOpenModal] = useState(null);
-  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-  const [searchBoxWidth, setSearchBoxWidth] = useState(0);
+  const [openModal, setOpenModal] = useState(null)
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 })
+  const [searchBoxWidth, setSearchBoxWidth] = useState(0)
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
+  const [checkInDate, setCheckInDate] = useState(filterBy.checkIn ? new Date(filterBy.checkIn) : null)
+  const [checkOutDate, setCheckOutDate] = useState(filterBy.checkOut ? new Date(filterBy.checkOut) : null)
 
-  const firstArgRef = useRef(null);
-  const thirdArgRef = useRef(null);
-  const searchBoxRef = useRef(null);
+  const firstArgRef = useRef(null)
+  const thirdArgRef = useRef(null)
+  const searchBoxRef = useRef(null)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy);
-  const closeModal = () => setOpenModal(null);
+  const closeModal = () => setOpenModal(null)
   function onSetFilter(filterBy) {
-    dispatch({ type: SET_FILTER_BY, filterBy });
+    dispatch({ type: SET_FILTER_BY, filterBy })
   }
 
   // Get search-box width on load & resize
   useEffect(() => {
     const updateWidth = () => {
       if (searchBoxRef.current) {
-        setSearchBoxWidth(searchBoxRef.current.getBoundingClientRect().width);
+        setSearchBoxWidth(searchBoxRef.current.getBoundingClientRect().width)
       }
-    };
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
-  }, []);
+    }
+    updateWidth()
+    window.addEventListener("resize", updateWidth)
+    return () => window.removeEventListener("resize", updateWidth)
+  }, [])
 
   const handleClick = (type) => {
     let targetRef;
     if (type === "who") {
-      targetRef = thirdArgRef;
+      targetRef = thirdArgRef
     } else {
-      targetRef = firstArgRef;
+      targetRef = firstArgRef
     }
 
     if (targetRef.current) {
-      const rect = targetRef.current.getBoundingClientRect();
+      const rect = targetRef.current.getBoundingClientRect()
       setModalPosition({
         top: rect.bottom + window.scrollY,
         left: rect.left + window.scrollX,
-      });
+      })
     }
-    setOpenModal(type);
-  };
+    setOpenModal(type)
+  }
+
+  const handleSearch = () => {
+    const totalGuests = (filterBy.guests?.adults || 0) + (filterBy.guests?.children || 0)
+    const filterToSend = {
+      ...filterBy,
+      capacity: totalGuests
+    }
+    dispatch(loadStays(filterToSend))
+    setOpenModal(null)
+  }
 
   return (
     <>
@@ -62,28 +76,33 @@ export function MiddleFilter() {
             onClick={() => handleClick("where")}
           >
             Where
-            <span>Search destinations</span>
+            <span>{filterBy.city || "Search destinations"}</span>
           </div>
           <div
             className="search-box-arg"
             onClick={() => handleClick("checkin")}
           >
             Check in
-            <span>Add dates</span>
+            <span>{filterBy.checkIn ? new Date(filterBy.checkIn).toLocaleDateString() : "Add dates"}</span>
           </div>
-          <div
-            className="search-box-arg"
-            ref={thirdArgRef}
-            onClick={() => handleClick("checkout")}
-          >
-            Check out
-            <span>Add dates</span>
-          </div>
+          <div className="search-box-arg"
+                ref={thirdArgRef}
+                onClick={() => handleClick("checkout")}
+              >
+                Check out
+                <span>
+                {filterBy.checkOut
+                        ? new Date(filterBy.checkOut).toLocaleDateString()
+                        : "Add dates"}
+                </span>
+              </div>
           <div className="search-box-arg" onClick={() => handleClick("who")}>
             Who
-            <span>Add guests</span>
+            <span>{filterBy.guests
+              ? `${filterBy.guests.adults + filterBy.guests.children} guest${(filterBy.guests.adults + filterBy.guests.children) !== 1 ? 's' : ''}`
+              : "Add guests"}</span>
           </div>
-          <button className="search-button">
+          <button className="search-button" onClick={handleSearch}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -121,7 +140,13 @@ export function MiddleFilter() {
           <div className="modal-scrollable-list">
             <div className="searches-sub-title">Recent searches</div>
             {["Paris"].map((destination, i) => (
-              <SearchLocation location={destination} key={i} />
+              <SearchLocation 
+                location={destination} 
+                filterBy={filterBy}
+                onSetFilter={onSetFilter}
+                closeModal={closeModal}
+                key={i}
+              />
             ))}
             <div className="searches-sub-title">Suggested Destinations</div>
             {[
@@ -137,7 +162,12 @@ export function MiddleFilter() {
               "Lisbon",
               "Athens",
             ].map((destination, i) => (
-              <SearchLocation location={destination} key={i} />
+              <SearchLocation 
+                location={destination} 
+                filterBy={filterBy}
+                onSetFilter={onSetFilter}
+                closeModal={closeModal}
+                key={i} />
             ))}
           </div>
         </Modal>
@@ -152,9 +182,19 @@ export function MiddleFilter() {
           height="500px"
         >
           <CalendarRangePicker
-            onChange={(date, calendarIndex) =>
-              console.log("Check-in:", date, "Calendar:", calendarIndex)
-            }
+            value={checkInDate}
+            onChange={(date) => {
+              const newCheckIn = new Date(date)
+              setCheckInDate(newCheckIn)
+              let updatedFilter = { ...filterBy, checkIn: newCheckIn.toISOString() }
+              if (checkOutDate && new Date(checkOutDate) <= newCheckIn) {
+                setCheckOutDate(null)
+                updatedFilter.checkOut = null
+              }
+      
+              onSetFilter(updatedFilter)
+              closeModal()
+            }}
           />
         </Modal>
       )}
@@ -168,9 +208,24 @@ export function MiddleFilter() {
           height="500px"
         >
           <CalendarRangePicker
-            onChange={(date, calendarIndex) =>
-              console.log("Check-out:", date, "Calendar:", calendarIndex)
-            }
+            value={checkOutDate}
+            onChange={(date) => {
+              const newCheckOut = new Date(date)
+      
+              if (!checkInDate) {
+                alert("Please select a check-in date first.")
+                return
+              }
+      
+              if (newCheckOut <= checkInDate) {
+                alert("Check-out date must be after check-in date.")
+                return
+              }
+      
+              setCheckOutDate(newCheckOut)
+              onSetFilter({ ...filterBy, checkOut: newCheckOut.toISOString() })
+              closeModal()
+            }}
           />
         </Modal>
       )}
@@ -183,7 +238,18 @@ export function MiddleFilter() {
           width="500px"
           height="500px"
         >
-          <GuestPicker />
+          <GuestPicker 
+           initialGuests={filterBy.guests}
+           onGuestsChange={(guests) => {
+             const prevGuests = filterBy.guests || {}
+             const keys = ['adults', 'children', 'infants', 'pets']
+             const isDifferent = keys.some(key => guests[key] !== prevGuests[key])
+         
+             if (isDifferent) {
+               onSetFilter({ ...filterBy, guests })
+             }
+           }}
+            />
         </Modal>
       )}
     </>

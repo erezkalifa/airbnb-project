@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react"
 
-export function GuestPicker() {
+export function GuestPicker({ onGuestsChange, initialGuests = {} }) {
   const [guests, setGuests] = useState({
     adults: 0,
     children: 0,
     infants: 0,
     pets: 0,
-  });
+    ...initialGuests,
+  })
 
   const updateGuestCount = (type, change) => {
-    setGuests((prev) => ({
-      ...prev,
-      [type]: Math.max(0, prev[type] + change),
-    }));
-  };
+    setGuests(prev => {
+      const updated = { ...prev, [type]: Math.max(0, prev[type] + change) }
+      return updated
+    })
+  }
+
+  useEffect(() => {
+    onGuestsChange?.(guests)
+  }, [guests])
 
   const guestOptions = [
     {
@@ -65,5 +70,5 @@ export function GuestPicker() {
         </div>
       ))}
     </div>
-  );
+  )
 }

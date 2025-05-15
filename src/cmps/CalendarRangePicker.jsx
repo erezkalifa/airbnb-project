@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -6,7 +7,15 @@ import { addMonths } from "date-fns";
 import { DateToggleGroup } from "./DateToggleGroup";
 import { DateFlexibilityToggle } from "./DateFlexibilityToggle";
 
-export function CalendarRangePicker({ onChange }) {
+export function CalendarRangePicker({value, onChange}) {
+  const [selectedDates, setSelectedDates] = useState([null, null]);
+  const handleDateChange = (date, index) => {
+    const newDates = [...selectedDates];
+    newDates[index] = date;
+    setSelectedDates(newDates);
+    onChange?.(date, index);
+  }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div className="modal-date-header">
@@ -18,8 +27,8 @@ export function CalendarRangePicker({ onChange }) {
           <DateCalendar
             key={i}
             views={["day"]}
-            defaultValue={month}
-            onChange={(date) => onChange?.(date, i)}
+            value={value}
+            onChange={(date) => handleDateChange(date, i)}
             sx={{
               "& .MuiPickersArrowSwitcher-root": {
                 display: "none",
