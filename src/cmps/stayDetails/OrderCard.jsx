@@ -1,68 +1,64 @@
-import { useState , useRef,useEffect } from "react"
-import { DayPicker } from "react-day-picker"
-import "react-day-picker/dist/style.css"
-import { GuestRow } from "./GuestRow.jsx"
+import { useState, useRef, useEffect } from "react";
+import { DayPicker } from "react-day-picker";
+import { GuestRow } from "./GuestRow.jsx";
 
+import "react-day-picker/dist/style.css";
 
-export function OrderCard({stay}) {
+export function OrderCard({ stay, onReserveClick }) {
   const [guests, setGuests] = useState({
     adults: 1,
     children: 0,
     infants: 0,
     pets: 0,
-  })
-  const [isDatesModal, setIsDatesModal] = useState(false)
-  const [isGuestsModal, setIsGuestsModal] = useState(false)
-  const [modalPosition, setModalPosition] = useState(null)
-  const [guestModalPosition, setGuestModalPosition] = useState(null)
-  const [selectedRange, setSelectedRange] = useState({ from: null, to: null })
+  });
+  const [isDatesModal, setIsDatesModal] = useState(false);
+  const [isGuestsModal, setIsGuestsModal] = useState(false);
+  const [modalPosition, setModalPosition] = useState(null);
+  const [guestModalPosition, setGuestModalPosition] = useState(null);
+  const [selectedRange, setSelectedRange] = useState({ from: null, to: null });
 
   const calculateNights = (from, to) => {
-    if (!from || !to) return 0
-    const diffTime = Math.abs(to - from)
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-  }
+    if (!from || !to) return 0;
+    const diffTime = Math.abs(to - from);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  };
 
-  const nightlyRate = stay?.price || 0
-  const nights = calculateNights(selectedRange.from, selectedRange.to)
-  const cleaningFee = 199
-  const serviceFee = 284
-  const totalPrice = nights * nightlyRate + cleaningFee + serviceFee
+  const nightlyRate = stay?.price || 0;
+  const nights = calculateNights(selectedRange.from, selectedRange.to);
+  const cleaningFee = 199;
+  const serviceFee = 284;
+  const totalPrice = nights * nightlyRate + cleaningFee + serviceFee;
 
-  const dateFieldsRef = useRef(null)
-  const guestFieldRef = useRef(null)
-  const popupRef = useRef(null)
-  const guestPopupRef = useRef(null)
-
- 
+  const dateFieldsRef = useRef(null);
+  const guestFieldRef = useRef(null);
+  const popupRef = useRef(null);
+  const guestPopupRef = useRef(null);
 
   useEffect(() => {
     if (isDatesModal && dateFieldsRef.current) {
-      const parentEl = dateFieldsRef.current.offsetParent
-      const triggerBox = dateFieldsRef.current.getBoundingClientRect()
-      const parentBox = parentEl.getBoundingClientRect()
+      const parentEl = dateFieldsRef.current.offsetParent;
+      const triggerBox = dateFieldsRef.current.getBoundingClientRect();
+      const parentBox = parentEl.getBoundingClientRect();
 
       setModalPosition({
         top: triggerBox.bottom - parentBox.top + 8,
         left: triggerBox.left - parentBox.left - 10,
       });
     }
-  }, [isDatesModal])
+  }, [isDatesModal]);
 
   useEffect(() => {
     if (isGuestsModal && guestFieldRef.current) {
-      const parentEl = guestFieldRef.current.offsetParent
-      const triggerBox = guestFieldRef.current.getBoundingClientRect()
-      const parentBox = parentEl.getBoundingClientRect()
+      const parentEl = guestFieldRef.current.offsetParent;
+      const triggerBox = guestFieldRef.current.getBoundingClientRect();
+      const parentBox = parentEl.getBoundingClientRect();
 
       setGuestModalPosition({
         top: triggerBox.bottom - parentBox.top + 8,
         left: triggerBox.left - parentBox.left,
-      })
+      });
     }
-  }, [isGuestsModal])
-
-  
+  }, [isGuestsModal]);
 
   return (
     <div className="order-card-wrapper">
@@ -91,21 +87,50 @@ export function OrderCard({stay}) {
             </div>
           </div>
 
-          <div className="guest-field" ref={guestFieldRef} onClick={() => setIsGuestsModal(true)}>
+          <div
+            className="guest-field"
+            ref={guestFieldRef}
+            onClick={() => setIsGuestsModal(true)}
+          >
             <div className="label">GUESTS</div>
             <div className="value">
-              {guests.adults + guests.children + guests.infants + guests.pets} guest
-              {guests.adults + guests.children + guests.infants + guests.pets !== 1 ? "s" : ""}
+              {guests.adults + guests.children + guests.infants + guests.pets}{" "}
+              guest
+              {guests.adults +
+                guests.children +
+                guests.infants +
+                guests.pets !==
+              1
+                ? "s"
+                : ""}
             </div>
           </div>
         </div>
 
-        <button className="reserve-btn">Reserve</button>
+        <button
+          className="reserve-btn"
+          onClick={() => {
+            onReserveClick({
+              selectedRange,
+              guests,
+              nights,
+              totalPrice,
+              nightlyRate,
+              cleaningFee,
+              serviceFee,
+            });
+          }}
+        >
+          Reserve
+        </button>
+
         <p className="note">You won't be charged yet</p>
 
         <div className="fees">
           <div className="fee-row">
-            <span>₪{nightlyRate} x {nights || 0}  nights</span>
+            <span>
+              ₪{nightlyRate} x {nights || 0} nights
+            </span>
             <span>₪{nights * nightlyRate || 0}</span>
           </div>
           <div className="fee-row">
@@ -138,11 +163,15 @@ export function OrderCard({stay}) {
           <div className="calendar-header">
             <h2>
               {selectedRange.from && selectedRange.to
-                ? `${calculateNights(selectedRange.from, selectedRange.to)} nights`
+                ? `${calculateNights(
+                    selectedRange.from,
+                    selectedRange.to
+                  )} nights`
                 : "Select your stay"}
             </h2>
             <p>
-              {selectedRange.from?.toLocaleDateString() || "Check-in"} – {selectedRange.to?.toLocaleDateString() || "Check-out"}
+              {selectedRange.from?.toLocaleDateString() || "Check-in"} –{" "}
+              {selectedRange.to?.toLocaleDateString() || "Check-out"}
             </p>
           </div>
 
@@ -152,7 +181,10 @@ export function OrderCard({stay}) {
               numberOfMonths={2}
               selected={selectedRange}
               onDayClick={(date) => {
-                if (!selectedRange.from || (selectedRange.from && selectedRange.to)) {
+                if (
+                  !selectedRange.from ||
+                  (selectedRange.from && selectedRange.to)
+                ) {
                   setSelectedRange({ from: date, to: null });
                 } else {
                   setSelectedRange({ ...selectedRange, to: date });
@@ -166,10 +198,16 @@ export function OrderCard({stay}) {
           </div>
 
           <div className="calendar-actions">
-            <button className="link-btn" onClick={() => setSelectedRange({ from: null, to: null })}>
+            <button
+              className="link-btn"
+              onClick={() => setSelectedRange({ from: null, to: null })}
+            >
               Clear dates
             </button>
-            <button className="close-btn" onClick={() => setIsDatesModal(false)}>
+            <button
+              className="close-btn"
+              onClick={() => setIsDatesModal(false)}
+            >
               Close
             </button>
           </div>
@@ -191,32 +229,61 @@ export function OrderCard({stay}) {
             label="Adults"
             description="Age 13+"
             value={guests.adults}
-            onIncrement={() => setGuests(prev => ({ ...prev, adults: prev.adults + 1 }))}
-            onDecrement={() => setGuests(prev => ({ ...prev, adults: Math.max(prev.adults - 1, 1) }))}
+            onIncrement={() =>
+              setGuests((prev) => ({ ...prev, adults: prev.adults + 1 }))
+            }
+            onDecrement={() =>
+              setGuests((prev) => ({
+                ...prev,
+                adults: Math.max(prev.adults - 1, 1),
+              }))
+            }
           />
           <GuestRow
             label="Children"
             description="Ages 2–12"
             value={guests.children}
-            onIncrement={() => setGuests(prev => ({ ...prev, children: prev.children + 1 }))}
-            onDecrement={() => setGuests(prev => ({ ...prev, children: Math.max(prev.children - 1, 0) }))}
+            onIncrement={() =>
+              setGuests((prev) => ({ ...prev, children: prev.children + 1 }))
+            }
+            onDecrement={() =>
+              setGuests((prev) => ({
+                ...prev,
+                children: Math.max(prev.children - 1, 0),
+              }))
+            }
           />
           <GuestRow
             label="Infants"
             description="Under 2"
             value={guests.infants}
-            onIncrement={() => setGuests(prev => ({ ...prev, infants: prev.infants + 1 }))}
-            onDecrement={() => setGuests(prev => ({ ...prev, infants: Math.max(prev.infants - 1, 0) }))}
+            onIncrement={() =>
+              setGuests((prev) => ({ ...prev, infants: prev.infants + 1 }))
+            }
+            onDecrement={() =>
+              setGuests((prev) => ({
+                ...prev,
+                infants: Math.max(prev.infants - 1, 0),
+              }))
+            }
           />
           <GuestRow
             label="Pets"
             description={<a href="#">Bringing a service animal?</a>}
             value={guests.pets}
-            onIncrement={() => setGuests(prev => ({ ...prev, pets: prev.pets + 1 }))}
-            onDecrement={() => setGuests(prev => ({ ...prev, pets: Math.max(prev.pets - 1, 0) }))}
+            onIncrement={() =>
+              setGuests((prev) => ({ ...prev, pets: prev.pets + 1 }))
+            }
+            onDecrement={() =>
+              setGuests((prev) => ({
+                ...prev,
+                pets: Math.max(prev.pets - 1, 0),
+              }))
+            }
           />
           <p className="guest-note">
-            This place has a maximum of 15 guests, not including infants. If you're bringing more than 2 pets, please let your host know.
+            This place has a maximum of 15 guests, not including infants. If
+            you're bringing more than 2 pets, please let your host know.
           </p>
           <button className="close-btn" onClick={() => setIsGuestsModal(false)}>
             Close
