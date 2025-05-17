@@ -30,7 +30,11 @@ export function StayPreview({ stay }) {
         {currIdx === 0 ? (
           ""
         ) : (
-          <button className="carousel-btn left" onClick={prevImg}>
+          <button className="carousel-btn left" onClick={(e) => {
+            e.stopPropagation()
+            e.preventDefault()
+            prevImg()
+          }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -52,7 +56,11 @@ export function StayPreview({ stay }) {
           </button>
         )}
 
-        <button className="carousel-btn right" onClick={nextImg}>
+        <button className="carousel-btn right" onClick={(e) => {
+          e.stopPropagation()
+          e.preventDefault()
+          nextImg()
+        }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
@@ -75,7 +83,10 @@ export function StayPreview({ stay }) {
             />
           </svg>
         </button>
-        <button className="like-btn">
+        <button className="like-btn" onClick={(e) => {
+            e.stopPropagation()
+            e.preventDefault()
+          }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"

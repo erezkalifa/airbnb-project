@@ -1,5 +1,5 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+// import { useDispatch, useSelector } from "react-redux"
 
 export function SearchLocation({
   location,
@@ -14,7 +14,7 @@ export function SearchLocation({
   //const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
   function handleClick() {
-    console.log(location)
+    //console.log(location)
     const updatedFilter = { ...filterBy, city: location }
     onSetFilter(updatedFilter)
     closeModal?.()

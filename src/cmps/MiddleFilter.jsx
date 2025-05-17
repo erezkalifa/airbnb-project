@@ -62,7 +62,8 @@ export function MiddleFilter() {
       ...filterBy,
       capacity: totalGuests
     }
-    dispatch(loadStays(filterToSend))
+    dispatch({ type: SET_FILTER_BY, filterBy: filterToSend })
+    dispatch(loadStays(filterToSend)) 
     setOpenModal(null)
   }
 
@@ -241,14 +242,17 @@ export function MiddleFilter() {
           <GuestPicker 
            initialGuests={filterBy.guests}
            onGuestsChange={(guests) => {
-             const prevGuests = filterBy.guests || {}
-             const keys = ['adults', 'children', 'infants', 'pets']
-             const isDifferent = keys.some(key => guests[key] !== prevGuests[key])
-         
-             if (isDifferent) {
-               onSetFilter({ ...filterBy, guests })
-             }
-           }}
+            const prevGuests = filterBy.guests || {}
+            const isSame =
+              prevGuests.adults === guests.adults &&
+              prevGuests.children === guests.children &&
+              prevGuests.infants === guests.infants &&
+              prevGuests.pets === guests.pets
+            console.log(isSame)
+            if (!isSame) {
+              onSetFilter({ ...filterBy, guests })
+            }
+          }}
             />
         </Modal>
       )}

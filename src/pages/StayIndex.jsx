@@ -20,8 +20,9 @@ export function StayIndex() {
   }
 
   useEffect(() => {
-    console.log(filterBy)
-    loadStays(filterBy).catch((err) => console.log(err))
+    console.log('StayIndex : ',filterBy)
+    dispatch(loadStays(filterBy))
+    .catch((err) => console.log(err))
   }, [filterBy])
 
   return (
@@ -35,7 +36,8 @@ export function StayIndex() {
           onSetFilter({ ...filterBy, labels: label })
         }}
       />
-      {stays.length ? <StayList stays={stays} /> : ""}
+      {stays.length ? <StayList stays={stays} /> : 
+          <p className="no-stays-msg">No stays found</p>}
     </section>
   )
 }

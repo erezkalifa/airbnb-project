@@ -11,7 +11,10 @@ const rootReducer = combineReducers({
   stayModule: stayReducer,
 })
 
-const middleware = applyMiddleware(thunk)
+// const middleware = applyMiddleware(thunk)
 
-const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose
-export const store = createStore(rootReducer, compose(middleware))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+export const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+)
