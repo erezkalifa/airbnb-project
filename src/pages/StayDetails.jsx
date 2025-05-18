@@ -95,8 +95,11 @@ export function StayDetails() {
               <div className="amenities-grid">
                 {amenitiesToShow.map((amenity, idx) => (
                   <div key={idx} className="amenity-item">
-                    <span className="amenity-icon"></span>
-                    <span className="amenity-label">{amenity}</span>
+                    <span className="amenity-icon"
+                     dangerouslySetInnerHTML={{ __html: `${amenity.svg}` 
+                    }}></span>
+                    <span className="amenity-label">{amenity.name}
+                   </span>
                   </div>
                 ))}
               </div>
