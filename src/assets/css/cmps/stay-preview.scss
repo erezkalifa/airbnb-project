@@ -15,20 +15,27 @@
   transform: translateY(-4px);
 }
 
-.stay-card-img-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 12px;
-}
+// .stay-card-img-container {
+//   position: relative;
+//   width: 100%;
+//   aspect-ratio: 1 / 1;
+//   overflow: hidden;
+//   border-radius: 12px;
+// }
 
-.stay-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
+// .stay-card-img {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   border-radius: 12px;
+//   transition: transform 0.3s ease;
+// }
+
+.stay-card .carousel-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  flex: 0 0 100%;
 }
 
 .stay-card-info {
