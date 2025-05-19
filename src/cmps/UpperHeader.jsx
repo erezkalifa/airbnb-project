@@ -1,57 +1,54 @@
-import { useState, useEffect } from "react";
-import { Avatar } from "./Avatar.jsx";
-import { SmallFilter } from "./SmallFilter.jsx";
+// import { useState, useEffect, useRef } from "react";
+// import { Avatar } from "./Avatar.jsx";
+// import { UserMenu } from "./UserMenu.jsx";
+// import { ProfileButton } from "./ProfileButton.jsx";
 
-export function UpperHeader() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  // const [isScrolling, setIsScrolling] = useState(false);
+// export function UpperHeader() {
+//   const [isMenuOpen, setIsMenuOpen] = useState(true);
+//   const [selectedCategory, setSelectedCategory] = useState(null);
+//   const menuRef = useRef();
 
-  const handleSelect = (category) => {
-    setSelectedCategory(category);
-  };
+//   // useEffect(() => {
+//   //   function handleClickOutside(event) {
+//   //     if (menuRef.current && !menuRef.current.contains(event.target)) {
+//   //       setIsMenuOpen(false);
+//   //     }
+//   //   }
 
-  // addEventListener("scroll", (event) => {
-  //   setIsScrolling(true);
-  // });
+//   //   document.addEventListener("click", handleClickOutside);
+//   //   return () => document.removeEventListener("click", handleClickOutside);
+//   // }, []);
 
-  return (
-    <section className="upper-header">
-      <div className="logo">
-        <a href="/">
-          <img src="src/assets/img/logo-with-text.svg" alt="Logo" />
-        </a>
-      </div>
+//   // const handleSelect = (category) => {
+//   //   setSelectedCategory(category);
+//   // };
 
-      {/* <SmallFilter /> */}
+//   return (
+//     <section className="upper-header">
+//       <div className="logo">
+//         <a href="/">
+//           <img src="src/assets/img/logo-with-text.svg" alt="Logo" />
+//         </a>
+//       </div>
 
-      <div className="categories">
-        <span className="btn-wrapper">
-          <button
-            className={selectedCategory === "Stays" ? "selected" : ""}
-            onClick={() => handleSelect("Stays")}
-          >
-            Stays
-          </button>
-        </span>
-        <span className="btn-wrapper">
-          <button
-            className={selectedCategory === "Experiences" ? "selected" : ""}
-            onClick={() => handleSelect("Experiences")}
-          >
-            Experiences
-          </button>
-        </span>
-      </div>
-      <div className="profile">
-        <button>
-          <img
-            className="three-parallel"
-            src="src/assets/img/Icons/three_lines.svg"
-            alt="Icon"
-          />
-          <Avatar url="src/assets/img/profile.jpg" />
-        </button>
-      </div>
-    </section>
-  );
-}
+//       <div className="categories">
+//         <span className="btn-wrapper">
+//           <button
+//             className={selectedCategory === "Stays" ? "selected" : ""}
+//             onClick={() => handleSelect("Stays")}
+//           >
+//             Stays
+//           </button>
+//         </span>
+//         <span className="btn-wrapper">
+//           <button
+//             className={selectedCategory === "Experiences" ? "selected" : ""}
+//             onClick={() => handleSelect("Experiences")}
+//           >
+//             Experiences
+//           </button>
+//         </span>
+//       </div>
+//     </section>
+//   );
+// }

@@ -1,0 +1,37 @@
+.profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-toggle {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.three-parallel {
+  width: 16px;
+  height: 16px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-menu-wrapper {
+  position: absolute;
+  top: 130%;
+  right: 55px;
+  z-index: 9999;
+}

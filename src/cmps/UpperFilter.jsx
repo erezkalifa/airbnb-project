@@ -1,21 +1,7 @@
 import { Avatar } from "./Avatar.jsx";
 import { SmallFilter } from "./SmallFilter.jsx";
 import { StaysExperiencesFilter } from "./StaysExpriencesFilter.jsx";
-
-function ProfileButton() {
-  return (
-    <div className="profile">
-      <button>
-        <img
-          className="three-parallel"
-          src="src/assets/img/Icons/three_lines.svg"
-          alt="Menu Icon"
-        />
-        <Avatar url="src/assets/img/profile.jpg" />
-      </button>
-    </div>
-  )
-}
+import { ProfileButton } from "./ProfileButton.jsx";
 
 export function UpperFilter({ isAtTop }) {
   return (
@@ -29,7 +15,6 @@ export function UpperFilter({ isAtTop }) {
 
       {/* Filter */}
       {isAtTop ? <StaysExperiencesFilter /> : <SmallFilter />}
-
       <ProfileButton />
     </section>
   );
