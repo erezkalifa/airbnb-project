@@ -86,9 +86,14 @@ export function OrderCard({ stay, onReserveClick }) {
 
           <div className="guest-field" onClick={() => setIsGuestsModal(!isGuestsModal)}>
             <div className="label">GUESTS</div>
-            <div className="value">
-              {guests.adults + guests.children + guests.infants + guests.pets} guest
-              {guests.adults + guests.children + guests.infants + guests.pets !== 1 ? "s" : ""}
+            <div className="guest-row-content">
+              <div className="value">
+                {guests.adults + guests.children + guests.infants + guests.pets} guest
+                {guests.adults + guests.children + guests.infants + guests.pets !== 1 ? "s" : ""}
+              </div>
+              <svg viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false">
+                <path fill="none" d="M6 10l10 10 10-10" />
+              </svg>
             </div>
 
             {isGuestsModal && (

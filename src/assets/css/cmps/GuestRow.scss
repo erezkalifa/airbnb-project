@@ -1,9 +1,9 @@
-.guest-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
+// .guest-row {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 16px;
+//   }
   
   .guest-info {
     display: flex;
@@ -13,29 +13,59 @@
   .guest-label {
     font-weight: 600;
     font-size: 16px;
+    color: #222;
   }
   
   .guest-desc {
     font-size: 14px;
     color: #717171;
+    margin-top: 2px;
+  }
+  
+  .guest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
   }
   
   .guest-controls {
     display: flex;
     align-items: center;
     gap: 12px;
+    height: 32px;
   
     button {
+      all: unset; // 🚨 CRITICAL: resets default button styles
       width: 32px;
       height: 32px;
-      font-size: 18px;
-      border: 1px solid #ddd;
-      background: white;
       border-radius: 50%;
+      border: 1px solid #B0B0B0;
+      background-color: white;
+      color: #222;
+      font-size: 0; // hide extra spacing around inline SVG
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+  
+      svg {
+        display: block;
+        width: 12px;
+        height: 12px;
+      }
+  
+      &:hover:not(:disabled) {
+        background-color: #F7F7F7;
+        border-color: #999;
+      }
   
       &:disabled {
-        opacity: 0.3;
+        opacity: 0.4;
+        background-color: #fff;
+        border-color: #ddd;
+        color: #ccc;
         cursor: not-allowed;
       }
     }
@@ -43,6 +73,9 @@
     span {
       min-width: 24px;
       text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: #222;
     }
   }
   
@@ -51,3 +84,5 @@
     color: #717171;
     margin-top: 16px;
   }
+
+ 
