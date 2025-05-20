@@ -7,9 +7,15 @@ export function GuestRow({ label, description, value, onIncrement, onDecrement }
           <div className="guest-desc">{description}</div>
         </div>
         <div className="guest-controls">
-          <button onClick={onDecrement} disabled={value === 0}>−</button>
+          <button onClick={onDecrement}>
+            <svg width="12" height="2" viewBox="0 0 12 2">
+                <rect width="12" height="2" fill="currentColor" />
+              </svg></button>
           <span>{value}</span>
-          <button onClick={onIncrement}>+</button>
+          <button onClick={onIncrement}>
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <path d="M6 0v12M0 6h12" stroke="currentColor" strokeWidth="2" />
+            </svg></button>
         </div>
       </div>
     );
