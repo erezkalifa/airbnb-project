@@ -138,5 +138,5 @@ export function OrderCard({ stay, onReserveClick }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
