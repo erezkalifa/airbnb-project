@@ -54,17 +54,21 @@ export function GuestPicker({ onGuestsChange, initialGuests = {} }) {
           <div className="guest-controls">
             <button
               onClick={() => updateGuestCount(key, -1)}
-              disabled={guests[key] === 0}
+              // disabled={guests[key] === 0}
               className="counter-btn"
             >
-              –
+               <svg width="12" height="2" viewBox="0 0 12 2" xmlns="http://www.w3.org/2000/svg">
+                <rect width="12" height="2" fill="currentColor" />
+              </svg>
             </button>
             <span className="guest-count">{guests[key]}</span>
             <button
               onClick={() => updateGuestCount(key, 1)}
               className="counter-btn"
             >
-              +
+               <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 0v12M0 6h12" stroke="currentColor" strokeWidth="2" />
+              </svg>
             </button>
           </div>
         </div>
