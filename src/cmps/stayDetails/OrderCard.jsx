@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 import { GuestRow } from "./GuestRow.jsx";
+import { useNavigate } from "react-router-dom"
 
 import "react-day-picker/dist/style.css";
 
@@ -9,6 +10,7 @@ export function OrderCard({ stay, onReserveClick }) {
   const [isDatesModal, setIsDatesModal] = useState(false);
   const [isGuestsModal, setIsGuestsModal] = useState(false);
   const [selectedRange, setSelectedRange] = useState({ from: null, to: null });
+  const navigate = useNavigate();
 
   const calculateNights = (from, to) => {
     if (!from || !to) return 0;
@@ -122,7 +124,18 @@ export function OrderCard({ stay, onReserveClick }) {
         </div>
 
         <button className="reserve-btn" onClick={() => {
-          onReserveClick({ selectedRange, guests, nights, totalPrice, nightlyRate, cleaningFee, serviceFee });
+          // onReserveClick({ selectedRange, guests, nights, totalPrice, nightlyRate, 
+          //   cleaningFee, serviceFee })
+            const bookingData = {
+              selectedRange,
+              guests,
+              nights,
+              totalPrice,
+              nightlyRate,
+              cleaningFee,
+              serviceFee,
+            }
+          navigate("/booking-confirmation", { state: { bookingData, stay } })
         }}>
           Reserve
         </button>
