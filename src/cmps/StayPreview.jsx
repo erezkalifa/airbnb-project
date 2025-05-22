@@ -133,7 +133,7 @@ export function StayPreview({ stay }) {
           {stay?.distance || "748 kilometers away"}
         </div>
         <div className="stay-card-dates">
-          {stay?.availableDates || "Apr 7–12"}
+          {/* {stay?.availableDates || "Apr 7–12"} */}
         </div>
         <div className="stay-card-price">
           €{stay?.price || null}

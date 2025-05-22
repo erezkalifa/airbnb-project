@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { reservationService } from "../services/reservation.service.js";
+import { UpperFilter } from "../cmps/UpperFilter.jsx";
 
 export function BookingConfirmationPage() {
   const location = useLocation();
@@ -23,6 +24,7 @@ export function BookingConfirmationPage() {
 
   return (
     <section className="booking-confirm-page">
+      <UpperFilter isAtTop={false} />
       <h1>Confirm and pay</h1>
 
       <div className="booking-content">
