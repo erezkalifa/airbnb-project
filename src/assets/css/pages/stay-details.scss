@@ -66,24 +66,6 @@
           grid-row: 2 / 3;
           grid-column: 3 / 4;
         }
-
-        .show-all-btn {
-          position: absolute;
-          bottom: 12px;
-          right: 12px;
-          background-color: white;
-          padding: 10px 16px;
-          font-weight: 600;
-          font-size: 14px;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-
-          &:hover {
-            background: #f7f7f7;
-          }
-        }
       }
     }
   }
@@ -102,13 +84,17 @@
     }
 
     .order-card-wrapper {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 120px;
-      align-self: flex-start;
-      width: 100%;
-      max-width: 375px;
-      height: fit-content;
+      &.sticky {
+        position: sticky;
+        top: 100px;
+        align-self: start;
+      }
+    
+      // Reset unwanted frame styles
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      border: none;
     }
   }
 
@@ -248,7 +234,7 @@
 
   .reviews-section {
     padding: 48px 0;
-    border-top: 1px solid #ddd;
+    // border-top: 1px solid #ddd;
 
     h2 {
       font-size: 24px;
@@ -299,6 +285,67 @@
       .review-text {
         font-size: 16px;
         color: #222;
+      }
+    }
+  }
+}
+
+.rating-summary {
+  padding: 48px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .overall-rating {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  .rating-categories {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+
+    .rating-category {
+      flex: 1;
+      text-align: left;
+      padding: 0 8px;
+      position: relative;
+
+      .rating-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #222;
+      }
+
+      .rating-value {
+        font-size: 14px;
+        color: #222;
+        margin-top: 2px;
+        font-weight: 700;
+      }
+
+      .rating-icon svg {
+        margin-top: 8px;
+        width: 24px;
+        height: 24px;
+        fill: #222;
+      }
+
+      .divider {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background-color: #ddd;
       }
     }
   }
