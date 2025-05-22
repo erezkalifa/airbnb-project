@@ -19,7 +19,6 @@ export function BookingConfirmationPage() {
 
   function handleConfirm() {
     reservationService.save(bookingData);
-    // Add success feedback or redirect here
   }
 
   return (
@@ -32,26 +31,31 @@ export function BookingConfirmationPage() {
           <div className="trip-section">
             <h2>Your trip</h2>
             <div className="trip-detail">
-              <div className="label">Dates</div>
-              <div className="value">
-                {selectedRange.from?.toLocaleDateString()} – {selectedRange.to?.toLocaleDateString()}
-              </div>
+              <div className="detail-label">Dates</div>
+              <div className="detail-value">{selectedRange.from?.toLocaleDateString()} – {selectedRange.to?.toLocaleDateString()}</div>
             </div>
             <div className="trip-detail">
-              <div className="label">Guests</div>
-              <div className="value">
-                {guests.adults + guests.children + guests.infants + guests.pets} guests
-              </div>
+              <div className="detail-label">Guests</div>
+              <div className="detail-value">{guests.adults + guests.children + guests.infants + guests.pets} guests</div>
             </div>
           </div>
 
           <div className="payment-options">
             <h2>Choose how to pay</h2>
-            <div className="payment-option-row">
-              <div className="payment-option selected">Pay ₪{totalPrice} now</div>
-              <button className="confirm-btn-inline" onClick={handleConfirm}>Confirm</button>
+
+            <div className="payment-option selected" onClick={handleConfirm}>
+              <div className="payment-main">
+                <div className="payment-label">Pay ₪{totalPrice} now</div>
+              </div>
+              <div className="radio-circle">
+                <div className="dot" />
+              </div>
             </div>
-            <div className="payment-option disabled">Installments coming soon</div>
+
+            <div className="payment-option disabled">
+              <div className="payment-main">Installments coming soon</div>
+              <div className="radio-circle" />
+            </div>
           </div>
         </div>
 
@@ -65,6 +69,8 @@ export function BookingConfirmationPage() {
               <span>★ {stay.rating || 4.5} ({stay.reviews?.length || 0} reviews)</span>
             </div>
           </div>
+
+          <hr className="section-divider" />
 
           <div className="price-breakdown">
             <h4>Price details</h4>
@@ -90,7 +96,9 @@ export function BookingConfirmationPage() {
       </div>
 
       <div className="confirm-footer">
-        <button className="confirm-btn" onClick={handleConfirm}>Confirm booking</button>
+        <button className="confirm-btn" onClick={handleConfirm}>
+          Confirm booking
+        </button>
       </div>
     </section>
   );
