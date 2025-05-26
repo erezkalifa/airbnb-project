@@ -126,16 +126,14 @@ export function StayPreview({ stay }) {
           </span>
           <span className="stay-card-rating">
             <FaStar style={{ color: "#222", fontSize: "12px" }} />{" "}
-            {typeof stay?.reviews?.[0]?.rate === 'number'
-              ? stay.reviews[0].rate.toFixed(1)
-              : 'N/A'}
+            {stay.reviews[0].rate}
           </span>
         </div>
         <div className="stay-card-distance">
           {stay?.distance || "748 kilometers away"}
         </div>
         <div className="stay-card-dates">
-          {stay?.availableDates || "Apr 7–12"}
+          {/* {stay?.availableDates || "Apr 7–12"} */}
         </div>
         <div className="stay-card-price">
           €{stay?.price || null}
