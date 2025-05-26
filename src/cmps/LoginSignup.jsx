@@ -11,8 +11,6 @@ export function LoginSignup({ onClose }) {
       ...prev,
       [id]: value,
     }));
-
-    console.log(userDetails);
   }
 
   function onOverlayClick(e) {

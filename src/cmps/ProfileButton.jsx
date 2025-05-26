@@ -29,7 +29,7 @@ export function ProfileButton() {
           src="src/assets/img/Icons/three_lines.svg"
           alt="Menu Icon"
         />
-        <Avatar url="src/assets/img/profile.jpg" />
+        {/* <Avatar url="src/assets/img/profile.jpg" /> */}
       </button>
 
       {isMenuOpen && (
