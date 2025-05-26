@@ -1,4 +1,20 @@
+import { userService } from "../services/user.service";
+import { useState } from "react";
+
 export function LoginSignup({ onClose }) {
+  const [userDetails, setUserDetails] = useState({});
+
+  function handleInputChange(e) {
+    const { id, value } = e.target;
+
+    setUserDetails((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+
+    console.log(userDetails);
+  }
+
   function onOverlayClick(e) {
     if (e.target.classList.contains("login-overlay")) {
       onClose();
@@ -37,15 +53,32 @@ export function LoginSignup({ onClose }) {
           <div className="modal-body">
             <h2 className="welcome">Welcome to Airbnb</h2>
             <div className="form-control">
-              <label htmlFor="country">Country code</label>
-              <select id="country">
-                <option value="+972">Israel (+972)</option>
-              </select>
+              <label htmlFor="fullname">Full Name</label>
+              <input
+                type="full"
+                id="fullname"
+                placeholder="Enter Full Name"
+                onChange={handleInputChange}
+              />
             </div>
 
             <div className="form-control">
-              <label htmlFor="phone">Phone number</label>
-              <input type="tel" id="phone" placeholder="Phone number" />
+              <label htmlFor="username">User Name</label>
+              <input
+                type="user"
+                id="username"
+                placeholder="Enter User Name"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-control">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                onChange={handleInputChange}
+              />
             </div>
 
             <p className="disclaimer">
@@ -53,7 +86,12 @@ export function LoginSignup({ onClose }) {
               and data rates apply. <a href="#">Privacy Policy</a>
             </p>
 
-            <button className="primary-btn">Continue</button>
+            <button
+              className="primary-btn"
+              onClick={() => userService.signup(userDetails)}
+            >
+              Continue
+            </button>
 
             <div className="divider">
               <span>or</span>
