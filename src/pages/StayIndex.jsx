@@ -4,8 +4,9 @@ import { loadStays } from "../store/stay/stay.actions.js";
 import { StayList } from "../cmps/StayList.jsx";
 import { Filters } from "../cmps/Filters";
 import { LabelsScrollerBar } from "../cmps/LabelsScrollerBar.jsx";
+
 // Demo data creation
-import { _createLoggedInUser } from "../services/user.service.js";
+// import { _createLoggedInUser } from "../services/user.service.js";
 import { _createOrders } from "../services/order.service.js";
 import { SET_FILTER_BY } from "../store/stay/stay.reducers.js";
 
@@ -40,6 +41,7 @@ export function StayIndex() {
       ) : (
         <p className="no-stays-msg">No stays found</p>
       )}
+      {/* <LoginSignup /> */}
     </section>
   );
 }

@@ -1,15 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { Avatar } from "./Avatar";
 import { UserMenu } from "./UserMenu";
+import { LoginSignup } from "./LoginSignup";
 
 export function ProfileButton() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const menuRef = useRef();
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsMenuOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -20,7 +22,7 @@ export function ProfileButton() {
     <div className="profile" ref={menuRef} style={{ position: "relative" }}>
       <button
         className="profile-toggle"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => setIsMenuOpen((prev) => !prev)}
       >
         <img
           className="three-parallel"
@@ -30,10 +32,20 @@ export function ProfileButton() {
         <Avatar url="src/assets/img/profile.jpg" />
       </button>
 
-      {isOpen && (
+      {isMenuOpen && (
         <div className="user-menu-wrapper">
-          <UserMenu />
+          <UserMenu
+            onCloseMenu={() => setIsMenuOpen(false)}
+            onLoginClick={() => {
+              setIsMenuOpen(false);
+              setIsLoginModalOpen(true);
+            }}
+          />
         </div>
+      )}
+
+      {isLoginModalOpen && (
+        <LoginSignup onClose={() => setIsLoginModalOpen(false)} />
       )}
     </div>
   );
