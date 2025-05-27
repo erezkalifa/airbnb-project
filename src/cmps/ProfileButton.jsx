@@ -1,30 +1,44 @@
 import { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+// Components
 import { Avatar } from "./Avatar";
 import { UserMenu } from "./UserMenu";
 import { LoginSignup } from "./LoginSignup";
-import { useSelector } from "react-redux";
 
 export function ProfileButton() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  function useClickOutside(ref, handler) {
+    useEffect(() => {
+      const listener = (event) => {
+        if (!ref.current || ref.current.contains(event.target)) return;
+        handler();
+      };
+
+      document.addEventListener("mousedown", listener);
+      return () => document.removeEventListener("mousedown", listener);
+    }, [ref, handler]);
+  }
+
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
   const loggedInUser = useSelector((storeState) => storeState.userModule.user);
+
   const menuRef = useRef();
 
+  // Close menu on click outside
+  useClickOutside(menuRef, () => setIsUserMenuOpen(false));
+
+  // Close login/signup modal if user logs in
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    if (loggedInUser) setIsAuthModalOpen(false);
+  }, [loggedInUser]);
 
   return (
     <div className="profile" ref={menuRef} style={{ position: "relative" }}>
       <button
         className="profile-toggle"
-        onClick={() => setIsMenuOpen((prev) => !prev)}
+        onClick={() => setIsUserMenuOpen((prev) => !prev)}
       >
         <img
           className="three-parallel"
@@ -34,20 +48,21 @@ export function ProfileButton() {
         {loggedInUser && <Avatar url="src/assets/img/profile.jpg" />}
       </button>
 
-      {isMenuOpen && (
+      {isUserMenuOpen && (
         <div className="user-menu-wrapper">
           <UserMenu
-            onCloseMenu={() => setIsMenuOpen(false)}
+            loggedInUser={loggedInUser}
+            onCloseMenu={() => setIsUserMenuOpen(false)}
             onLoginClick={() => {
-              setIsMenuOpen(false);
-              setIsLoginModalOpen(true);
+              setIsUserMenuOpen(false);
+              setIsAuthModalOpen(true);
             }}
           />
         </div>
       )}
 
-      {isLoginModalOpen && (
-        <LoginSignup onClose={() => setIsLoginModalOpen(false)} />
+      {isAuthModalOpen && (
+        <LoginSignup onClose={() => setIsAuthModalOpen(false)} />
       )}
     </div>
   );

@@ -1,5 +1,5 @@
-import { userService } from "../services/user.js";
-import { store } from "../store/store";
+import { userService } from "../../services/user.service.js";
+import { store } from "../store.js";
 
 // import { showErrorMsg } from "../services/event-bus.service";
 // import { LOADING_DONE, LOADING_START } from "./system.reducer";
@@ -63,7 +63,7 @@ export async function logout() {
       type: SET_USER,
       user: null,
     });
-    socketService.logout();
+    // socketService.logout();
   } catch (err) {
     console.log("Cannot logout", err);
     throw err;

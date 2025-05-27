@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { login } from "../store/stay/stay.actions";
+import { login } from "../store/user/user.actions";
 
 export function LoginSignup({ onClose }) {
   const [userDetails, setUserDetails] = useState({});
