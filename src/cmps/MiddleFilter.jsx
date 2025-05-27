@@ -81,7 +81,8 @@ export function MiddleFilter() {
     setOpenModal(type);
   }
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     const totalGuests =
       Number(filterBy.guests?.adults || 0) +
       Number(filterBy.guests?.children || 0);
