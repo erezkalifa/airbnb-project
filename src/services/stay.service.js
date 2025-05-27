@@ -367,15 +367,37 @@ function getDefaultFilter() {
 }
 
 function getFilterFromParams(searchParams) {
-  const filterBy = {}
+  const filterBy = {};
   searchParams.forEach((value, key) => {
     if (key.includes(".")) {
-      const [parentKey, nestedKey] = key.split(".")
-      filterBy[parentKey] = filterBy[parentKey] || {}
-      filterBy[parentKey][nestedKey] = +value || value
+      const [parentKey, nestedKey] = key.split(".");
+      filterBy[parentKey] = filterBy[parentKey] || {};
+      // Convert to number if possible
+      const numValue = Number(value);
+      filterBy[parentKey][nestedKey] =
+        !isNaN(numValue) && value.trim() !== "" ? numValue : value;
     } else {
-      filterBy[key] = value
+      // Convert to number if possible
+      const numValue = Number(value);
+      filterBy[key] =
+        !isNaN(numValue) && value.trim() !== "" ? numValue : value;
     }
-  })
-  return filterBy
+  });
+
+  return {
+    city: filterBy.city || "",
+    checkIn: filterBy.checkIn || "",
+    checkOut: filterBy.checkOut || "",
+    guests: filterBy.guests || {
+      adults: 0,
+      children: 0,
+      infants: 0,
+      pets: 0,
+    },
+    capacity:
+      filterBy.capacity !== undefined && filterBy.capacity !== ""
+        ? filterBy.capacity
+        : null, // ✅ default to null
+    labels: filterBy.labels || "",
+  };
 }

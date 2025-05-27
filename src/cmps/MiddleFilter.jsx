@@ -8,7 +8,6 @@ import { CalendarRangePicker } from "./CalendarRangePicker.jsx";
 import { GuestPicker } from "./GuestPicker.jsx";
 
 import { SET_FILTER_BY } from "../store/stay/stay.reducers.js";
-import { loadStays } from "../store/stay/stay.actions.js";
 import { stayService } from "../services/stay.service.js";
 
 export function MiddleFilter() {
@@ -22,24 +21,11 @@ export function MiddleFilter() {
 
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams));
 
-  const filterBy = stayService.getFilterFromParams(searchParams);
+  //const filterBy = stayService.getFilterFromParams(searchParams);
 
-  const [checkInDate, setCheckInDate] = useState(
-    filterBy.checkIn ? new Date(filterBy.checkIn) : null
-  )
-  const [checkOutDate, setCheckOutDate] = useState(
-    filterBy.checkOut ? new Date(filterBy.checkOut) : null
-  )
-
-  const closeModal = () => setOpenModal(null)
-
-  useEffect(() => {
-    if ([...searchParams].length > 0) {
-      setSearchParams({});
-    }
-  }, [])
-  
+  const closeModal = () => setOpenModal(null);
 
   const onSetFilter = (newFilter) => {
     const params = {};
@@ -50,50 +36,61 @@ export function MiddleFilter() {
         }
       } else {
         if (newFilter[key] !== null && newFilter[key] !== undefined) {
-          params[key] = newFilter[key];
+          if (key === "checkIn" || key === "checkOut") {
+            params[key] = new Date(newFilter[key]).toISOString();
+          }
+          else{
+            params[key] = newFilter[key];
+          }
         }
       }
     }
-    setSearchParams(params);
-    dispatch({ type: SET_FILTER_BY, filterBy: newFilter });
-  };
+    console.log("✅ Updating URL search params with:", params)
+    setSearchParams(params)
+    dispatch({ type: SET_FILTER_BY, filterBy: newFilter })
+    setFilterBy(newFilter)
+  }
+
+    
+  useEffect(() => {
+    setFilterBy(stayService.getFilterFromParams(searchParams))
+  }, [searchParams])
 
   useEffect(() => {
     const updateWidth = () => {
       if (searchBoxRef.current) {
-        setSearchBoxWidth(searchBoxRef.current.getBoundingClientRect().width)
+        setSearchBoxWidth(searchBoxRef.current.getBoundingClientRect().width);
       }
-    }
-    updateWidth()
-    window.addEventListener("resize", updateWidth)
-    return () => window.removeEventListener("resize", updateWidth)
-  }, [])
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const handleClick = (type) => {
     const targetRef = type === "who" ? thirdArgRef : firstArgRef;
     if (targetRef.current) {
-      const rect = targetRef.current.getBoundingClientRect()
+      const rect = targetRef.current.getBoundingClientRect();
       setModalPosition({
         top: rect.bottom + window.scrollY,
         left: rect.left + window.scrollX,
-      })
+      });
     }
     setOpenModal(type);
-  }
+  };
 
   const handleSearch = () => {
     const totalGuests =
       Number(filterBy.guests?.adults || 0) +
       Number(filterBy.guests?.children || 0);
-  
+
     const filterToSend = {
       ...filterBy,
       capacity: totalGuests,
-    }
+    };
     onSetFilter(filterToSend);
-    //dispatch(loadStays(filterToSend));
     setOpenModal(null);
-  }
+  };
 
   return (
     <>
@@ -107,6 +104,7 @@ export function MiddleFilter() {
             Where
             <span>{filterBy.city || "Search destinations"}</span>
           </div>
+
           <div
             className="search-box-arg"
             onClick={() => handleClick("checkin")}
@@ -118,10 +116,10 @@ export function MiddleFilter() {
                 : "Add dates"}
             </span>
           </div>
+
           <div
             className="search-box-arg"
-            ref={thirdArgRef}
-            onClick={() => handleClick("checkout")}
+            onClick={() => handleClick("checkin")}
           >
             Check out
             <span>
@@ -130,18 +128,20 @@ export function MiddleFilter() {
                 : "Add dates"}
             </span>
           </div>
-          <div className="search-box-arg" onClick={() => handleClick("who")}>
+
+          <div
+            className="search-box-arg"
+            ref={thirdArgRef}
+            onClick={() => handleClick("who")}
+          >
             Who
             <span>
               {filterBy.guests
-                ? `${Number(filterBy.guests.adults || 0) + Number(filterBy.guests.children ||0)}
-                 guest${Number(filterBy.guests.adults || 0) + Number(filterBy.guests.children ||0) !== 1
-                      ? "s"
-                      : ""
-                  }`
+                ? `${Number(filterBy.guests.adults || 0) + Number(filterBy.guests.children || 0)} guest${Number(filterBy.guests.adults || 0) + Number(filterBy.guests.children || 0) !== 1 ? "s" : ""}`
                 : "Add guests"}
             </span>
           </div>
+
           <button className="search-button" onClick={handleSearch}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -221,27 +221,23 @@ export function MiddleFilter() {
           width={`${searchBoxWidth}px`}
           height="500px"
         >
-          <CalendarRangePicker
-            value={checkInDate}
-            onChange={(date) => {
-              const newCheckIn = new Date(date);
-              setCheckInDate(newCheckIn);
-              let updatedFilter = {
-                ...filterBy,
-                checkIn: newCheckIn.toISOString(),
-              };
-              if (checkOutDate && newCheckIn >= new Date(checkOutDate)) {
-                setCheckOutDate(null);
-                updatedFilter.checkOut = null;
+           <CalendarRangePicker
+            filterBy={filterBy}
+            onSetFilter={(newFilter) => {
+              if (newFilter.checkIn && newFilter.checkOut) {
+                onSetFilter({
+                  ...filterBy,
+                  checkIn: newFilter.checkIn,
+                  checkOut: newFilter.checkOut,
+                });
+                closeModal();
               }
-              onSetFilter(updatedFilter);
-              closeModal();
             }}
           />
         </Modal>
       )}
 
-      {openModal === "checkout" && (
+      {/* {openModal === "checkout" && (
         <Modal
           title="Select Check Out Date"
           onClose={closeModal}
@@ -250,27 +246,11 @@ export function MiddleFilter() {
           height="500px"
         >
           <CalendarRangePicker
-            value={checkOutDate}
-            onChange={(date) => {
-              const newCheckOut = new Date(date);
-              if (!checkInDate) {
-                alert("Please select a check-in date first.");
-                return;
-              }
-              if (newCheckOut <= checkInDate) {
-                alert("Check-out date must be after check-in date.");
-                return;
-              }
-              setCheckOutDate(newCheckOut);
-              onSetFilter({
-                ...filterBy,
-                checkOut: newCheckOut.toISOString(),
-              });
-              closeModal();
-            }}
+            filterBy={filterBy}
+            onSetFilter={onSetFilter} // ✅ Directly pass the original onSetFilter!
           />
         </Modal>
-      )}
+      )} */}
 
       {openModal === "who" && (
         <Modal

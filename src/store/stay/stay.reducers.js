@@ -8,7 +8,7 @@ const initialState = {
     checkIn: '',
     checkOut: '',
     guests: 0,
-    capacity : 0,
+    capacity : null,
     labels: '',},
 }
 
