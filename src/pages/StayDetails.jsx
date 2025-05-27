@@ -185,7 +185,6 @@ export function StayDetails() {
         )}
         <div className="map">
           <h2>Where you'll be</h2>
-
           <MapView stay={stay} />
         </div>
       </div>
