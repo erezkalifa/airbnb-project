@@ -1,6 +1,5 @@
-import { userService } from "../services/user.service";
 import { useState } from "react";
-import { login } from "../store/user/user.actions.js";
+import { login } from "../store/stay/stay.actions";
 
 export function LoginSignup({ onClose }) {
   const [userDetails, setUserDetails] = useState({});
@@ -20,13 +19,13 @@ export function LoginSignup({ onClose }) {
     }
   }
 
-  function handleGuestLogin() {
+  async function handleGuestLogin() {
     const userCredentials = {
       username: "admin",
       password: "admin",
     };
 
-    login(userCredentials);
+    await login(userCredentials);
   }
 
   function handleChange(ev) {
@@ -102,7 +101,7 @@ export function LoginSignup({ onClose }) {
 
             <button
               className="primary-btn"
-              onClick={() => userService.signup(userDetails)}
+              //onClick={() => userService.signup(userDetails)}
             >
               Continue
             </button>

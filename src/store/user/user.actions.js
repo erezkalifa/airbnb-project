@@ -1,4 +1,4 @@
-import { userService } from "../services/user";
+import { userService } from "../services/user.js";
 import { store } from "../store/store";
 
 // import { showErrorMsg } from "../services/event-bus.service";
@@ -29,6 +29,7 @@ export async function removeUser(userId) {
 export async function login(credentials) {
   try {
     const user = await userService.login(credentials);
+    console.log(user);
     store.dispatch({
       type: SET_USER,
       user,

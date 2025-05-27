@@ -14,7 +14,6 @@ export function StayIndex() {
   const dispatch = useDispatch();
   const [selectedLabel, setSelectedLabel] = useState("Countryside");
   const stays = useSelector((storeState) => storeState.stayModule.stays);
-  // const loggedInUser = useSelector((storeState) => storeState.userModule.user);
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy);
 
   function onSetFilter(filterBy) {
