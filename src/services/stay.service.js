@@ -20,6 +20,7 @@ export const stayService = {
   removeMsg,
   getLabels,
   getDefaultFilter,
+  getFilterFromParams
 };
 
 const API = "/api/stay";
@@ -362,5 +363,19 @@ function getDefaultFilter() {
     sortField: "",
     sortDir: 1,
     pageIdx: 0,
-  };
+  }
+}
+
+function getFilterFromParams(searchParams) {
+  const filterBy = {}
+  searchParams.forEach((value, key) => {
+    if (key.includes(".")) {
+      const [parentKey, nestedKey] = key.split(".")
+      filterBy[parentKey] = filterBy[parentKey] || {}
+      filterBy[parentKey][nestedKey] = +value || value
+    } else {
+      filterBy[key] = value
+    }
+  })
+  return filterBy
 }
