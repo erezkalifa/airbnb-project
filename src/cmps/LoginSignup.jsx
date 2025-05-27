@@ -1,5 +1,6 @@
 import { userService } from "../services/user.service";
 import { useState } from "react";
+import { login } from "../store/user/user.actions.js";
 
 export function LoginSignup({ onClose }) {
   const [userDetails, setUserDetails] = useState({});
@@ -17,6 +18,21 @@ export function LoginSignup({ onClose }) {
     if (e.target.classList.contains("login-overlay")) {
       onClose();
     }
+  }
+
+  function handleGuestLogin() {
+    const userCredentials = {
+      username: "admin",
+      password: "admin",
+    };
+
+    login(userCredentials);
+  }
+
+  function handleChange(ev) {
+    const field = ev.target.name;
+    const value = ev.target.value;
+    setCredentials({ ...credentials, [field]: value });
   }
 
   return (
@@ -95,7 +111,9 @@ export function LoginSignup({ onClose }) {
               <span>or</span>
             </div>
 
-            <button className="provider-btn">Continue As Guest</button>
+            <button className="provider-btn" onClick={handleGuestLogin}>
+              Continue As Guest
+            </button>
             <button className="provider-btn">
               <span className="icon"></span>
               Continue with Google

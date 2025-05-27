@@ -2,10 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { Avatar } from "./Avatar";
 import { UserMenu } from "./UserMenu";
 import { LoginSignup } from "./LoginSignup";
+import { useSelector } from "react-redux";
 
 export function ProfileButton() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const loggedInUser = useSelector((storeState) => storeState.userModule.user);
   const menuRef = useRef();
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export function ProfileButton() {
           src="src/assets/img/Icons/three_lines.svg"
           alt="Menu Icon"
         />
-        {/* <Avatar url="src/assets/img/profile.jpg" /> */}
+        {loggedInUser && <Avatar url="src/assets/img/profile.jpg" />}
       </button>
 
       {isMenuOpen && (

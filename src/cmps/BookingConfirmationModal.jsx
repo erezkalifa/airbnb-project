@@ -1,6 +1,8 @@
 import { reservationService } from "../services/reservation.service.js";
 
 export function BookingConfirmationModal({ onClose, stay, bookingData }) {
+  console.log(bookingData);
+
   const {
     selectedRange,
     guests,

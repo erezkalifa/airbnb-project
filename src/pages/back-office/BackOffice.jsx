@@ -7,7 +7,7 @@ export function BackOffice() {
     <section className="back-office">
       <SideMenu />
       <MainMenu />
-      <BookingConfirmationModal />
+      {/* <BookingConfirmationModal /> */}
     </section>
   );
 }
