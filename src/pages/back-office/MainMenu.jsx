@@ -36,7 +36,7 @@ export function MainMenu() {
       </div>
       <div className="bottom-dashboard">
         <div className="stay-title">Stay Name</div>
-        <div className="stay-info">
+        <div className="info">
           <div className="left-section">
             <span className="star">★</span>
             <span className="new">New</span>
@@ -81,38 +81,23 @@ export function MainMenu() {
           </div>
         </div>
         <div className="img-section">
-          <img
-            className="img1"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img2"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img3"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img4"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
-
-          <img
-            className="img5"
-            src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
-          />
+          <div className="grid-img img1">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
+          </div>
+          <div className="grid-img img2">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
+          </div>
+          <div className="grid-img img3">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
+          </div>
+          <div className="grid-img img4">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
+          </div>
+          <div className="grid-img img5">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
+          </div>
         </div>
 
-        {/* <div className="propery-info">
-          <div className="capacity">
-            <span>Capacity</span>
-            <input type="text" className="underline-input" />
-          </div>
-        </div> */}
         <div className="info-item">
           <InfoItem
             icon={
