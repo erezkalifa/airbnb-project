@@ -91,7 +91,7 @@ export function MiddleFilter() {
       capacity: totalGuests,
     }
     onSetFilter(filterToSend);
-    dispatch(loadStays(filterToSend));
+    //dispatch(loadStays(filterToSend));
     setOpenModal(null);
   }
 
