@@ -1,8 +1,37 @@
 import { InfoItem } from "../../cmps/InfoItem.jsx";
 
+const mockAmenities = [
+  "City skyline view",
+  "Hair dryer",
+  "Cleaning products",
+  "Stainless steel oven",
+  "Shampoo",
+  "Hot water",
+  "Washer",
+  "Essentials",
+  "Bed linens",
+  "Room-darkening shades",
+  "Iron",
+  "Drying rack for clothing",
+  "TV",
+  "Crib - available upon request",
+  "High chair",
+  "Air conditioning",
+  "Central heating",
+  "Smoke alarm",
+  "Wifi",
+  "Dedicated workspace",
+  "Kitchen",
+  "Dishes and silverware",
+  "Body soap",
+  "Freezer",
+  "Induction stove",
+];
+
 export function MainMenu() {
   return (
     <section className="main-menu">
+      {/* Top metrics section */}
       <div className="dashboard-metrics">
         <div className="metric-card">
           <span className="metric-title">Total Rate</span>
@@ -11,12 +40,10 @@ export function MainMenu() {
             <span className="metric-change">2% ↑</span>
           </div>
         </div>
-
         <div className="metric-card">
           <span className="metric-title">Monthly Earning</span>
           <span className="metric-value">$0</span>
         </div>
-
         <div className="metric-card">
           <span className="metric-title">Orders</span>
           <div className="metric-value-change">
@@ -28,21 +55,24 @@ export function MainMenu() {
             </div>
           </div>
         </div>
-
         <div className="metric-card">
           <span className="metric-title">Active Guests</span>
           <span className="metric-value">0</span>
         </div>
       </div>
+
+      {/* Bottom section including stay info, images, and amenities */}
       <div className="bottom-dashboard">
         <div className="stay-title">Stay Name</div>
+
+        {/* Info row */}
         <div className="info">
           <div className="left-section">
             <span className="star">★</span>
             <span className="new">New</span>
             <span className="reviews">(0 Reviews)</span>
             <span>•</span>
-            <span className="address ">Address</span>
+            <span className="address">Address</span>
           </div>
           <div className="right-section">
             <div className="action-item">
@@ -50,9 +80,6 @@ export function MainMenu() {
                 className="action-icon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
-                aria-hidden="true"
-                role="presentation"
-                focusable="false"
               >
                 <path
                   d="M27 18v9c0 1.1046-.8954 2-2 2H7c-1.1046 0-2-.8954-2-2v-9M16 3v21M6 14l9.2929-9.2929c.3905-.3905 1.0237-.3905 1.4142 0L26 14"
@@ -61,15 +88,11 @@ export function MainMenu() {
               </svg>
               <span className="action-text">share</span>
             </div>
-
             <div className="action-item">
               <svg
                 className="action-icon"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
-                aria-hidden="true"
-                role="presentation"
-                focusable="false"
               >
                 <path
                   d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"
@@ -80,24 +103,20 @@ export function MainMenu() {
             </div>
           </div>
         </div>
+
+        {/* Images */}
         <div className="img-section">
-          <div className="grid-img img1">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
-          </div>
-          <div className="grid-img img2">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
-          </div>
-          <div className="grid-img img3">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
-          </div>
-          <div className="grid-img img4">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
-          </div>
-          <div className="grid-img img5">
-            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200" />
-          </div>
+          {[1, 2, 3, 4, 5].map((num) => (
+            <div key={num} className={`grid-img img${num}`}>
+              <img
+                src="https://a0.muscache.com/im/pictures/miso/Hosting-1196451576617675144/original/ccda7793-d09d-40f6-aa13-40f1ebc19759.jpeg?im_w=1200"
+                alt="stay"
+              />
+            </div>
+          ))}
         </div>
 
+        {/* Info Items */}
         <div className="info-item">
           <InfoItem
             icon={
@@ -120,7 +139,6 @@ export function MainMenu() {
             title="Exceptional check-in experience"
             description="Recent guests gave the check-in process a 5-star rating."
           />
-
           <InfoItem
             icon={
               <svg
@@ -142,7 +160,6 @@ export function MainMenu() {
             title="Unbeatable location"
             description="100% of guests in the past year gave this location a 5-star rating."
           />
-
           <InfoItem
             icon={
               <svg
@@ -166,11 +183,23 @@ export function MainMenu() {
           />
         </div>
 
+        {/* Description */}
         <div className="desc">
           <span>Description</span>
           <label htmlFor="description"></label>
           <textarea id="description" name="description"></textarea>
         </div>
+
+        {/* Amenities */}
+        <div className="amenities-grid">
+          {mockAmenities.map((amenity) => (
+            <div className="amenity" key={amenity}>
+              <input type="checkbox" name="features" value={amenity} />
+              <label>{amenity}</label>
+            </div>
+          ))}
+        </div>
+        <button className="primary-btn narrow-btn">Save</button>
       </div>
     </section>
   );

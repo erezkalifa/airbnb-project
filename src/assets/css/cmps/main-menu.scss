@@ -239,6 +239,10 @@
 .desc {
   display: flex;
   flex-direction: column;
+  padding-bottom: 28px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  width: 80%;
 }
 
 .desc span {
@@ -254,4 +258,26 @@ textarea {
   border-radius: 5px;
   resize: vertical;
   box-sizing: border-box;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 40px;
+
+  .amenity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+}
+
+.narrow-btn {
+  width: 150px;
 }
