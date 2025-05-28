@@ -1,13 +1,12 @@
 import { SideMenu } from "./SideMenu.jsx";
 import { MainMenu } from "./MainMenu.jsx";
-import { BookingConfirmationModal } from "../../cmps/BookingConfirmationModal.jsx";
+import { Outlet } from "react-router-dom";
 
 export function BackOffice() {
   return (
     <section className="back-office">
       <SideMenu />
       <MainMenu />
-      {/* <BookingConfirmationModal /> */}
     </section>
   );
 }

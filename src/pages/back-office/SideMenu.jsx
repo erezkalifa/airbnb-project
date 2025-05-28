@@ -1,4 +1,3 @@
-// SideMenu.jsx
 import { NavLink } from "react-router-dom";
 
 export function SideMenu() {
@@ -10,7 +9,7 @@ export function SideMenu() {
             <NavLink to="/add">➕ Add Stay</NavLink>
           </li>
           <li>
-            <NavLink to="/stays">📁 My Stays</NavLink>
+            <NavLink to="my-stays">📁 My Stays</NavLink>
           </li>
           <li>
             <NavLink to="/orders">🧾 Orders</NavLink>
