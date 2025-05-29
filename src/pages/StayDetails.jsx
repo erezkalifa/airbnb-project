@@ -37,7 +37,9 @@ export function StayDetails() {
   return (
     <section className="stay-details">
       <UpperFilter isAtTop={true} />
-
+      <div className="stay-title-container">
+          <h1 className="stay-title-details">{stay?.title}</h1>
+      </div>
       <div className="container">
         <div className="stay-gallery">
           <div className="img-grid">
