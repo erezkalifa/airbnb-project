@@ -1,0 +1,26 @@
+.step-place-type {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .place-type-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .place-type-option {
+    padding: 16px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+
+    &.selected {
+      border-color: black;
+      background-color: #f7f7f7;
+    }
+  }
+}

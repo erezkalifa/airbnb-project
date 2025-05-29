@@ -8,6 +8,7 @@ import { store } from "./store/store.js";
 import { BookingConfirmationPage } from "./pages/BookingConfirmationPage.jsx";
 import { Footer } from "./cmps/Footer.jsx";
 import { MyStays } from "./pages/back-office/MyStays.jsx";
+import { StayWizard } from "./pages/back-office/StayWizard/StayWizard.jsx";
 
 export function RootCmp() {
   return (
@@ -21,6 +22,7 @@ export function RootCmp() {
               <Route path="/backoffice" element={<BackOffice />}>
                 <Route path="my-stays" element={<MyStays />} />
               </Route>
+              <Route path="/stay-wizard" element={<StayWizard />} />
               <Route path="/stay/:stayId" element={<StayDetails />} />
               <Route
                 path="/booking-confirmation"
