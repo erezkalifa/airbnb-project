@@ -9,6 +9,9 @@ import { debounce } from "../services/util.service.js"
 import { _createLoggedInUser } from "../services/user.service.js"
 import { _createOrders } from "../services/order.service.js"
 import { SET_FILTER_BY } from "../store/stay/stay.reducers.js"
+import { applyFilter } from "../services/stay.service.js"
+import { useSearchParams } from "react-router-dom";
+
 
 export function StayIndex() {
   const dispatch = useDispatch()
@@ -16,6 +19,7 @@ export function StayIndex() {
   const stays = useSelector((storeState) => storeState.stayModule.stays)
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
+  const [searchParams, setSearchParams] = useSearchParams();
   function onSetFilter(filterBy) {
     dispatch({ type: SET_FILTER_BY, filterBy })
   }
@@ -40,8 +44,11 @@ export function StayIndex() {
         selectedLabel={selectedLabel}
         onLabelSelect={(label) => {
           setSelectedLabel(label)
-          console.log(label)
-          onSetFilter({ ...filterBy, labels: label })
+          //console.log(label)
+          applyFilter(
+            { ...filterBy, labels: label },
+            setSearchParams, dispatch, onSetFilter
+          );
         }}
       />
       {stays.length ? (

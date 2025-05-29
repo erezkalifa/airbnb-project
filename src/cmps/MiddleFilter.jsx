@@ -9,6 +9,7 @@ import { GuestPicker } from "./GuestPicker.jsx";
 
 import { SET_FILTER_BY } from "../store/stay/stay.reducers.js";
 import { stayService } from "../services/stay.service.js";
+import { applyFilter } from "../services/stay.service.js";
 
 export function MiddleFilter() {
   const [openModal, setOpenModal] = useState(null);
@@ -28,29 +29,10 @@ export function MiddleFilter() {
   const closeModal = () => setOpenModal(null);
 
   const onSetFilter = (newFilter) => {
-    const params = {};
-    for (const key in newFilter) {
-      if (typeof newFilter[key] === "object" && newFilter[key] !== null) {
-        for (const nestedKey in newFilter[key]) {
-          params[`${key}.${nestedKey}`] = newFilter[key][nestedKey];
-        }
-      } else {
-        if (newFilter[key] !== null && newFilter[key] !== undefined) {
-          if (key === "checkIn" || key === "checkOut") {
-            params[key] = new Date(newFilter[key]).toISOString();
-          }
-          else{
-            params[key] = newFilter[key];
-          }
-        }
-      }
-    }
-    console.log("✅ Updating URL search params with:", params)
-    setSearchParams(params)
-    dispatch({ type: SET_FILTER_BY, filterBy: newFilter })
-    setFilterBy(newFilter)
+    applyFilter(newFilter,setSearchParams,dispatch,setFilterBy)
   }
-
+  
+  
     
   useEffect(() => {
     setFilterBy(stayService.getFilterFromParams(searchParams))

@@ -20,7 +20,8 @@ export const stayService = {
   removeMsg,
   getLabels,
   getDefaultFilter,
-  getFilterFromParams
+  getFilterFromParams,
+  applyFilter
 };
 
 const API = "/api/stay";
@@ -400,4 +401,32 @@ function getFilterFromParams(searchParams) {
         : null, // ✅ default to null
     labels: filterBy.labels || "",
   };
+}
+
+export function applyFilter(newFilter, setSearchParams, dispatch, setFilterBy) {
+  const params = {};
+  for (const key in newFilter) {
+    const val = newFilter[key];
+    if (typeof val === "object" && val !== null) {
+      for (const nestedKey in val) {
+        const nestedVal = val[nestedKey];
+        if (nestedVal !== "" && nestedVal !== null) {
+          params[`${key}.${nestedKey}`] = nestedVal;
+        }
+      }
+    } else {
+      if (val !== "" && val !== null) {
+        params[key] = val;
+      }
+    }
+  }
+
+  if (Object.keys(params).length > 0) {
+    setSearchParams(params);
+  } else {
+    setSearchParams({});
+  }
+
+  dispatch({ type: "SET_FILTER_BY", filterBy: newFilter });
+  setFilterBy(newFilter);
 }
