@@ -1,6 +1,5 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-// import { AppHeader } from "./cmps/AppHeader.jsx"
 import { BackOffice } from "./pages/back-office/BackOffice.jsx";
 import { StayIndex } from "./pages/StayIndex.jsx";
 import { StayDetails } from "./pages/StayDetails.jsx";
@@ -22,15 +21,15 @@ export function RootCmp() {
               <Route path="/backoffice" element={<BackOffice />}>
                 <Route path="my-stays" element={<MyStays />} />
               </Route>
-              <Route path="/stay-wizard" element={<StayWizard />} />
               <Route path="/stay/:stayId" element={<StayDetails />} />
+              <Route path="/stay-wizard" element={<StayWizard />} />
               <Route
                 path="/booking-confirmation"
                 element={<BookingConfirmationPage />}
               />
             </Routes>
+            <Footer />
           </main>
-          <Footer />
         </section>
       </Router>
     </Provider>

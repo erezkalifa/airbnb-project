@@ -1,7 +1,15 @@
-export function OptionBox({ icon, title, description, isSelected, onClick }) {
+export function OptionBox({
+  icon,
+  title,
+  description,
+  btnStyle,
+  isSelected,
+  onClick,
+}) {
+  console.log(isSelected);
   return (
     <div
-      className={`option-box ${isSelected ? "selected" : ""}`}
+      className={`option-box ${isSelected ? "selected" : ""} ${btnStyle}`}
       onClick={onClick}
     >
       <div className="option-content">

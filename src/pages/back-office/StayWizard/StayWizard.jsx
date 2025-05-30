@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StepPlaceType } from "./StepPlaceType.jsx";
 import { StepIntro } from "./StepIntro.jsx";
 import { AddStayFooter } from "./AddStayFooter.jsx";
+import { StepGuestType } from "./StepGuestType.jsx";
 
 export function StayWizard() {
   const [step, setStep] = useState(0);
@@ -10,11 +11,10 @@ export function StayWizard() {
   const onNext = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
   const onBack = () => setStep((prev) => Math.max(prev - 1, 0));
 
-  console.log(step);
   const steps = [
     <StepIntro />,
     <StepPlaceType selectedType={placeType} onSelect={setPlaceType} />,
-    <Step2 />,
+    <StepGuestType selectedType={placeType} onSelect={setPlaceType} />,
     <Step3 />,
   ];
 
