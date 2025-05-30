@@ -1,21 +1,21 @@
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 
-export function MapView({ stay }) {
+export function MapView({ stay, style }) {
   const center = {
-    lat: stay.loc.lan,
-    lng: stay.loc.lat,
+    lat: stay?.loc?.lan || 32.0835416152454,
+    lng: stay?.loc?.lat || 34.78832515996161,
   };
   return (
     <APIProvider apiKey="AIzaSyCd6v2whmmM0grZKw0hD5n1ssBatDjzulc">
       <Map
         center={center}
         defaultZoom={13}
-        mapId="2bd328edb13e41cede0051a4" // 👈 הכנס כאן את ה־Map ID
+        mapId="2bd328edb13e41cede0051a4"
         mapOptions={{
           disableDefaultUI: false,
           zoomControl: true,
         }}
-        style={{ width: "100%", height: "500px" }}
+        style={style || { width: "100%", height: "500px" }}
       >
         <AdvancedMarker position={center}>
           <div

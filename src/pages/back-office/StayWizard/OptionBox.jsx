@@ -6,7 +6,6 @@ export function OptionBox({
   isSelected,
   onClick,
 }) {
-  console.log(isSelected);
   return (
     <div
       className={`option-box ${isSelected ? "selected" : ""} ${btnStyle}`}
