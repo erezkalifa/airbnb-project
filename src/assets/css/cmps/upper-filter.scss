@@ -11,15 +11,36 @@
   background-color: white;
   // background: green;
 
+  // .logo {
+  //   padding-top: 1px;
+  //   padding-left: 3vw;
+  //   width: 130px;
+  //   height: auto;
+  //   img {
+  //     width: 100%; // Makes the image take the full width of the parent (.logo)
+  //     height: 100%; // Ensures it scales with the parent
+  //     object-fit: contain; // Keeps aspect ratio inside the box
+  //   }
+  // }
   .logo {
-    padding-top: 1px;
-    padding-left: 3vw;
-    width: 130px;
-    height: auto;
+    a {
+      text-decoration: none; // remove underline from the entire link
+      display: flex;
+      align-items: center;
+      gap: 6px; // space between icon and text
+    }
+  
     img {
-      width: 100%; // Makes the image take the full width of the parent (.logo)
-      height: 100%; // Ensures it scales with the parent
-      object-fit: contain; // Keeps aspect ratio inside the box
+      width: 30px;
+      height: auto;
+      object-fit: contain;
+    }
+  
+    span {
+      font-size: 20px;
+      font-weight: 600;
+      color: #FF385C;
+      text-decoration: none; // ensures no underline
     }
   }
 
