@@ -24,15 +24,12 @@ export function MiddleFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterBy, setFilterBy] = useState(stayService.getFilterFromParams(searchParams));
 
-  //const filterBy = stayService.getFilterFromParams(searchParams);
 
   const closeModal = () => setOpenModal(null);
 
   const onSetFilter = (newFilter) => {
     applyFilter(newFilter,setSearchParams,dispatch,setFilterBy)
   }
-  
-  
     
   useEffect(() => {
     setFilterBy(stayService.getFilterFromParams(searchParams))
@@ -49,18 +46,49 @@ export function MiddleFilter() {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
+  // const handleClick = (type) => {
+  //   const targetRef = type === "who" ? thirdArgRef : firstArgRef;
+  //   if (targetRef.current) {
+  //     const rect = targetRef.current.getBoundingClientRect();
+  //     console.log("top:",rect.top + window.scrollX)
+  //     console.log("left:",rect.left + window.scrollY)
+  //     setModalPosition({
+  //       top: rect.bottom + window.scrollY,
+  //       left: rect.left + window.scrollX,
+  //     })
+    
+  //   }
+  //   setOpenModal(type);
+  // };
+
   const handleClick = (type) => {
     const targetRef = type === "who" ? thirdArgRef : firstArgRef;
-    if (targetRef.current) {
-      const rect = targetRef.current.getBoundingClientRect();
+  
+    if (targetRef.current && searchBoxRef.current) {
+      const searchBoxRect = searchBoxRef.current.getBoundingClientRect();
+      const targetRect = targetRef.current.getBoundingClientRect();
+  
+      const isScrolling = window.scrollY > 0;
+      const modalTop = isScrolling
+        ? searchBoxRect.bottom 
+        : targetRect.bottom + window.scrollY;
+  
+      const modalLeft = isScrolling
+        ? searchBoxRect.left + window.scrollX
+        : targetRect.left + window.scrollX;
+  
+      console.log("Adjusted top:", modalTop);
+      console.log("Adjusted left:", modalLeft);
+  
       setModalPosition({
-        top: rect.bottom + window.scrollY,
-        left: rect.left + window.scrollX,
+        top: modalTop,
+        left: modalLeft,
       });
     }
+  
     setOpenModal(type);
   };
-
+  
   const handleSearch = () => {
     const totalGuests =
       Number(filterBy.guests?.adults || 0) +

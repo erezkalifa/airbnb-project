@@ -3,7 +3,7 @@ import { SmallFilter } from "./SmallFilter.jsx";
 import { StaysExperiencesFilter } from "./StaysExpriencesFilter.jsx";
 import { ProfileButton } from "./ProfileButton.jsx";
 
-export function UpperFilter({ isAtTop }) {
+export function UpperFilter({ isAtTop , onOpenFilter }) {
   return (
     <section className="upper-header">
       {/* Logo */}
@@ -14,7 +14,7 @@ export function UpperFilter({ isAtTop }) {
       </div>
 
       {/* Filter */}
-      {isAtTop ? <StaysExperiencesFilter /> : <SmallFilter />}
+      {isAtTop ? <StaysExperiencesFilter /> : <SmallFilter onOpenFilter={onOpenFilter} />}
       <ProfileButton />
     </section>
   );

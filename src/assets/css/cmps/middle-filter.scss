@@ -1,6 +1,10 @@
 .middle-filter {
   display: flex;
   justify-content: center;
+  background: white;
+  position: sticky;
+  top: 56px;
+  z-index: 10;
 }
 
 .search-box {
