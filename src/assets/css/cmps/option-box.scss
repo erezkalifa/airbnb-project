@@ -15,7 +15,7 @@
   }
 
   &.wide-btn {
-    width: 600px;
+    width: var(--btn-width, 600px);
     max-width: 600px;
     height: 60px;
     padding: 16px;
