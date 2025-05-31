@@ -11,7 +11,7 @@ import { SET_FILTER_BY } from "../store/stay/stay.reducers.js";
 import { stayService } from "../services/stay.service.js";
 import { applyFilter } from "../services/stay.service.js";
 
-export function MiddleFilter() {
+export function MiddleFilter({isSticky = false}) {
   const [openModal, setOpenModal] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [searchBoxWidth, setSearchBoxWidth] = useState(0);
@@ -46,20 +46,6 @@ export function MiddleFilter() {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // const handleClick = (type) => {
-  //   const targetRef = type === "who" ? thirdArgRef : firstArgRef;
-  //   if (targetRef.current) {
-  //     const rect = targetRef.current.getBoundingClientRect();
-  //     console.log("top:",rect.top + window.scrollX)
-  //     console.log("left:",rect.left + window.scrollY)
-  //     setModalPosition({
-  //       top: rect.bottom + window.scrollY,
-  //       left: rect.left + window.scrollX,
-  //     })
-    
-  //   }
-  //   setOpenModal(type);
-  // };
 
   const handleClick = (type) => {
     const targetRef = type === "who" ? thirdArgRef : firstArgRef;
@@ -104,7 +90,7 @@ export function MiddleFilter() {
 
   return (
     <>
-      <section className="middle-filter">
+      <section className={`middle-filter ${isSticky ? "sticky" : ""}`}>
         <div className="search-box" ref={searchBoxRef}>
           <div
             className="search-box-arg"

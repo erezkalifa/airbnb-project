@@ -61,11 +61,10 @@ export function Filters({ filterBy, onSetFilter }) {
   };
 
   useEffect(() => {
-    // When scrolling to top, MiddleFilter is always visible
     if (isAtTop) {
       setIsMiddleFilterOpen(true);
     } else {
-      setIsMiddleFilterOpen(false); // hide it when scrolling down
+      setIsMiddleFilterOpen(false)
     }
   }, [isAtTop]);
 
@@ -77,8 +76,8 @@ export function Filters({ filterBy, onSetFilter }) {
         <>
           <UpperFilter
             isAtTop={isAtTop}
-            filterBy={filterBy}
-            onSetFilter={onSetFilter}
+            // filterBy={filterBy}
+            // onSetFilter={onSetFilter}
             onOpenFilter={handleOpenFilter}
           />
           {(!isAtTop && isMiddleFilterOpen) && (
@@ -91,6 +90,7 @@ export function Filters({ filterBy, onSetFilter }) {
             <MiddleFilter
               filterBy={filterBy}
               onSetFilter={onSetFilter}
+              isSticky={true}
             />
           )}
         </>

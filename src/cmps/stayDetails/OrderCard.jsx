@@ -26,7 +26,7 @@ export function OrderCard({ stay, onReserveClick }) {
 
   return (
     <div className="order-card-wrapper">
-      <div className="sticky">
+      <div className="sticky-order-card">
         <div className="price">
           ₪{nightlyRate} <span>night</span>
         </div>

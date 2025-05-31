@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState, useRef } from "react"
 import { stayService } from "../services/stay.service.js"
 import { UpperFilter } from "../cmps/UpperFilter.jsx"
+import { MiddleFilter } from "../cmps/MiddleFilter.jsx"
 import { OrderCard } from "../cmps/stayDetails/OrderCard.jsx"
 import { BookingConfirmationModal } from "../cmps/BookingConfirmationModal.jsx"
 import { RatingSummary } from "../cmps/stayDetails/RatingSummary.jsx"
@@ -37,6 +38,11 @@ export function StayDetails() {
   return (
     <section className="stay-details">
       <UpperFilter isAtTop={true} />
+      <MiddleFilter
+        filterBy={{}}
+        onSetFilter={() => {}} 
+        isSticky = {false}
+      />
       <div className="stay-title-container">
           <h1 className="stay-title-details">{stay?.title}</h1>
       </div>
