@@ -1,11 +1,10 @@
 .step-intro {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 3rem 6rem;
 
   .text-container {
-    flex: 1;
     max-width: 600px;
 
     .step-count {
@@ -26,9 +25,7 @@
   }
 
   .image-container {
-    flex: 1;
     display: flex;
-    justify-content: flex-end;
 
     img {
       max-width: 450px;

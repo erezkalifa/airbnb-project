@@ -1,4 +1,9 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import { BackOffice } from "./pages/back-office/BackOffice.jsx";
 import { StayIndex } from "./pages/StayIndex.jsx";
@@ -13,24 +18,35 @@ export function RootCmp() {
   return (
     <Provider store={store}>
       <Router>
-        <section className="main-container">
-          <main>
-            <Routes>
-              <Route path="/" element={<StayIndex />} />
-              <Route path="/details" element={<StayDetails />} />
-              <Route path="/backoffice" element={<BackOffice />} />
-              <Route path="/backoffice/my-stays" element={<MyStays />} />
-              <Route path="/stay/:stayId" element={<StayDetails />} />
-              <Route path="/backoffice/stay-wizard" element={<StayWizard />} />
-              <Route
-                path="/booking-confirmation"
-                element={<BookingConfirmationPage />}
-              />
-            </Routes>
-            <Footer />
-          </main>
-        </section>
+        <RootLayout />
       </Router>
     </Provider>
+  );
+}
+
+function RootLayout() {
+  const location = useLocation();
+  const hideFooterRoutes = ["/listings"];
+  const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
+
+  return (
+    <section className="main-container">
+      <main>
+        <Routes>
+          <Route path="/" element={<StayIndex />} />
+          <Route path="/details" element={<StayDetails />} />
+          <Route path="/backoffice" element={<BackOffice />} />
+          <Route path="/backoffice/my-stays" element={<MyStays />} />
+          <Route path="/stay/:stayId" element={<StayDetails />} />
+          <Route path="/listings" element={<StayWizard />} />
+          <Route
+            path="/booking-confirmation"
+            element={<BookingConfirmationPage />}
+          />
+        </Routes>
+
+        {shouldShowFooter && <Footer />}
+      </main>
+    </section>
   );
 }

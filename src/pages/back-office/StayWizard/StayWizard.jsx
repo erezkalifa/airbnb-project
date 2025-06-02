@@ -3,9 +3,10 @@ import { StepPlaceType } from "./StepPlaceType.jsx";
 import { StepIntro } from "./StepIntro.jsx";
 import { AddStayFooter } from "./AddStayFooter.jsx";
 import { StepGuestType } from "./StepGuestType.jsx";
-import { StepPlaceLocation } from "./StepPlaceLocation.jsx";
-import { StepPlaceBasics } from "./StepPlaceBasics.jsx";
-import { StepPlaceOffer } from "./StepPlaceOffer.jsx";
+import { StepPlaceLocation } from "./StepLocation.jsx";
+import { StepPlaceBasics } from "./StepBasics.jsx";
+import { StepPlaceOffer } from "./StepOffer.jsx";
+import { StepPlaceListing } from "./StepListing.jsx";
 
 export function StayWizard() {
   const [step, setStep] = useState(0);
@@ -29,6 +30,7 @@ export function StayWizard() {
       selectedTypes={placeType}
       onSelect={setPlaceType}
     />,
+    <StepPlaceListing />,
   ];
 
   return (
@@ -45,11 +47,4 @@ export function StayWizard() {
       }
     </section>
   );
-}
-
-function Step2() {
-  return <h2>Step 2 – Property Type</h2>;
-}
-function Step3() {
-  return <h2>Step 3 – Amenities</h2>;
 }

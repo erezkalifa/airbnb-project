@@ -1,18 +1,7 @@
-import { OptionBox } from "./OptionBox";
+import { OptionBox } from "./OptionBox.jsx";
+import { placeTypes } from "./placeTypes.jsx";
 
 export function StepPlaceType({ selectedType, onSelect, isMulti = false }) {
-  const placeTypes = [
-    "house",
-    "apartment",
-    "barn",
-    "bed&breakfest",
-    "boat",
-    "cabin",
-    "castle",
-    "cave",
-    "dome",
-  ];
-
   const handleSelect = (type) => {
     if (isMulti) {
       onSelect((prev) =>
@@ -28,17 +17,17 @@ export function StepPlaceType({ selectedType, onSelect, isMulti = false }) {
 
   return (
     <section className="step-place-type">
-      <h2>Which of these best describes your place?</h2>
       <div className="place-type-options">
+        <div className="title"> Which of these best describes your place?</div>
         <div className="option-grid">
-          {placeTypes.map((type) => (
+          {placeTypes.map(({ key, svg }) => (
             <OptionBox
-              key={type}
-              icon={<img src="/icons/apartment.svg" />}
-              title={type.charAt(0).toUpperCase() + type.slice(1)}
+              key={key}
+              icon={svg}
+              title={key.charAt(0).toUpperCase() + key.slice(1)}
               description=""
-              isSelected={isSelected(type)}
-              onClick={() => handleSelect(type)}
+              isSelected={isSelected(key)}
+              onClick={() => handleSelect(key)}
               style={{ "--btn-width": "220px", "--btn-border": "2px" }}
             />
           ))}
