@@ -27,10 +27,11 @@ export const stayService = {
 const API = "/api/stay";
 // _createStays();
 
-async function query(filterBy = {}) {
+async function query(filterBy = {}, page = 1, pageSize = 10) {
   try {
-    const { data: stays } = await axios.get(BASE_URL, { params: filterBy });
-    console.log("stay service:", filterBy);
+    const params = {...filterBy , page , pageSize}
+    const { data: stays } = await axios.get(BASE_URL, {params});
+    console.log("stay service:", params);
     return stays;
   } catch (err) {
     console.error("Failed to load stays:", err);

@@ -16,6 +16,7 @@ import { useSearchParams } from "react-router-dom";
 export function StayIndex() {
   const dispatch = useDispatch()
   const [selectedLabel, setSelectedLabel] = useState("Countryside")
+  const [page, setPage] = useState(1)
   const stays = useSelector((storeState) => storeState.stayModule.stays)
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
@@ -27,15 +28,25 @@ export function StayIndex() {
   const debouncedLoadStays = useCallback(
     debounce((filters) => {
       console.log("StayIndex: Debounced dispatch loadStays with filters:", filters)
-      dispatch(loadStays(filters)).catch((err) => console.log(err))
+      dispatch(loadStays(filters , page)).catch((err) => console.log(err))
     }, 500),
-    [] 
+    [dispatch , page] 
   )
 
 
   useEffect(() => {
     debouncedLoadStays(filterBy)
-  }, [filterBy, debouncedLoadStays])
+  }, [filterBy, page,debouncedLoadStays])
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight) {
+        setPage((prevPage) => prevPage + 1)
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <section className="stay-index">

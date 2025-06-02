@@ -18,12 +18,19 @@ export function stayReducer(state = initialState, cmd = {}) {
       return {
         ...state,
         stays: cmd.stays,
-      }
-      case SET_FILTER_BY:
-        return {
-          ...state,
-          filterBy: cmd.filterBy,
-        }
+      };
+
+    case 'APPEND_STAYS':
+      return {
+        ...state,
+        stays: [...state.stays, ...cmd.stays],
+      };
+
+    case SET_FILTER_BY:
+      return {
+        ...state,
+        filterBy: cmd.filterBy,
+      };
 
     default:
       return state;
