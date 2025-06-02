@@ -64,6 +64,7 @@ export function OrderCard({ stay, onReserveClick }) {
                 </p>
               </div>
               <div className="calendar-body">
+              <div className="day-picker">
                 <DayPicker
                   mode="range"
                   numberOfMonths={2}
@@ -78,6 +79,7 @@ export function OrderCard({ stay, onReserveClick }) {
                   }}
                   modifiers={{ disabled: [{ before: new Date() }] }}
                 />
+                </div>
               </div>
               <div className="calendar-actions">
                 <button className="link-btn" onClick={(e) => { e.stopPropagation(); setSelectedRange({ from: null, to: null }); }}>Clear dates</button>

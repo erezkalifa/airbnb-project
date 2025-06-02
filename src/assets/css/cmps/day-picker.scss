@@ -1,0 +1,14 @@
+:root {
+    /* General overrides */
+    --rdp-accent-color: black;
+  
+    /* Selected days */
+    --rdp-range-start-color: black;
+    --rdp-range-end-color: black;
+    --rdp-selected-color: black;
+  
+    /* Today’s cell (which was still blue) */
+    --rdp-today-color: black;
+    --rdp-today-background-color: transparent; /* or white */
+  }
+  
