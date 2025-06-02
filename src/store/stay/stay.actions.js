@@ -2,7 +2,7 @@ import { stayService } from "../../services/stay.service.js";
 import { SET_STAYS , SET_FILTER_BY } from "../stay/stay.reducers.js";
 import { store } from "../store.js";
 
-export function loadStays(filterBy = {}, page = 1, pageSize = 10) {
+export function loadStays(filterBy = {}, page = 1, pageSize = 12) {
   return async (dispatch) => {
     try {
       const stays = await stayService.query(filterBy, page, pageSize);

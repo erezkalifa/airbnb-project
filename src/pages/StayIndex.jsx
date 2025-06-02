@@ -56,6 +56,7 @@ export function StayIndex() {
         onLabelSelect={(label) => {
           setSelectedLabel(label)
           //console.log(label)
+          setPage(1);
           applyFilter(
             { ...filterBy, labels: label },
             setSearchParams, dispatch, onSetFilter

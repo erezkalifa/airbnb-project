@@ -430,4 +430,5 @@ export function applyFilter(newFilter, setSearchParams, dispatch, setFilterBy) {
 
   dispatch({ type: "SET_FILTER_BY", filterBy: newFilter });
   setFilterBy(newFilter);
+  console.log('Final filterBy:', newFilter);
 }
