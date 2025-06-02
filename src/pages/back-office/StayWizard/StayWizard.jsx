@@ -4,6 +4,8 @@ import { StepIntro } from "./StepIntro.jsx";
 import { AddStayFooter } from "./AddStayFooter.jsx";
 import { StepGuestType } from "./StepGuestType.jsx";
 import { StepPlaceLocation } from "./StepPlaceLocation.jsx";
+import { StepPlaceBasics } from "./StepPlaceBasics.jsx";
+import { StepPlaceOffer } from "./StepPlaceOffer.jsx";
 
 export function StayWizard() {
   const [step, setStep] = useState(0);
@@ -14,9 +16,19 @@ export function StayWizard() {
 
   const steps = [
     <StepIntro />,
-    <StepPlaceType selectedType={placeType} onSelect={setPlaceType} />,
+    <StepPlaceType
+      selectedType={placeType}
+      onSelect={setPlaceType}
+      isMultu={false}
+    />,
     <StepGuestType selectedType={placeType} onSelect={setPlaceType} />,
     <StepPlaceLocation />,
+    <StepPlaceBasics />,
+    <StepPlaceOffer
+      isMulti={true}
+      selectedTypes={placeType}
+      onSelect={setPlaceType}
+    />,
   ];
 
   return (
