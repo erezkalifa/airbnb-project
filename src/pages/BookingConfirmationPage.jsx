@@ -20,11 +20,24 @@ export function BookingConfirmationPage() {
     serviceFee,
   } = bookingData;
 
-  function handleConfirm() {
-    reservationService.save(bookingData);
-    navigate("/");
+  async function handleConfirm() {
+    const reservation = {
+      stayId: stay._id,
+      checkIn: selectedRange.from.toISOString(),
+      checkOut:  selectedRange.to.toISOString(),
+      guests: guests.adults + guests.children + guests.infants + guests.pets,
+      totalPrice,
+      host: stay.host, 
+    };
+  
+    try {
+      await reservationService.save(reservation);
+      navigate("/");
+    } catch (err) {
+      console.error("Failed to confirm booking:", err);
+    }
   }
-
+  
   return (
     <section className="booking-confirm-page">
       <UpperHeader/>
