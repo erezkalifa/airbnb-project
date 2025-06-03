@@ -6,6 +6,7 @@ import { MiddleFilter } from "../cmps/MiddleFilter.jsx"
 import { OrderCard } from "../cmps/stayDetails/OrderCard.jsx"
 import { BookingConfirmationModal } from "../cmps/BookingConfirmationModal.jsx"
 import { RatingSummary } from "../cmps/stayDetails/RatingSummary.jsx"
+import {MapView} from "../cmps/MapView.jsx"
 
 export function StayDetails() {
   const { stayId } = useParams();

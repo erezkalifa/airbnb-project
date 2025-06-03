@@ -6,7 +6,7 @@ import useIsMobile from "../hooks/useIsMobile";
 import useScrollTop from "../hooks/useScrollTop.jsx";
 
 export function Filters({ filterBy, onSetFilter }) {
-  const loggedInUser = useSelector((storeState) => storeState.userModule.user);
+  //const loggedInUser = useSelector((storeState) => storeState.userModule.user);
   const isMobile = useIsMobile();
   const isAtTop = useScrollTop();
 
