@@ -295,5 +295,21 @@
   fill: none;
 }
 
+.day-picker {
+  --rdp-accent-color: black;
+
+  --rdp-range-start-date-background-color: black;
+  --rdp-range-end-date-background-color: black;
+  --rdp-selected-date-background-color: black;
+
+  --rdp-range-start-color: white;
+  --rdp-range-end-color: white;
+  --rdp-selected-color: white;
+
+  --rdp-today-color: black;
+  --rdp-today-background-color: transparent;
+}
+  
+
 
 
