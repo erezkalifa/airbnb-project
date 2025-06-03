@@ -1,9 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation , useNavigate } from "react-router-dom";
 import { reservationService } from "../services/reservation.service.js";
 import { UpperFilter } from "../cmps/UpperFilter.jsx";
 
 export function BookingConfirmationPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { bookingData, stay } = location.state || {};
 
   if (!bookingData || !stay) return <div>Missing booking information.</div>;
@@ -20,6 +21,7 @@ export function BookingConfirmationPage() {
 
   function handleConfirm() {
     reservationService.save(bookingData);
+    navigate("/");
   }
 
   return (
