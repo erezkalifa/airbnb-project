@@ -11,7 +11,7 @@ import { SET_FILTER_BY } from "../store/stay/stay.reducers.js";
 import { stayService } from "../services/stay.service.js";
 import { applyFilter } from "../services/stay.service.js";
 
-export function MiddleFilter({isSticky = false}) {
+export function MiddleFilter({isSticky = false ,className = ""}) {
   const [openModal, setOpenModal] = useState(null);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [searchBoxWidth, setSearchBoxWidth] = useState(0);
@@ -90,7 +90,7 @@ export function MiddleFilter({isSticky = false}) {
 
   return (
     <>
-      <section className={`middle-filter ${isSticky ? "sticky" : ""}`}>
+      <section className={`middle-filter ${isSticky ? "sticky" : ""}${className}`}>
         <div className="search-box" ref={searchBoxRef}>
           <div
             className="search-box-arg"
@@ -98,7 +98,7 @@ export function MiddleFilter({isSticky = false}) {
             onClick={() => handleClick("where")}
           >
             Where
-            <span>{filterBy.city || "Search destinations"}</span>
+            <span>{filterBy?.city || "Search destinations"}</span>
           </div>
 
           <div
@@ -107,7 +107,7 @@ export function MiddleFilter({isSticky = false}) {
           >
             Check in
             <span>
-              {filterBy.checkIn
+              {filterBy?.checkIn
                 ? new Date(filterBy.checkIn).toLocaleDateString()
                 : "Add dates"}
             </span>
@@ -119,7 +119,7 @@ export function MiddleFilter({isSticky = false}) {
           >
             Check out
             <span>
-              {filterBy.checkOut
+              {filterBy?.checkOut
                 ? new Date(filterBy.checkOut).toLocaleDateString()
                 : "Add dates"}
             </span>
@@ -132,7 +132,7 @@ export function MiddleFilter({isSticky = false}) {
           >
             Who
             <span>
-              {filterBy.guests
+              {filterBy?.guests
                 ? `${Number(filterBy.guests.adults || 0) + Number(filterBy.guests.children || 0)} guest${Number(filterBy.guests.adults || 0) + Number(filterBy.guests.children || 0) !== 1 ? "s" : ""}`
                 : "Add guests"}
             </span>

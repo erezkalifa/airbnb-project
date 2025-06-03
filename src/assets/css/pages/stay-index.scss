@@ -4,3 +4,10 @@
     color: #888;
     margin-top: 2rem;
   }
+
+  .stay-index {
+    display: flex;
+    flex-direction: column; // makes children stack vertically
+  }
+  
+  
