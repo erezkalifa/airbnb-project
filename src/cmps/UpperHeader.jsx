@@ -52,3 +52,21 @@
 //     </section>
 //   );
 // }
+
+import { ProfileButton } from "./ProfileButton.jsx";
+
+export function UpperHeader() {
+  return (
+    <section className="upper-header">
+      <div className="logo">
+        <a href="/">
+          <img src="src/assets/img/logo-aircnc.png" alt="Aircnc Logo" />
+          <span>aircnc</span>
+        </a>
+      </div>
+
+      <ProfileButton />
+    </section>
+  );
+}
+
