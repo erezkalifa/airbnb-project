@@ -1,14 +1,48 @@
-:root {
-    /* General overrides */
-    --rdp-accent-color: black;
-  
-    /* Selected days */
-    --rdp-range-start-color: black;
-    --rdp-range-end-color: black;
-    --rdp-selected-color: black;
-  
-    /* Today’s cell (which was still blue) */
-    --rdp-today-color: black;
-    --rdp-today-background-color: transparent; /* or white */
-  }
-  
+.rdp-day_selected,
+.rdp-day_selected:focus,
+.rdp-day_selected:hover {
+  background-color: black !important;
+  color: white !important;
+}
+
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background-color: black !important;
+  color: white !important;
+}
+
+.rdp-range_end .rdp-day_button {
+  background-color: black !important;
+  color: white !important;
+}
+
+.rdp-range_start .rdp-day_button  {
+  background-color: black !important;
+  color: white !important;
+}
+
+.rdp-day_today {
+  color: black !important;
+  border: 1px solid black !important;
+}
+
+.rdp-day_button {
+  color: black !important;
+  // border: 1px solid black !important;
+}
+
+.rdp-selected .rdp-day_button {
+  border: black !important;
+}
+
+.rdp-day .rdp-today{
+  color: black;
+} 
+
+.rdp-today{
+  color: black;
+} 
+
+.rdp-today:not(.rdp-outside) {
+  color: black;
+}
