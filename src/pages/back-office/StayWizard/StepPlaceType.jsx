@@ -18,7 +18,7 @@ export function StepPlaceType({ selectedType, onSelect, isMulti = false }) {
   return (
     <section className="step-place-type">
       <div className="place-type-options">
-        <div className="title"> Which of these best describes your place?</div>
+        <div className="title">Which of these best describes your place?</div>
         <div className="option-grid">
           {placeTypes.map(({ key, svg }) => (
             <OptionBox

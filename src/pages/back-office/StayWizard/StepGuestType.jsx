@@ -31,15 +31,14 @@ export function StepGuestType({ selectedType, onSelect, isMulti = false }) {
   };
 
   const isSelected = (type) =>
-    isMulti ? selectedType.includes(type) : selectedType === type;
+    isMulti ? selectedType?.includes(type) : selectedType === type;
 
   return (
     <section className="step-guest-type">
       <div className="title">What type of place will guests have?</div>
       <div className="guest-grid">
-        {guestTypes.map(({ key, title, description, icon }) => (
+        {guestTypes.map(({ key, title, description }) => (
           <OptionBox
-            icon={icon}
             key={key}
             title={title}
             description={description}

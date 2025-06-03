@@ -1,11 +1,12 @@
 import { OptionBox } from "./OptionBox";
 
-export function StepPlaceOffer({ selectedTypes, onSelect, isMulti }) {
+export function StepPlaceOffer({ selectedTypes = [], onSelect, isMulti }) {
   const handleSelect = (type) => {
     if (isMulti) {
-      onSelect((prev) =>
-        prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
-      );
+      const updated = selectedTypes.includes(type)
+        ? selectedTypes.filter((t) => t !== type)
+        : [...selectedTypes, type];
+      onSelect(updated);
     } else {
       onSelect(type);
     }
@@ -46,18 +47,16 @@ export function StepPlaceOffer({ selectedTypes, onSelect, isMulti }) {
   return (
     <section className="step-place-offer">
       <div className="option-grid">
-        {placeOptions.map((place) => (
+        {placeOptions.map(({ key, title, icon }) => (
           <OptionBox
-            key={place.key}
-            icon={place.icon ? <img src={place.icon} /> : ""}
-            title={place.title}
+            key={key}
+            icon={icon ? <img src={icon} alt={""} /> : ""}
+            title={title}
             description=""
             isSelected={
-              isMulti
-                ? selectedTypes.includes(place.key)
-                : selectedTypes === place.key
+              isMulti ? selectedTypes.includes(key) : selectedTypes === key
             }
-            onClick={() => handleSelect(place.key)}
+            onClick={() => handleSelect(key)}
             style={{ "--btn-width": "220px", "--btn-border": "2px" }}
           />
         ))}

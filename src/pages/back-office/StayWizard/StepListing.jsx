@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export function StepPlaceListing() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(225);
+export function StepPlaceListing({ listing = {}, onChange }) {
+  const handleChange = (field, value) => {
+    onChange({ ...listing, [field]: value });
+  };
 
   return (
     <section className="step-place-listing">
@@ -16,10 +16,10 @@ export function StepPlaceListing() {
         <textarea
           maxLength={32}
           placeholder=""
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={listing.title || ""}
+          onChange={(e) => handleChange("title", e.target.value)}
         />
-        <div className="char-count">{title.length}/32</div>
+        <div className="char-count">{(listing.title || "").length}/32</div>
       </div>
 
       <div className="field-group">
@@ -27,22 +27,24 @@ export function StepPlaceListing() {
         <p>Share what makes your place special.</p>
         <textarea
           maxLength={500}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={listing.description || ""}
+          onChange={(e) => handleChange("description", e.target.value)}
         />
-        <div className="char-count">{description.length}/500</div>
+        <div className="char-count">
+          {(listing.description || "").length}/500
+        </div>
       </div>
 
       <div className="field-group">
-        <h2>set your price</h2>
+        <h2>Set your price</h2>
         <p>You can change it anytime.</p>
         <div className="price-input">
           <span className="currency">₪</span>
           <input
             type="number"
             min="0"
-            value={price}
-            onChange={(e) => setPrice(+e.target.value)}
+            value={listing.price ?? 225}
+            onChange={(e) => handleChange("price", +e.target.value)}
           />
         </div>
       </div>

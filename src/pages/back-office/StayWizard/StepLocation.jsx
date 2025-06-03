@@ -1,28 +1,22 @@
 import { MapView } from "../../../cmps/MapView.jsx";
-import { useState } from "react";
-export function StepPlaceLocation() {
-  const [placeDetails, setPlaceDetails] = useState({});
+import { useState, useEffect } from "react";
+
+export function StepPlaceLocation({ address = {}, onChange }) {
   const [mapAddress, setMapAddress] = useState(null);
 
-  //   console.log(placeDetails);
+  useEffect(() => {
+    if (address.street || address.city || address.postalCode) {
+      const fullAddress = buildAddressString(address);
+      setMapAddress(fullAddress);
+    }
+  }, [address]);
 
-  function handleSearchBtn() {
-    const { street, city, postalCode, entrance } = placeDetails;
+  const buildAddressString = ({ street, city, postalCode }) => {
+    return [street, city, postalCode].filter(Boolean).join(", ");
+  };
 
-    const fullAddress = buildAddressString({
-      street,
-      city,
-      postalCode,
-      entrance,
-    });
-
-    setMapAddress(fullAddress);
-  }
-
-  const buildAddressString = (addressObj) => {
-    return [addressObj.street, addressObj.city, addressObj.postalCode]
-      .filter(Boolean)
-      .join(", ");
+  const handleInputChange = (field, value) => {
+    onChange({ ...address, [field]: value });
   };
 
   return (
@@ -34,22 +28,20 @@ export function StepPlaceLocation() {
           reservation.
         </span>
       </div>
+
       <MapView
         style={{ width: "630px", height: "500px" }}
         address={mapAddress}
       />
+
       <div className="airbnb-input-group">
         <div className="input-row">
           <input
             type="text"
             className="input-field"
             placeholder="Street address"
-            onChange={(event) =>
-              setPlaceDetails((prev) => ({
-                ...prev,
-                street: event.target.value,
-              }))
-            }
+            value={address.street || ""}
+            onChange={(e) => handleInputChange("street", e.target.value)}
           />
         </div>
         <div className="input-row">
@@ -57,23 +49,17 @@ export function StepPlaceLocation() {
             type="text"
             className="input-field"
             placeholder="City/Town"
-            onChange={(event) =>
-              setPlaceDetails((prev) => ({ ...prev, city: event.target.value }))
-            }
+            value={address.city || ""}
+            onChange={(e) => handleInputChange("city", e.target.value)}
           />
         </div>
-
         <div className="input-row">
           <input
             type="text"
             className="input-field"
             placeholder="Postal code"
-            onChange={(event) =>
-              setPlaceDetails((prev) => ({
-                ...prev,
-                postalCode: event.target.value,
-              }))
-            }
+            value={address.postalCode || ""}
+            onChange={(e) => handleInputChange("postalCode", e.target.value)}
           />
         </div>
         <div className="input-row">
@@ -81,19 +67,16 @@ export function StepPlaceLocation() {
             type="text"
             className="input-field"
             placeholder="Entrance (if applicable)"
-            onChange={(event) =>
-              setPlaceDetails((prev) => ({
-                ...prev,
-                entrance: event.target.value,
-              }))
-            }
+            value={address.entrance || ""}
+            onChange={(e) => handleInputChange("entrance", e.target.value)}
           />
         </div>
       </div>
+
       <button
         className="option-box wide-btn"
         style={{ "--btn-width": "550px" }}
-        onClick={handleSearchBtn}
+        onClick={() => setMapAddress(buildAddressString(address))}
       >
         Search
       </button>

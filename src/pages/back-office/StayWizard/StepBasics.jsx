@@ -1,18 +1,7 @@
-import { useState } from "react";
-
-export function StepPlaceBasics() {
-  const [counts, setCounts] = useState({
-    guests: 1,
-    bedrooms: 0,
-    beds: 0,
-    bathrooms: 0,
-  });
-
+export function StepPlaceBasics({ basics = {}, onChange }) {
   const updateCount = (field, diff) => {
-    setCounts((prev) => ({
-      ...prev,
-      [field]: Math.max(0, prev[field] + diff),
-    }));
+    const newValue = Math.max(0, (basics[field] || 0) + diff);
+    onChange({ ...basics, [field]: newValue });
   };
 
   return (
@@ -27,7 +16,7 @@ export function StepPlaceBasics() {
           </span>
           <div className="counter-controls">
             <button onClick={() => updateCount(field, -1)}>-</button>
-            <span>{counts[field]}</span>
+            <span>{basics[field] || 0}</span>
             <button onClick={() => updateCount(field, 1)}>+</button>
           </div>
         </div>

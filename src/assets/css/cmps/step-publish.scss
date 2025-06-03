@@ -1,0 +1,43 @@
+.step-publish {
+  .first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 6rem;
+  }
+
+  .text-container {
+    max-width: 600px;
+
+    .step-count {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #717171;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-description {
+      font-size: 1.1rem;
+      color: #555;
+    }
+  }
+
+  .image-container {
+    display: flex;
+
+    img {
+      max-width: 450px;
+      //   height: auto;
+      //   border-radius: 1rem;
+    }
+  }
+
+  .primary-btn.narrow {
+    width: 30%;
+    margin-left: 95px;
+  }
+}
