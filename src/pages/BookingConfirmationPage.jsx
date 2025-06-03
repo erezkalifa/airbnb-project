@@ -2,7 +2,7 @@ import { useLocation , useNavigate } from "react-router-dom";
 import { reservationService } from "../services/reservation.service.js";
 import { UpperFilter } from "../cmps/UpperFilter.jsx";
 import { UpperHeader} from "../cmps/UpperHeader.jsx";
-
+import { useEffect } from "react";
 export function BookingConfirmationPage() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,6 +20,10 @@ export function BookingConfirmationPage() {
     serviceFee,
   } = bookingData;
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // ⬆️ Force scroll to top on mount
+  }, []);
+
   async function handleConfirm() {
     const reservation = {
       stayId: stay._id,
@@ -29,10 +33,11 @@ export function BookingConfirmationPage() {
       totalPrice,
       host: stay.host, 
     };
+
   
     try {
       await reservationService.save(reservation);
-      navigate("/");
+      // navigate("/");
     } catch (err) {
       console.error("Failed to confirm booking:", err);
     }
