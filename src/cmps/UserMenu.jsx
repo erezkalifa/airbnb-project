@@ -5,7 +5,7 @@ export function UserMenu({ loggedInUser, onLoginClick, onCloseMenu }) {
   const navigate = useNavigate();
 
   function goToBackOffice() {
-    navigate("/backoffice");
+    navigate("/listings");
   }
 
   async function handleLogout() {
@@ -24,8 +24,10 @@ export function UserMenu({ loggedInUser, onLoginClick, onCloseMenu }) {
           <section className="logged-user-menu">
             <div className="menu-item">Wishlist</div>
             <div className="menu-item">Trips</div>
+            <div className="menu-item">Listings</div>
+            <div className="menu-item">Reservations</div>
             <div className="menu-item" onClick={goToBackOffice}>
-              Back Office
+              Add listing
             </div>
             <div className="menu-item" onClick={handleLogout}>
               Logout

@@ -1,23 +1,17 @@
-.step-guest-type {
-  margin-top: 60px;
+.step-place-offer {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .title {
-    margin-bottom: 10px;
-    font-weight: 600;
-    font-size: 1.9rem;
+  h2 {
+    width: 50%;
+    margin: 50px auto 20px;
   }
-
-  .guest-grid {
+  .grid {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
-    padding-left: 22px;
   }
-
   &.selected {
     border-color: black;
     background-color: #f7f7f7;

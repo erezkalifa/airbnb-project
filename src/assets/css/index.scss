@@ -49,7 +49,12 @@
 @use "./cmps/step-guest-type.scss";
 @use "./cmps/option-box.scss";
 @use "./cmps/step-place-location.scss";
-@use "./cmps/day-picker.scss";  
+@use "./cmps/day-picker.scss";
+
+@use "./cmps/step-place-basics.scss";
+@use "./cmps/step-place-offer.scss";
+@use "./cmps/step-place-listing.scss";
+@use "./cmps/step-publish.scss";
 
 /* Fonts */
 @font-face {

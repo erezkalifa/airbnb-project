@@ -21,7 +21,7 @@ export const stayService = {
   getLabels,
   getDefaultFilter,
   getFilterFromParams,
-  applyFilter
+  applyFilter,
 };
 
 const API = "/api/stay";
@@ -29,8 +29,8 @@ const API = "/api/stay";
 
 async function query(filterBy = {}, page = 1, pageSize = 10) {
   try {
-    const params = {...filterBy , page , pageSize}
-    const { data: stays } = await axios.get(BASE_URL, {params});
+    const params = { ...filterBy, page, pageSize };
+    const { data: stays } = await axios.get(BASE_URL, { params });
     console.log("stay service:", params);
     return stays;
   } catch (err) {
@@ -50,6 +50,7 @@ async function getById(stayId) {
 }
 
 async function save(stay) {
+  console.log(stay);
   const method = stay._id ? "put" : "post";
   const url = BASE_URL + (stay._id || "");
   try {
@@ -365,7 +366,7 @@ function getDefaultFilter() {
     sortField: "",
     sortDir: 1,
     pageIdx: 0,
-  }
+  };
 }
 
 function getFilterFromParams(searchParams) {
@@ -374,6 +375,7 @@ function getFilterFromParams(searchParams) {
     if (key.includes(".")) {
       const [parentKey, nestedKey] = key.split(".");
       filterBy[parentKey] = filterBy[parentKey] || {};
+
       // Convert to number if possible
       const numValue = Number(value);
       filterBy[parentKey][nestedKey] =
@@ -430,5 +432,5 @@ export function applyFilter(newFilter, setSearchParams, dispatch, setFilterBy) {
 
   dispatch({ type: "SET_FILTER_BY", filterBy: newFilter });
   setFilterBy(newFilter);
-  console.log('Final filterBy:', newFilter);
+  console.log("Final filterBy:", newFilter);
 }

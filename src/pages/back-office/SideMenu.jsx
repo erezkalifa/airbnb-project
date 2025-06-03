@@ -6,10 +6,10 @@ export function SideMenu() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/add">➕ Add Stay</NavLink>
+            <NavLink to="/backoffice/stay-wizard">➕ Add Stay</NavLink>
           </li>
           <li>
-            <NavLink to="my-stays">📁 My Stays</NavLink>
+            <NavLink to="/backoffice/my-stays">📁 My Stays</NavLink>
           </li>
           <li>
             <NavLink to="/orders">🧾 Orders</NavLink>

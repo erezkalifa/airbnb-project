@@ -1,0 +1,55 @@
+.step-place-basics {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px;
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: #717171;
+    margin-bottom: 32px;
+  }
+
+  .counter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #ddd;
+
+    .label {
+      font-size: 18px;
+      text-transform: capitalize;
+    }
+
+    .counter-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      button {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        background-color: white;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f7f7f7;
+        }
+      }
+
+      span {
+        font-size: 18px;
+        min-width: 20px;
+        text-align: center;
+      }
+    }
+  }
+}

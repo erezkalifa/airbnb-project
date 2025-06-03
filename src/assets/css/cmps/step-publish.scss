@@ -1,8 +1,10 @@
-.step-intro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 6rem;
+.step-publish {
+  .first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 6rem;
+  }
 
   .text-container {
     max-width: 600px;
@@ -29,8 +31,13 @@
 
     img {
       max-width: 450px;
-      height: auto;
-      border-radius: 1rem;
+      //   height: auto;
+      //   border-radius: 1rem;
     }
+  }
+
+  .primary-btn.narrow {
+    width: 30%;
+    margin-left: 95px;
   }
 }

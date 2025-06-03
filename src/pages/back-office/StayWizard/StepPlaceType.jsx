@@ -1,75 +1,36 @@
-import { OptionBox } from "./OptionBox";
-export function StepPlaceType({ selectedType, onSelect }) {
-  const placeTypes = ["Entire place", "Private room", "Shared room"];
+import { OptionBox } from "./OptionBox.jsx";
+import { placeTypes } from "./placeTypes.jsx";
+
+export function StepPlaceType({ selectedType, onSelect, isMulti = false }) {
+  const handleSelect = (type) => {
+    if (isMulti) {
+      onSelect((prev) =>
+        prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+      );
+    } else {
+      onSelect(type);
+    }
+  };
+
+  const isSelected = (type) =>
+    isMulti ? selectedType.includes(type) : selectedType === type;
 
   return (
     <section className="step-place-type">
-      <h2>Which of these best describes your place?</h2>
       <div className="place-type-options">
+        <div className="title">Which of these best describes your place?</div>
         <div className="option-grid">
-          <OptionBox
-            icon={""}
-            title="House"
-            description=""
-            isSelected={selectedType === "house"}
-            onClick={() => onSelect("house")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Apartment"
-            description=""
-            isSelected={selectedType === "apartment"}
-            onClick={() => onSelect("apartment")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Barn"
-            description=""
-            isSelected={selectedType === "barn"}
-            onClick={() => onSelect("barn")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Bed & Breakfest"
-            description=""
-            isSelected={selectedType === "bed&breakfest"}
-            onClick={() => onSelect("bed&breakfest")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Boat"
-            description=""
-            isSelected={selectedType === "boat"}
-            onClick={() => onSelect("boat")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Cabin"
-            description=""
-            isSelected={selectedType === "cabin"}
-            onClick={() => onSelect("cabin")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Castle"
-            description=""
-            isSelected={selectedType === "castlee"}
-            onClick={() => onSelect("castle")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Cave"
-            description=""
-            isSelected={selectedType === "cave"}
-            onClick={() => onSelect("cave")}
-          />
-          <OptionBox
-            icon={<img src="/icons/apartment.svg" />}
-            title="Dome"
-            description=""
-            isSelected={selectedType === "dome"}
-            onClick={() => onSelect("dome")}
-          />
+          {placeTypes.map(({ key, svg }) => (
+            <OptionBox
+              key={key}
+              icon={svg}
+              title={key.charAt(0).toUpperCase() + key.slice(1)}
+              description=""
+              isSelected={isSelected(key)}
+              onClick={() => handleSelect(key)}
+              style={{ "--btn-width": "220px", "--btn-border": "2px" }}
+            />
+          ))}
         </div>
       </div>
     </section>
