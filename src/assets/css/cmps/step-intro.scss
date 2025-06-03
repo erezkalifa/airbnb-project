@@ -1,0 +1,39 @@
+.step-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 6rem;
+
+  .text-container {
+    flex: 1;
+    max-width: 600px;
+
+    .step-count {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #717171;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-description {
+      font-size: 1.1rem;
+      color: #555;
+    }
+  }
+
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      max-width: 450px;
+      height: auto;
+      border-radius: 1rem;
+    }
+  }
+}

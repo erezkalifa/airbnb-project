@@ -1,5 +1,7 @@
 import { stayService } from "../../services/stay.service.js";
-import { SET_STAYS , SET_FILTER_BY } from "../stay/stay.reducers.js";
+import { userService } from "../../services/user.service.js";
+import { SET_STAYS, SET_FILTER_BY } from "../stay/stay.reducers.js";
+
 import { store } from "../store.js";
 
 export function loadStays(filterBy = {}, page = 1, pageSize = 12) {
@@ -17,9 +19,9 @@ export function loadStays(filterBy = {}, page = 1, pageSize = 12) {
       console.log("🚀 ~ Loaded stays with filters:", filterBy, "and page:", page);
       return stays;
     } catch (err) {
-      console.error("stay action -> Cannot load stays:", err);
-      throw err;
+      console.error("stay action -> Cannot load stays:", err);;
+      throw err;;
     }
   };
-}
+  };
 

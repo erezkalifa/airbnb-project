@@ -21,3 +21,17 @@
 .menu-item:last-child {
   border-bottom: none;
 }
+
+.button-unstyled {
+  all: unset !important;
+  appearance: none !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font: inherit !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  display: block !important;
+  width: 100% !important;
+}

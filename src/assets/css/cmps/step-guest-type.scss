@@ -1,0 +1,16 @@
+.step-guest-type {
+  h2 {
+    width: 50%;
+    margin: 50px auto 20px;
+  }
+  .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  &.selected {
+    border-color: black;
+    background-color: #f7f7f7;
+  }
+}

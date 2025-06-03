@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
   }
-  
+
   ul.react-multi-carousel-track {
     display: flex;
     gap: 15px;
@@ -13,11 +13,11 @@
   .labels-scroller-wrapper {
     &.no-arrows {
       .carousel-item-container {
-        padding: 0; 
+        padding: 0;
       }
-  
+
       .carousel-wrapper {
-        padding: 0; 
+        padding: 0;
       }
     }
   }
@@ -32,26 +32,24 @@
     padding: 0 4px;
   }
 
-
   .react-multiple-carousel__arrow {
     background: transparent;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 50%;
     width: 32px;
     height: 32px;
     z-index: 10;
-    box-shadow:  0 2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     transition: box-shadow 0.2s ease;
-  
-  
+
     &::before {
-      color: black;         
+      color: black;
       font-size: 16px;
     }
     &:hover {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       border-color: #ccc;
-      background-color: #fff; 
+      background-color: #fff;
     }
   }
 
@@ -60,12 +58,12 @@
   }
 
   .react-multiple-carousel__arrow--right {
-      right: 0;
+    right: 0;
   }
 
   .carousel-wrapper {
     position: relative;
-    padding: 0 24px; 
+    padding: 0 24px;
   }
 
   .carousel-item {
@@ -79,28 +77,26 @@
     transition: color 0.2s ease;
     width: max-content;
     padding: 6px 8px;
-    
-    
 
     img {
       width: 30px;
       height: auto;
       margin-bottom: 6px;
-      filter: brightness(0) saturate(100%) invert(44%) sepia(0%) saturate(600%) hue-rotate(180deg) brightness(90%) contrast(85%);
+      filter: brightness(0) saturate(100%) invert(44%) sepia(0%) saturate(600%)
+        hue-rotate(180deg) brightness(90%) contrast(85%);
       transition: filter 0.2s ease;
     }
 
     p {
       font-size: 14px;
       font-weight: 600;
-      font-family: 'Urbanist', sans-serif;
+      font-family: "Urbanist", sans-serif;
       color: #717171;
       margin: 0;
       position: relative;
       text-align: center;
       display: inline-block;
       white-space: nowrap;
-      
 
       &::after {
         content: "";
@@ -119,7 +115,7 @@
         font-weight: 600;
 
         &::after {
-          background-color: #DDDDDD; // light gray underline on hover
+          background-color: #dddddd; // light gray underline on hover
         }
       }
 
@@ -134,7 +130,7 @@
         font-weight: 600;
 
         &::after {
-          background-color: #DDDDDD;
+          background-color: #dddddd;
         }
       }
 
@@ -144,4 +140,3 @@
     }
   }
 }
-

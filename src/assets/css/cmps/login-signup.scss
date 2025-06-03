@@ -1,0 +1,159 @@
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.login-modal {
+  background: white;
+  border-radius: 32px;
+  padding: 32px;
+  width: 420px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  font-family: sans-serif;
+}
+
+.modal-title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+}
+
+.icon-wrapper {
+  position: absolute;
+  left: 16px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.welcome {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-control label {
+  font-size: 14px;
+  color: #222;
+}
+
+.form-control select,
+.form-control input {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: #717171;
+  margin-top: -6px;
+}
+
+.disclaimer a {
+  color: #222;
+  text-decoration: underline;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background-color: #ff385c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.divider span {
+  margin: 0 10px;
+}
+
+button.provider-btn {
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  justify-content: center;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 7px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  font-size: 14px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.args {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
+  border-right: 1px solid #ddd;
+  height: 100%;
+  line-height: 1.2;
+}

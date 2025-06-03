@@ -1,0 +1,135 @@
+.my-stays-page {
+  padding: 4rem;
+  background-color: #f7f7f7;
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #222;
+  }
+
+  .stays-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stay-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+
+    .img {
+      padding: auto auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stay-img {
+      width: 98%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .stays-details {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .stay-header {
+        margin-bottom: 0.5rem;
+
+        .stay-title {
+          font-size: 1.2rem;
+          font-weight: 500;
+          margin-bottom: 0.2rem;
+          color: #222;
+        }
+
+        .stay-location {
+          font-size: 0.95rem;
+          color: #666;
+        }
+      }
+
+      .stay-info {
+        display: flex;
+        // justify-content: space-between;
+        // align-items: center;
+        font-size: 0.95rem;
+        color: #444;
+        margin: 0.5rem 0;
+
+        .stay-price {
+          color: #ff385c;
+          font-weight: 600;
+        }
+
+        .stay-status {
+          &.active {
+            color: #008a05;
+            font-weight: 600;
+          }
+
+          &.inactive {
+            color: #aaa;
+            font-style: italic;
+          }
+        }
+
+        .stay-orders {
+          color: #555;
+        }
+      }
+
+      .stay-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        .btn {
+          padding: 0.4rem 0.8rem;
+          border: none;
+          border-radius: 8px;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+
+          &.edit {
+            background-color: #f7f7f7;
+            color: #222;
+
+            &:hover {
+              background-color: #e0e0e0;
+            }
+          }
+
+          &.pause {
+            background-color: #ffe8e6;
+            color: #d23f3f;
+
+            &:hover {
+              background-color: #ffd3cf;
+            }
+          }
+
+          &.delete {
+            background-color: #ffdddd;
+            color: #b60000;
+
+            &:hover {
+              background-color: #ffbdbd;
+            }
+          }
+        }
+      }
+    }
+  }
+}

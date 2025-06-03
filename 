@@ -1,0 +1,45 @@
+Merge branch 'main' into login-signup
+
+# Conflicts:
+#	src/assets/css/index.scss
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please run
+#	git update-ref -d MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch login-signup
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   src/RootCmp.jsx
+#	modified:   src/assets/css/cmps/GuestRow.scss
+#	modified:   src/assets/css/cmps/booking-confirmation-modal.scss
+#	modified:   src/assets/css/cmps/order-card.scss
+#	modified:   src/assets/css/cmps/stay-preview.scss
+#	modified:   src/assets/css/index.scss
+#	new file:   src/assets/css/pages/BookingConfirmationPage.scss
+#	modified:   src/assets/css/pages/stay-details.scss
+#	modified:   src/cmps/GuestPicker.jsx
+#	modified:   src/cmps/StayPreview.jsx
+#	modified:   src/cmps/stayDetails/GuestRow.jsx
+#	modified:   src/cmps/stayDetails/OrderCard.jsx
+#	new file:   src/cmps/stayDetails/RatingSummary.jsx
+#	new file:   src/pages/BookingConfirmationPage.jsx
+#	modified:   src/pages/StayDetails.jsx
+#
+# Changes not staged for commit:
+#	modified:   src/assets/css/cmps/login-signup.scss
+#	modified:   src/assets/css/cmps/upper-filter.scss
+#	modified:   src/assets/css/cmps/upper-header.scss
+#	modified:   src/assets/css/cmps/user-menu.scss
+#	modified:   src/cmps/LoginSignup.jsx
+#	modified:   src/cmps/ProfileButton.jsx
+#	modified:   src/cmps/UserMenu.jsx
+#	modified:   src/pages/StayIndex.jsx
+#	modified:   src/services/user.service.js
+#

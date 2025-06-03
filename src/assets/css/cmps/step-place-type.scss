@@ -1,0 +1,32 @@
+.step-place-type {
+  h2 {
+    width: 50%;
+    margin: 0;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .place-type-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    background: #fff;
+    cursor: pointer;
+    text-align: left;
+
+    &.selected {
+      border-color: black;
+      background-color: #f7f7f7;
+    }
+  }
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+  gap: 22px;
+}

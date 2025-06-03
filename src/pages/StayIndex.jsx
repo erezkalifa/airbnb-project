@@ -68,6 +68,7 @@ export function StayIndex() {
       ) : (
         <p className="no-stays-msg">No stays found</p>
       )}
+      {/* <LoginSignup /> */}
     </section>
   );
 }
