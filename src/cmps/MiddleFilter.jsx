@@ -47,33 +47,52 @@ export function MiddleFilter({isSticky = false ,className = ""}) {
   }, []);
 
 
+  // const handleClick = (type) => {
+  //   const targetRef = type === "who" ? thirdArgRef : firstArgRef;
+  
+  //   if (targetRef.current && searchBoxRef.current) {
+  //     const searchBoxRect = searchBoxRef.current.getBoundingClientRect();
+  //     const targetRect = targetRef.current.getBoundingClientRect();
+  
+  //     const isScrolling = window.scrollY > 0;
+  //     const modalTop = isScrolling
+  //       ? searchBoxRect.bottom 
+  //       : targetRect.bottom + window.scrollY;
+  
+  //     const modalLeft = isScrolling
+  //       ? searchBoxRect.left + window.scrollX
+  //       : targetRect.left + window.scrollX;
+  
+  //     console.log("Adjusted top:", modalTop);
+  //     console.log("Adjusted left:", modalLeft);
+  
+  //     setModalPosition({
+  //       top: modalTop,
+  //       left: modalLeft,
+  //     });
+  //   }
+  
+  //   setOpenModal(type);
+  // };
+
   const handleClick = (type) => {
     const targetRef = type === "who" ? thirdArgRef : firstArgRef;
   
-    if (targetRef.current && searchBoxRef.current) {
-      const searchBoxRect = searchBoxRef.current.getBoundingClientRect();
+    if (targetRef.current) {
       const targetRect = targetRef.current.getBoundingClientRect();
   
-      const isScrolling = window.scrollY > 0;
-      const modalTop = isScrolling
-        ? searchBoxRect.bottom 
-        : targetRect.bottom + window.scrollY;
-  
-      const modalLeft = isScrolling
-        ? searchBoxRect.left + window.scrollX
-        : targetRect.left + window.scrollX;
-  
-      console.log("Adjusted top:", modalTop);
-      console.log("Adjusted left:", modalLeft);
+      const modalTop = targetRect.bottom + window.scrollY;
+      const modalLeft = targetRect.left + window.scrollX;
   
       setModalPosition({
-        top: modalTop,
-        left: modalLeft,
+        top: targetRect.bottom + 30,
+        left: targetRect.left,
       });
     }
   
     setOpenModal(type);
   };
+  
   
   const handleSearch = () => {
     const totalGuests =
