@@ -1,6 +1,7 @@
 import { useLocation , useNavigate } from "react-router-dom";
 import { reservationService } from "../services/reservation.service.js";
 import { UpperFilter } from "../cmps/UpperFilter.jsx";
+import { UpperHeader} from "../cmps/UpperHeader.jsx";
 
 export function BookingConfirmationPage() {
   const location = useLocation();
@@ -19,14 +20,27 @@ export function BookingConfirmationPage() {
     serviceFee,
   } = bookingData;
 
-  function handleConfirm() {
-    reservationService.save(bookingData);
-    navigate("/");
+  async function handleConfirm() {
+    const reservation = {
+      stayId: stay._id,
+      checkIn: selectedRange.from.toISOString(),
+      checkOut:  selectedRange.to.toISOString(),
+      guests: guests.adults + guests.children + guests.infants + guests.pets,
+      totalPrice,
+      host: stay.host, 
+    };
+  
+    try {
+      await reservationService.save(reservation);
+      navigate("/");
+    } catch (err) {
+      console.error("Failed to confirm booking:", err);
+    }
   }
-
+  
   return (
     <section className="booking-confirm-page">
-      <UpperFilter isAtTop={false} />
+      <UpperHeader/>
       <h1>Confirm and pay</h1>
 
       <div className="booking-content">

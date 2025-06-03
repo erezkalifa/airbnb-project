@@ -181,14 +181,16 @@ export function StayDetails() {
                 )
               )}
             </div>
-            {!showAllReviews && stay.reviews.length > 6 && (
-              <button
-                className="show-all-btn"
-                onClick={() => setShowAllReviews(true)}
-              >
-                Show all {stay.reviews.length} reviews
-              </button>
-            )}
+            {stay.reviews.length > 6 && (
+            <button
+              className="show-all-btn"
+              onClick={() => setShowAllReviews((prev) => !prev)}
+            >
+              {showAllReviews
+                ? "Hide some reviews"
+                : `Show all ${stay.reviews.length} reviews`}
+            </button>
+          )}
           </div>
         )}
         <div className="map">

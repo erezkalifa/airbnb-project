@@ -13,7 +13,8 @@ export function SmallFilter({ onOpenFilter }) {
     <section className="small-filter">
       <div className="section" onClick={() => onOpenFilter('location')}>Anywhere</div>
       <div className="section" onClick={() => onOpenFilter('dates')}>Any week</div>
-      <div className="section">Add guests</div>
+      <div className="section" onClick={() => onOpenFilter('guests')}>Add guests</div>
+      {/* <div className="section">Add guests</div> */}
       <button className="search-btn">🔍</button>
     </section>
   );
