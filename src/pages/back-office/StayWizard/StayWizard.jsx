@@ -8,6 +8,7 @@ import { StepPlaceBasics } from "./StepBasics.jsx";
 import { StepPlaceOffer } from "./StepOffer.jsx";
 import { StepPlaceListing } from "./StepListing.jsx";
 import { StepPublish } from "./StepPublish.jsx";
+import { UpperHeader } from "../../../cmps/UpperHeader.jsx";
 
 export function StayWizard() {
   // const [stay, setstay] = useState({});
@@ -83,6 +84,7 @@ export function StayWizard() {
 
   return (
     <section className="stay-wizard">
+      <UpperHeader/>
       <div className="step-content">{steps[step]}</div>
 
       {

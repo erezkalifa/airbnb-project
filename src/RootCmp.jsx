@@ -26,7 +26,7 @@ export function RootCmp() {
 
 function RootLayout() {
   const location = useLocation();
-  const hideFooterRoutes = ["/listings"];
+  const hideFooterRoutes = ["/listings","/add-listings"];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
 
   return (

@@ -1,4 +1,4 @@
-import { StayPreview } from "./stayPreview"
+import { StayPreview } from "./StayPreview"
 
 export function StayList({ stays }) {
   return (

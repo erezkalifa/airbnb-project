@@ -1,5 +1,6 @@
 import { reservationService } from "../services/reservation.service";
 import { useState, useEffect } from "react";
+import { UpperHeader } from "../cmps/UpperHeader";
 
 export function Reservations() {
   const [reservations, setReservations] = useState([]);
@@ -22,6 +23,7 @@ export function Reservations() {
 
   return (
     <section className="reservations">
+      <UpperHeader/>
       <h2>{reservations.length} Reservations</h2>
       <table className="reservations-table">
         <thead>
@@ -50,7 +52,7 @@ export function Reservations() {
                   //   {res.host?.fullname?.charAt(0) || "?"}
                   // </div>
                 )}
-                <span>{res.guestName.toUpperCase() || "Unknown"}</span>
+                <span>{res.guestName || "Unknown"}</span>
               </td>
               <td>{new Date(res.checkIn).toLocaleDateString("en-GB")}</td>
               <td>{new Date(res.checkOut).toLocaleDateString("en-GB")}</td>
