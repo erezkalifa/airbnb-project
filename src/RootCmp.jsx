@@ -5,7 +5,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Provider } from "react-redux";
-import { BackOffice } from "./pages/back-office/BackOffice.jsx";
 import { StayIndex } from "./pages/StayIndex.jsx";
 import { StayDetails } from "./pages/StayDetails.jsx";
 import { store } from "./store/store.js";
@@ -13,6 +12,7 @@ import { BookingConfirmationPage } from "./pages/BookingConfirmationPage.jsx";
 import { Footer } from "./cmps/Footer.jsx";
 import { MyStays } from "./pages/back-office/MyStays.jsx";
 import { StayWizard } from "./pages/back-office/StayWizard/StayWizard.jsx";
+import { Reservations } from "./pages/Reservations.jsx";
 
 export function RootCmp() {
   return (
@@ -35,15 +35,10 @@ function RootLayout() {
         <Routes>
           <Route path="/" element={<StayIndex />} />
           <Route path="/details" element={<StayDetails />} />
-          <Route path="/backoffice" element={<BackOffice />} />
-          <Route path="/my-stays" element={<MyStays />} />
-          {/* <Route
-            path="/backoffice/my-stays"
-            element={loggedInUser ? <MyStays /> : <Navigate to="/" replace />}
-          /> */}
-
+          <Route path="/listings" element={<MyStays />} />
+          <Route path="/add-listings" element={<StayWizard />} />
           <Route path="/stay/:stayId" element={<StayDetails />} />
-          <Route path="/listings" element={<StayWizard />} />
+          <Route path="/reservations" element={<Reservations />} />
           <Route
             path="/booking-confirmation"
             element={<BookingConfirmationPage />}
