@@ -3,6 +3,7 @@ import { stayService } from "../../services/stay.service.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userService } from "../../services/user.service.js";
 import { SET_FILTER_BY } from "../../store/stay/stay.reducers.js";
+import { UpperHeader } from "../../cmps/UpperHeader.jsx";
 
 export function MyStays() {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ export function MyStays() {
 
   return (
     <section className="my-stays-page">
+      <UpperHeader/>
       <h2 className="section-title">My Stays</h2>
       <div className="stays-grid">
         {userStays.map((stay) => (

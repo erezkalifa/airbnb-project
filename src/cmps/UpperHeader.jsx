@@ -57,10 +57,10 @@ import { ProfileButton } from "./ProfileButton.jsx";
 
 export function UpperHeader() {
   return (
-    <section className="upper-header">
+    <section className="upper-header-up">
       <div className="logo">
         <a href="/">
-          <img src="public/logo-aircnc.png" alt="Aircnc Logo" />
+          <img src="img/logo-aircnc.png" alt="Aircnc Logo" />
           <span>aircnc</span>
         </a>
       </div>
