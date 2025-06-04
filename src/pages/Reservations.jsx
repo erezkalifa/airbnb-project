@@ -8,6 +8,7 @@ export function Reservations() {
     async function loadReservations() {
       try {
         const res = await reservationService.query();
+        console.log(res);
         if (res && Array.isArray(res)) {
           setReservations(res);
         }
@@ -44,11 +45,12 @@ export function Reservations() {
                     className="avatar"
                   />
                 ) : (
-                  <div className="avatar-placeholder">
-                    {res.host?.fullname?.charAt(0) || "?"}
-                  </div>
+                  ""
+                  // <div className="avatar-placeholder">
+                  //   {res.host?.fullname?.charAt(0) || "?"}
+                  // </div>
                 )}
-                <span>{res.host?.fullname || "Unknown"}</span>
+                <span>{res.guestName.toUpperCase() || "Unknown"}</span>
               </td>
               <td>{new Date(res.checkIn).toLocaleDateString("en-GB")}</td>
               <td>{new Date(res.checkOut).toLocaleDateString("en-GB")}</td>

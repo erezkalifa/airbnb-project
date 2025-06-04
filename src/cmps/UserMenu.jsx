@@ -4,8 +4,31 @@ import { logout } from "../store/user/user.actions.js";
 export function UserMenu({ loggedInUser, onLoginClick, onCloseMenu }) {
   const navigate = useNavigate();
 
-  function goToBackOffice() {
-    navigate("/listings");
+  function handleMenuClick(menuItem) {
+    switch (menuItem) {
+      case "Wishlist":
+        navigate("/wishlist");
+        break;
+      case "Trips":
+        navigate("/trips");
+        break;
+      case "Listings":
+        navigate("/listings");
+        break;
+      case "Reservations":
+        navigate("/reservations");
+        break;
+      case "Add listing":
+        navigate("/add-listings");
+        break;
+      case "Logout":
+        handleLogout();
+        break;
+      default:
+        break;
+    }
+
+    if (menuItem !== "Logout") onCloseMenu();
   }
 
   async function handleLogout() {
@@ -22,16 +45,22 @@ export function UserMenu({ loggedInUser, onLoginClick, onCloseMenu }) {
       <div className="menu-dropdown">
         {loggedInUser ? (
           <section className="logged-user-menu">
-            <div className="menu-item">Wishlist</div>
-            <div className="menu-item">Trips</div>
-            <div className="menu-item">Listings</div>
-            <div className="menu-item">Reservations</div>
-            <div className="menu-item" onClick={goToBackOffice}>
-              Add listing
-            </div>
-            <div className="menu-item" onClick={handleLogout}>
-              Logout
-            </div>
+            {[
+              "Wishlist",
+              "Trips",
+              "Listings",
+              "Reservations",
+              "Add listing",
+              "Logout",
+            ].map((item) => (
+              <div
+                key={item}
+                className="menu-item"
+                onClick={() => handleMenuClick(item)}
+              >
+                {item}
+              </div>
+            ))}
           </section>
         ) : (
           <>
@@ -41,7 +70,7 @@ export function UserMenu({ loggedInUser, onLoginClick, onCloseMenu }) {
             <div className="menu-item">Messages</div>
             <div className="menu-item">Help Center</div>
             <button onClick={onLoginClick} className="button-unstyled">
-              <div className="menu-item">Log in or sign up </div>
+              <div className="menu-item">Log in or sign up</div>
             </button>
           </>
         )}
