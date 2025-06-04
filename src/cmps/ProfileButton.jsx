@@ -47,10 +47,10 @@ export function ProfileButton() {
       <button className="profile-toggle" onClick={toggleMenu}>
         <img
           className="three-parallel"
-          src="src/assets/img/Icons/three_lines.svg"
+          src="pulic/img/Icons/three_lines.svg"
           alt="Menu Icon"
         />
-        {loggedInUser && <Avatar url="src/assets/img/profile.jpg" />}
+        {loggedInUser && <Avatar url="public/img/profile.jpg" />}
       </button>
 
       {isUserMenuOpen && (

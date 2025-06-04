@@ -8,7 +8,7 @@ export function UpperFilter({ isAtTop, onOpenFilter }) {
     <section className="upper-header">
       <div className="logo">
         <a href="/">
-          <img src="src/assets/img/logo-aircnc.png" alt="Aircnc Logo" />
+          <img src="public/img/logo-aircnc.png" alt="Aircnc Logo" />
           <span>aircnc</span>
         </a>
       </div>
