@@ -27,7 +27,7 @@ export function MapView({ stay, style, address }) {
     const encodedAddress = encodeURIComponent(address);
     try {
       const res = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=AIzaSyCd6v2whmmM0grZKw0hD5n1ssBatDjzulc`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${process.env.google_key}`
       );
 
       const data = await res.json();
