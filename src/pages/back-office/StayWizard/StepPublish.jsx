@@ -1,10 +1,16 @@
 import { stayService } from "../../../services/stay.service.js";
+import {
+  normalizeStay,
+  mapCustomFieldsToStay,
+} from "../../../services/util.service.js";
 
-//לראות שאכן נוצרה הזמנה חדשה בstay
 export function StepPublish({ stay }) {
   async function handlePublishBtn() {
+    const parsedStay = mapCustomFieldsToStay(stay);
+    const fullStay = normalizeStay(parsedStay);
+
     try {
-      await stayService.save(stay);
+      await stayService.save(fullStay);
     } catch (err) {
       console.log(err);
     }

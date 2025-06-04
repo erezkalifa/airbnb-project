@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export function StayPreview({ stay }) {
   const [currIdx, setCurrIdx] = useState(0);
@@ -30,11 +30,14 @@ export function StayPreview({ stay }) {
         {currIdx === 0 ? (
           ""
         ) : (
-          <button className="carousel-btn left" onClick={(e) => {
-            e.stopPropagation()
-            e.preventDefault()
-            prevImg()
-          }}>
+          <button
+            className="carousel-btn left"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              prevImg();
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -56,11 +59,14 @@ export function StayPreview({ stay }) {
           </button>
         )}
 
-        <button className="carousel-btn right" onClick={(e) => {
-          e.stopPropagation()
-          e.preventDefault()
-          nextImg()
-        }}>
+        <button
+          className="carousel-btn right"
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            nextImg();
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
@@ -83,10 +89,13 @@ export function StayPreview({ stay }) {
             />
           </svg>
         </button>
-        <button className="like-btn" onClick={(e) => {
-            e.stopPropagation()
-            e.preventDefault()
-          }}>
+        <button
+          className="like-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"
@@ -126,7 +135,7 @@ export function StayPreview({ stay }) {
           </span>
           <span className="stay-card-rating">
             <FaStar style={{ color: "#222", fontSize: "12px" }} />{" "}
-            {stay.reviews[0].rate}
+            {stay.reviews[0]?.rate}
           </span>
         </div>
         <div className="stay-card-distance">
@@ -140,7 +149,6 @@ export function StayPreview({ stay }) {
           <span className="night"> night</span>
         </div>
       </div>
-    
     </Link>
   );
 }

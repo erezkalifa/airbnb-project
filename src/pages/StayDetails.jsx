@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom"
-import { useEffect, useState, useRef } from "react"
-import { stayService } from "../services/stay.service.js"
-import { UpperFilter } from "../cmps/UpperFilter.jsx"
-import { MiddleFilter } from "../cmps/MiddleFilter.jsx"
-import { OrderCard } from "../cmps/stayDetails/OrderCard.jsx"
-import { BookingConfirmationModal } from "../cmps/BookingConfirmationModal.jsx"
-import { RatingSummary } from "../cmps/stayDetails/RatingSummary.jsx"
-import {MapView} from "../cmps/MapView.jsx"
+import { useParams } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { stayService } from "../services/stay.service.js";
+import { UpperFilter } from "../cmps/UpperFilter.jsx";
+import { MiddleFilter } from "../cmps/MiddleFilter.jsx";
+import { OrderCard } from "../cmps/stayDetails/OrderCard.jsx";
+import { BookingConfirmationModal } from "../cmps/BookingConfirmationModal.jsx";
+import { RatingSummary } from "../cmps/stayDetails/RatingSummary.jsx";
+import { MapView } from "../cmps/MapView.jsx";
 
 export function StayDetails() {
   const { stayId } = useParams();
@@ -19,8 +19,15 @@ export function StayDetails() {
 
   const ratingRef = useRef(null);
 
+  console.log(stayId);
+
   useEffect(() => {
-    stayService.getById(stayId).then(setStay);
+    stayService
+      .getById(stayId)
+      .then(setStay)
+      .catch((err) => {
+        console.error("Failed to load stay:", err);
+      });
   }, [stayId]);
 
   useEffect(() => {
@@ -41,13 +48,9 @@ export function StayDetails() {
   return (
     <section className="stay-details">
       <UpperFilter isAtTop={true} />
-      <MiddleFilter
-        filterBy={{}}
-        onSetFilter={() => {}} 
-        isSticky = {false}
-      />
+      <MiddleFilter filterBy={{}} onSetFilter={() => {}} isSticky={false} />
       <div className="stay-title-container">
-          <h1 className="stay-title-details">{stay?.title}</h1>
+        <h1 className="stay-title-details">{stay?.title}</h1>
       </div>
       <div className="container">
         <div className="stay-gallery">
@@ -80,11 +83,14 @@ export function StayDetails() {
             </div>
 
             <div className="host-info">
-              <img
-                className="host-avatar"
-                src={stay.host?.pictureUrl}
-                alt={stay.host?.fullname}
-              />
+              {stay.host?.pictureUrl ? (
+                <img
+                  className="host-avatar"
+                  src={stay.host.pictureUrl}
+                  alt={stay.host.fullname || "Host"}
+                />
+              ) : null}
+
               <div className="host-text">
                 <div className="hosted-by">
                   Hosted by <strong>{stay.host?.fullname}</strong>
@@ -182,15 +188,15 @@ export function StayDetails() {
               )}
             </div>
             {stay.reviews.length > 6 && (
-            <button
-              className="show-all-btn"
-              onClick={() => setShowAllReviews((prev) => !prev)}
-            >
-              {showAllReviews
-                ? "Hide some reviews"
-                : `Show all ${stay.reviews.length} reviews`}
-            </button>
-          )}
+              <button
+                className="show-all-btn"
+                onClick={() => setShowAllReviews((prev) => !prev)}
+              >
+                {showAllReviews
+                  ? "Hide some reviews"
+                  : `Show all ${stay.reviews.length} reviews`}
+              </button>
+            )}
           </div>
         )}
         <div className="map">
