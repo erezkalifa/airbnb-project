@@ -32,7 +32,7 @@ async function query(filterBy = {}, page = 1, pageSize = 10) {
     const params = { ...filterBy, page, pageSize };
     const { data: stays } = await axios.get(BASE_URL, { params });
     console.log("stay service:", params);
-    console.log(stays);
+
     return stays;
   } catch (err) {
     console.error("Failed to load stays:", err);
