@@ -40,6 +40,7 @@ async function getById(reservationId) {
 }
 
 async function save(reservation) {
+  console.log(reservation);
   const method = reservation._id ? "put" : "post";
   const url = BASE_URL + (reservation._id || "");
   try {

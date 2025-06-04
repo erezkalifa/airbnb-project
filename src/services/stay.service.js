@@ -32,6 +32,7 @@ async function query(filterBy = {}, page = 1, pageSize = 10) {
     const params = { ...filterBy, page, pageSize };
     const { data: stays } = await axios.get(BASE_URL, { params });
     console.log("stay service:", params);
+    console.log(stays);
     return stays;
   } catch (err) {
     console.error("Failed to load stays:", err);
@@ -42,6 +43,7 @@ async function query(filterBy = {}, page = 1, pageSize = 10) {
 async function getById(stayId) {
   try {
     const { data: stay } = await axios.get(BASE_URL + stayId);
+    console.log(stay);
     return stay;
   } catch (err) {
     console.error(`Failed to get stay ${stayId}:`, err);
@@ -52,6 +54,7 @@ async function getById(stayId) {
 async function save(stay) {
   console.log(stay);
   const method = stay._id ? "put" : "post";
+
   const url = BASE_URL + (stay._id || "");
   try {
     const { data: savedStay } = await axios[method](url, stay);

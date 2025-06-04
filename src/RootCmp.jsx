@@ -36,7 +36,12 @@ function RootLayout() {
           <Route path="/" element={<StayIndex />} />
           <Route path="/details" element={<StayDetails />} />
           <Route path="/backoffice" element={<BackOffice />} />
-          <Route path="/backoffice/my-stays" element={<MyStays />} />
+          <Route path="/my-stays" element={<MyStays />} />
+          {/* <Route
+            path="/backoffice/my-stays"
+            element={loggedInUser ? <MyStays /> : <Navigate to="/" replace />}
+          /> */}
+
           <Route path="/stay/:stayId" element={<StayDetails />} />
           <Route path="/listings" element={<StayWizard />} />
           <Route
