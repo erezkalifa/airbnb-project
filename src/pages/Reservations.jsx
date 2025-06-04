@@ -50,7 +50,7 @@ export function Reservations() {
                   //   {res.host?.fullname?.charAt(0) || "?"}
                   // </div>
                 )}
-                <span>{res.guestName.toUpperCase() || "Unknown"}</span>
+                <span>{res.guestName || "Unknown"}</span>
               </td>
               <td>{new Date(res.checkIn).toLocaleDateString("en-GB")}</td>
               <td>{new Date(res.checkOut).toLocaleDateString("en-GB")}</td>
