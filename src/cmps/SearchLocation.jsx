@@ -4,7 +4,7 @@ import React from "react"
 export function SearchLocation({
   location,
   index,
-  icon = "/img/icons/search-location-icon-1.webp",
+  icon = "/img/Icons/search-location-icon-1.webp",
   filterBy,
   onSetFilter,
   closeModal,
