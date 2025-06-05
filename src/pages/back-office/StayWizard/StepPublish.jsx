@@ -11,6 +11,7 @@ export function StepPublish({ stay }) {
 
     try {
       await stayService.save(fullStay);
+      navigate("/"); 
     } catch (err) {
       console.log(err);
     }
