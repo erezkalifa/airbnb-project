@@ -32,12 +32,7 @@ export function StayWizard() {
 
   const steps = [
     <StepIntro />,
-    // <StepPlaceType
-    //   selectedType={placeType}
-    //   onSelect={setPlaceType}
-    //   isMultu={false}
-    //   setStay={setStay}
-    // />,
+
     <StepPlaceType
       selectedType={stay.placeType}
       onSelect={(type) => setStay((prev) => ({ ...prev, placeType: type }))}
@@ -47,32 +42,23 @@ export function StayWizard() {
       selectedType={stay.guestType}
       onSelect={(type) => setStay((prev) => ({ ...prev, guestType: type }))}
     />,
-    // <StepPlaceLocation setStay={setStay} />,
     <StepPlaceLocation
       address={stay.address || {}}
       onChange={(updatedAddress) =>
         setStay((prev) => ({ ...prev, address: updatedAddress }))
       }
     />,
-    // <StepPlaceBasics setStay={setStay} />,
     <StepPlaceBasics
       basics={stay.basics || {}}
       onChange={(updatedBasics) =>
         setStay((prev) => ({ ...prev, basics: updatedBasics }))
       }
     />,
-    // <StepPlaceOffer
-    //   isMulti={true}
-    //   selectedTypes={placeType}
-    //   onSelect={setPlaceType}
-    //   setStay={setStay}
-    // />,
     <StepPlaceOffer
       isMulti={true}
       selectedTypes={stay.amenities || []}
       onSelect={(types) => setStay((prev) => ({ ...prev, amenities: types }))}
     />,
-    // <StepPlaceListing setStay={setStay} />,
     <StepPlaceListing
       listing={stay.listing || {}}
       onChange={(updatedListing) =>
@@ -84,7 +70,7 @@ export function StayWizard() {
 
   return (
     <section className="stay-wizard">
-      <UpperHeader/>
+      <UpperHeader />
       <div className="step-content">{steps[step]}</div>
 
       {

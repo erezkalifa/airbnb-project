@@ -23,7 +23,7 @@ export function Reservations() {
 
   return (
     <section className="reservations">
-      <UpperHeader/>
+      <UpperHeader />
       <h2>{reservations.length} Reservations</h2>
       <table className="reservations-table">
         <thead>
@@ -41,11 +41,7 @@ export function Reservations() {
             <tr key={idx}>
               <td className="host-cell">
                 {res.host?.pictureUrl ? (
-                  <img
-                    src={res.host.pictureUrl}
-                    alt="Host Avatar"
-                    className="avatar"
-                  />
+                  <img src={res.userImg} alt="Host Avatar" className="avatar" />
                 ) : (
                   ""
                   // <div className="avatar-placeholder">

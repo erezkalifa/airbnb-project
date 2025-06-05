@@ -1,7 +1,7 @@
-import { useLocation , useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { reservationService } from "../services/reservation.service.js";
 import { UpperFilter } from "../cmps/UpperFilter.jsx";
-import { UpperHeader} from "../cmps/UpperHeader.jsx";
+import { UpperHeader } from "../cmps/UpperHeader.jsx";
 import { useEffect } from "react";
 export function BookingConfirmationPage() {
   const location = useLocation();
@@ -28,24 +28,25 @@ export function BookingConfirmationPage() {
     const reservation = {
       stayId: stay._id,
       checkIn: selectedRange.from.toISOString(),
-      checkOut:  selectedRange.to.toISOString(),
+      checkOut: selectedRange.to.toISOString(),
       guests: guests.adults + guests.children + guests.infants + guests.pets,
       totalPrice,
-      host: stay.host, 
+      host: stay.host,
+      userImg: stay.host.pictureUrl,
     };
 
-  
     try {
       await reservationService.save(reservation);
-      // navigate("/");
+      console.log(reservation);
+      navigate("/");
     } catch (err) {
       console.error("Failed to confirm booking:", err);
     }
   }
-  
+
   return (
     <section className="booking-confirm-page">
-      <UpperHeader/>
+      <UpperHeader />
       <h1>Confirm and pay</h1>
 
       <div className="booking-content">
@@ -55,11 +56,17 @@ export function BookingConfirmationPage() {
             <h2>Your trip</h2>
             <div className="trip-detail">
               <div className="detail-label">Dates</div>
-              <div className="detail-value">{selectedRange.from?.toLocaleDateString()} – {selectedRange.to?.toLocaleDateString()}</div>
+              <div className="detail-value">
+                {selectedRange.from?.toLocaleDateString()} –{" "}
+                {selectedRange.to?.toLocaleDateString()}
+              </div>
             </div>
             <div className="trip-detail">
               <div className="detail-label">Guests</div>
-              <div className="detail-value">{guests.adults + guests.children + guests.infants + guests.pets} guests</div>
+              <div className="detail-value">
+                {guests.adults + guests.children + guests.infants + guests.pets}{" "}
+                guests
+              </div>
             </div>
           </div>
 
@@ -89,7 +96,9 @@ export function BookingConfirmationPage() {
             <div>
               <p className="stay-type">{stay.type}</p>
               <h3>{stay.name}</h3>
-              <span>★ {stay.rating || 4.5} ({stay.reviews?.length || 0} reviews)</span>
+              <span>
+                ★ {stay.rating || 4.5} ({stay.reviews?.length || 0} reviews)
+              </span>
             </div>
           </div>
 
@@ -98,7 +107,9 @@ export function BookingConfirmationPage() {
           <div className="price-breakdown">
             <h4>Price details</h4>
             <div className="line-item">
-              <span>₪{nightlyRate} x {nights} nights</span>
+              <span>
+                ₪{nightlyRate} x {nights} nights
+              </span>
               <span>₪{nightlyRate * nights}</span>
             </div>
             <div className="line-item">
