@@ -43,7 +43,7 @@ export function MapView({ stay, style, address }) {
   }
 
   return (
-    <APIProvider apiKey="AIzaSyCd6v2whmmM0grZKw0hD5n1ssBatDjzulc">
+    <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}>
       <Map
         center={location}
         defaultZoom={13}
