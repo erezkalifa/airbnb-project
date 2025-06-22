@@ -31,7 +31,6 @@ async function query(filterBy = {}, page = 1, pageSize = 10) {
   try {
     const params = { ...filterBy, page, pageSize };
     const { data: stays } = await axios.get(BASE_URL, { params });
-    console.log("stay service:", params);
 
     return stays;
   } catch (err) {
