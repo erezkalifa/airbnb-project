@@ -37,7 +37,7 @@ export function BookingConfirmationPage() {
 
     try {
       await reservationService.save(reservation);
-      console.log(reservation);
+
       navigate("/");
     } catch (err) {
       console.error("Failed to confirm booking:", err);
