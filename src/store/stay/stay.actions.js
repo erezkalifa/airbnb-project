@@ -10,18 +10,17 @@ export function loadStays(filterBy = {}, page = 1, pageSize = 12) {
       const stays = await stayService.query(filterBy, page, pageSize);
 
       if (page === 1) {
-        dispatch({ type: 'SET_STAYS', stays });
+        dispatch({ type: "SET_STAYS", stays });
       } else {
-        dispatch({ type: 'APPEND_STAYS', stays });
+        dispatch({ type: "APPEND_STAYS", stays });
       }
 
       dispatch({ type: SET_FILTER_BY, filterBy });
-      console.log("🚀 ~ Loaded stays with filters:", filterBy, "and page:", page);
+
       return stays;
     } catch (err) {
-      console.error("stay action -> Cannot load stays:", err);;
-      throw err;;
+      console.error("stay action -> Cannot load stays:", err);
+      throw err;
     }
   };
-  };
-
+}
