@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { reservationService } from "../services/reservation.service.js";
-import { UpperFilter } from "../cmps/UpperFilter.jsx";
 import { UpperHeader } from "../cmps/UpperHeader.jsx";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
+
 import { useEffect } from "react";
-export function BookingConfirmationPage() {
+export function BookingConfirmationPage(loggedUser) {
   const location = useLocation();
   const navigate = useNavigate();
   const { bookingData, stay } = location.state || {};
@@ -37,8 +38,10 @@ export function BookingConfirmationPage() {
 
     try {
       await reservationService.save(reservation);
-
       navigate("/");
+      showSuccessMsg(
+        `Hey ${loggedUser} You're all set! Your stay is officially booked.`
+      );
     } catch (err) {
       console.error("Failed to confirm booking:", err);
     }

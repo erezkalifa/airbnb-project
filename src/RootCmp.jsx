@@ -13,6 +13,7 @@ import { Footer } from "./cmps/Footer.jsx";
 import { MyStays } from "./pages/back-office/MyStays.jsx";
 import { StayWizard } from "./pages/back-office/StayWizard/StayWizard.jsx";
 import { Reservations } from "./pages/Reservations.jsx";
+import { UserMsg } from "./cmps/UserMsg.jsx";
 
 export function RootCmp() {
   return (
@@ -26,7 +27,7 @@ export function RootCmp() {
 
 function RootLayout() {
   const location = useLocation();
-  const hideFooterRoutes = ["/listings","/add-listings"];
+  const hideFooterRoutes = ["/listings", "/add-listings"];
   const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
 
   return (
@@ -47,6 +48,7 @@ function RootLayout() {
 
         {shouldShowFooter && <Footer />}
       </main>
+      <UserMsg />
     </section>
   );
 }

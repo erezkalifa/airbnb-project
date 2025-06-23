@@ -7,6 +7,7 @@ import { OrderCard } from "../cmps/stayDetails/OrderCard.jsx";
 import { BookingConfirmationModal } from "../cmps/BookingConfirmationModal.jsx";
 import { RatingSummary } from "../cmps/stayDetails/RatingSummary.jsx";
 import { MapView } from "../cmps/MapView.jsx";
+import { useSelector } from "react-redux";
 
 export function StayDetails() {
   const { stayId } = useParams();
@@ -16,10 +17,9 @@ export function StayDetails() {
   const [bookingData, setBookingData] = useState(null);
   const [isStickyActive, setIsStickyActive] = useState(true);
   const [showAllReviews, setShowAllReviews] = useState(false);
+  const loggedUser = useSelector((storeState) => storeState.userModule.user);
 
   const ratingRef = useRef(null);
-
-  console.log(stayId);
 
   useEffect(() => {
     stayService
@@ -210,6 +210,7 @@ export function StayDetails() {
           onClose={() => setIsModalOpen(false)}
           stay={stay}
           bookingData={bookingData}
+          loggedUser={loggedUser}
         />
       )}
     </section>
