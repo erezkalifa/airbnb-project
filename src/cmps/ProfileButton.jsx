@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import { Avatar } from "./Avatar";
 import { UserMenu } from "./UserMenu";
 import { LoginSignup } from "./LoginSignup";
+import { LoginMenu } from "./LoginMenu";
 
 export function ProfileButton() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState(null); // null / 'signup' / 'login'
   const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
 
   const loggedInUser = useSelector((storeState) => storeState.userModule.user);
@@ -23,9 +24,9 @@ export function ProfileButton() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close login/signup modal if user logs in
+  // Close auth modals if user logs in
   useEffect(() => {
-    if (loggedInUser) setIsAuthModalOpen(false);
+    if (loggedInUser) setAuthMode(null);
   }, [loggedInUser]);
 
   const toggleMenu = () => {
@@ -50,7 +51,7 @@ export function ProfileButton() {
           src="/img/Icons/three_lines.svg"
           alt="Menu Icon"
         />
-        {loggedInUser && <Avatar url="/img/profile.jpg" />}
+        {loggedInUser && <div className="first-letter"></div>}
       </button>
 
       {isUserMenuOpen && (
@@ -67,14 +68,24 @@ export function ProfileButton() {
             onCloseMenu={() => setIsUserMenuOpen(false)}
             onLoginClick={() => {
               setIsUserMenuOpen(false);
-              setIsAuthModalOpen(true);
+              setAuthMode("signup"); // Open signup menu
             }}
           />
         </div>
       )}
 
-      {isAuthModalOpen && (
-        <LoginSignup onClose={() => setIsAuthModalOpen(false)} />
+      {authMode === "signup" && (
+        <LoginSignup
+          onClose={() => setAuthMode(null)}
+          onOpenLogin={() => setAuthMode("login")}
+        />
+      )}
+
+      {authMode === "login" && (
+        <LoginMenu
+          onClose={() => setAuthMode(null)}
+          onBackToRegister={() => setAuthMode("signup")}
+        />
       )}
     </div>
   );

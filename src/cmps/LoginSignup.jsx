@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { login } from "../store/user/user.actions";
+import { login, signup } from "../store/user/user.actions";
 
-export function LoginSignup({ onClose }) {
+export function LoginSignup({ onClose, onOpenLogin }) {
   const [userDetails, setUserDetails] = useState({});
 
   function handleInputChange(e) {
@@ -28,10 +28,18 @@ export function LoginSignup({ onClose }) {
     await login(userCredentials);
   }
 
-  function handleChange(ev) {
-    const field = ev.target.name;
-    const value = ev.target.value;
-    setCredentials({ ...credentials, [field]: value });
+  async function handleRegister() {
+    const userCredentials = userDetails;
+    userCredentials.nameCharacter = userCredentials.fullname
+      .charAt(0)
+      .toUpperCase();
+
+    await signup(userCredentials);
+  }
+
+  function handleLogin() {
+    onClose(); // סגור את תפריט ההרשמה
+    onOpenLogin(); // פתח את תפריט ההתחברות
   }
 
   return (
@@ -65,10 +73,12 @@ export function LoginSignup({ onClose }) {
 
           <div className="modal-body">
             <h2 className="welcome">Welcome to Airbnb</h2>
+            <h3>Register</h3>
+
             <div className="form-control">
               <label htmlFor="fullname">Full Name</label>
               <input
-                type="full"
+                type="text"
                 id="fullname"
                 placeholder="Enter Full Name"
                 onChange={handleInputChange}
@@ -78,12 +88,13 @@ export function LoginSignup({ onClose }) {
             <div className="form-control">
               <label htmlFor="username">User Name</label>
               <input
-                type="user"
+                type="text"
                 id="username"
                 placeholder="Enter User Name"
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="form-control">
               <label htmlFor="password">Password</label>
               <input
@@ -99,23 +110,20 @@ export function LoginSignup({ onClose }) {
               and data rates apply. <a href="#">Privacy Policy</a>
             </p>
 
-            <button
-              className="primary-btn"
-              //onClick={() => userService.signup(userDetails)}
-            >
-              Continue
+            <button className="primary-btn" onClick={handleRegister}>
+              Register
             </button>
 
             <div className="divider">
               <span>or</span>
             </div>
 
+            <button className="provider-btn" onClick={handleLogin}>
+              Login
+            </button>
+
             <button className="provider-btn" onClick={handleGuestLogin}>
               Continue As Guest
-            </button>
-            <button className="provider-btn">
-              <span className="icon"></span>
-              Continue with Google
             </button>
           </div>
         </div>

@@ -15,7 +15,7 @@ export function StayWizard() {
   const [stay, setStay] = useState({
     placeType: "",
     basics: {
-      guests: 1, // מתחיל מ-1
+      guests: 1,
       bedrooms: 0,
       beds: 0,
       bathrooms: 0,

@@ -7,9 +7,9 @@ var axios = Axios.create({
 const STORAGE_KEY_LOGGEDIN_USER = "loggedinUser";
 
 const BASE_URL =
-  process.env.NODE_ENV == "development" 
-  ? "http://localhost:3030/api/"
-  : "https://airbnb-backend-egt6.onrender.com/api/" ;
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:3030/api/"
+    : "https://airbnb-backend-egt6.onrender.com/api/";
 
 const BASE_USER_URL = BASE_URL + "user/";
 const BASE_AUTH_URL = BASE_URL + "auth/";
@@ -52,7 +52,7 @@ async function update(userToUpdate) {
   return updatedUser;
 }
 
-async function getUserrStays(userId) {}
+async function getUserStays(userId) {}
 
 async function login(credentials) {
   const { data: user } = await axios.post(BASE_AUTH_URL + "login", credentials);
