@@ -1,53 +1,107 @@
 .user-msg {
-  background-color: #fff;
-  color: #111;
-  padding: 0.4em 1.2em;
+  background-color: #ffffff;
+  color: #222222;
+  padding: 16px 24px;
   position: fixed;
-  bottom: 2.2em;
-  right: 1.5em;
-  border: 1px solid #ddd;
-  border-radius: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
-  min-width: 180px;
-  max-width: 320px;
-  font-weight: 600;
-  font-size: 1.2rem;
-  z-index: 1000;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 320px;
+  max-width: 450px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  font-family: "Circular", -apple-system, BlinkMacSystemFont, Roboto,
+    "Helvetica Neue", sans-serif;
+  z-index: 2000;
+  animation: slideUp 0.3s ease forwards;
+  border: 1px solid #dddddd;
+
+  p {
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  &.success {
+    border-left: 4px solid #00a699;
+
+    &::before {
+      content: "✓";
+      font-size: 16px;
+      margin-right: 8px;
+      color: #00a699;
+    }
+  }
+
+  &.error {
+    border-left: 4px solid #ff5a5f;
+
+    &::before {
+      content: "!";
+      font-size: 16px;
+      margin-right: 8px;
+      font-weight: bold;
+      color: #ff5a5f;
+    }
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: #717171;
+    padding: 4px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+
+    &:hover {
+      opacity: 1;
+      background-color: #f7f7f7;
+    }
+
+    &::before {
+      content: "×";
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
 }
 
-.user-msg.success {
-  border-color: #00a699;
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
 }
 
-.user-msg.error {
-  border-color: #eb5757;
-}
-
-.user-msg button {
-  background: none;
-  border: none;
-  color: #717171;
-  font-size: 1.1em;
-  margin-left: auto;
-  cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
-  padding: 0.2em;
-}
-
-.user-msg button:hover {
-  color: #222;
-  transform: scale(1.1);
-}
-
-.user-msg.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
+// Add animation for exit
 .user-msg.hide {
-  transform: translateY(20px);
-  opacity: 0;
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
 }
