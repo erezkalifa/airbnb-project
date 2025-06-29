@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
+import { stayService } from "../services/stay.service.js";
 
 export function MapView({ stay, style, address }) {
   const [location, setLocation] = useState({
@@ -24,21 +25,18 @@ export function MapView({ stay, style, address }) {
   }
 
   async function handleLocationByAddress() {
-    const encodedAddress = encodeURIComponent(address);
-    try {
-      const res = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=AIzaSyCd6v2whmmM0grZKw0hD5n1ssBatDjzulc`
-      );
+    if (!address) return;
 
-      const data = await res.json();
-      if (data.status === "OK") {
-        const loc = data.results[0].geometry.location;
-        setLocation({ lat: loc.lat, lng: loc.lng });
-      } else {
-        console.error("Geocoding failed:", data.status);
+    try {
+      const locationData = await stayService.getAddressLocation(address);
+      if (locationData) {
+        setLocation({
+          lat: locationData.lat,
+          lng: locationData.lng,
+        });
       }
     } catch (err) {
-      console.error("Fetch error:", err);
+      console.error("Error getting location:", err);
     }
   }
 

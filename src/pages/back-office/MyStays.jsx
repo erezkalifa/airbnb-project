@@ -41,7 +41,7 @@ export function MyStays() {
     _id: "622f337a75c7d36e498aaafb",
     name: "Fresh and modern 1BR in Bed-Stuy",
     imgUrls: [
-      "http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436912/xle8ueqxjeazbs4bp09p.jpg",
+      "https://res.cloudinary.com/dmtlr2viw/image/upload/v1663436912/xle8ueqxjeazbs4bp09p.jpg",
     ],
     price: 79,
     isActive: true,
@@ -58,7 +58,7 @@ export function MyStays() {
 
   return (
     <section className="my-stays-page">
-      <UpperHeader/>
+      <UpperHeader />
       <h2 className="section-title">My Stays</h2>
       <div className="stays-grid">
         {userStays.map((stay) => (

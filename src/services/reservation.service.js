@@ -5,7 +5,7 @@ const axios = Axios.create({
 });
 
 const BASE_URL =
-  process.env.NODE_ENV == "development"
+  process.env.NODE_ENV === "development"
     ? "http://localhost:3030/api/reservation/"
     : "https://airbnb-backend-egt6.onrender.com/api/reservation/";
 

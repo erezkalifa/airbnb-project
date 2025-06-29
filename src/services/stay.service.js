@@ -6,7 +6,7 @@ const axios = Axios.create({
 });
 
 const BASE_URL =
-  process.env.NODE_ENV == "development"
+  process.env.NODE_ENV === "development"
     ? "http://localhost:3030/api/stay/"
     : "https://airbnb-backend-egt6.onrender.com/api/stay/";
 
@@ -21,6 +21,9 @@ export const stayService = {
   getDefaultFilter,
   getFilterFromParams,
   applyFilter,
+  getEmptyStay,
+  getRandomLocation,
+  getAddressLocation,
 };
 
 const API = "/api/stay";
@@ -434,4 +437,44 @@ export function applyFilter(newFilter, setSearchParams, dispatch, setFilterBy) {
   dispatch({ type: "SET_FILTER_BY", filterBy: newFilter });
   setFilterBy(newFilter);
   console.log("Final filterBy:", newFilter);
+}
+
+async function getAddressLocation(address) {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}stay/geocode?address=${encodeURIComponent(address)}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error getting location from address:", error);
+    throw error;
+  }
+}
+
+function getEmptyStay() {
+  return {
+    name: "",
+    type: "",
+    imgUrls: [],
+    price: 0,
+    summary: "",
+    capacity: 0,
+    amenities: [],
+    roomType: "",
+    loc: {
+      country: "",
+      countryCode: "",
+      city: "",
+      address: "",
+      lat: 0,
+      lng: 0,
+    },
+    reviews: [],
+    likedByUsers: [],
+    host: {
+      _id: "",
+      fullname: "",
+      imgUrl: "",
+    },
+  };
 }
