@@ -1,6 +1,20 @@
 # Aircnc - Airbnb Clone
 
-Aircnc is a full-stack web application that replicates core Airbnb functionality. It's built with React for the frontend and Express.js for the backend, offering a modern and responsive user interface for property listing and booking.
+Aircnc is a full-stack web application that replicates core Airbnb functionality, serving as an in-depth case study of complex, production-grade web applications. The project's primary goal was to understand and recreate a sophisticated system from the ground up, focusing on intricate user experiences, rich interfaces, and pixel-perfect design implementation.
+
+This educational endeavor demonstrates the complexities of modern web development, from user interface design to system architecture. The frontend, built with React, showcases advanced UI patterns, state management, and responsive design principles. The backend, powered by Express.js, implements essential features like real-time communication, secure authentication, and efficient data handling.
+
+Key focus areas include:
+- 🎨 Pixel-perfect design implementation
+- 🔄 Complex state management and data flow
+- 🎯 Rich, interactive user interfaces
+- 📱 Responsive design across all devices
+- 🔐 Secure user authentication and authorization
+- ⚡ Real-time updates and notifications
+- 🔍 Advanced search and filtering capabilities
+- 📊 Efficient data handling and caching
+
+> 🔗 **Looking for the backend code?** Check out our [Backend Repository](https://github.com/erezkalifa/airbnb-backend)
 
 ## ✨ Try it Live!
 
