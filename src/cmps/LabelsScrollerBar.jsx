@@ -65,7 +65,7 @@ export function LabelsScrollerBar({ selectedLabel, onLabelSelect }) {
         // dotListClass='custom-dot-list-style'
         arrows={showArrows}
         rewind={false}
-        infinite={false}
+        infinite={true}
         slidesToSlide={getVisibleCount()}
         key={showArrows ? "scroll" : "static"}
         centerMode={false}

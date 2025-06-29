@@ -1,16 +1,71 @@
 .labels-carousel {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 80px;
+  overflow: visible;
+
   .carousel-container {
     width: 100%;
     display: flex;
     align-items: center;
+    overflow: visible;
+  }
+
+  .react-multiple-carousel__arrow {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    opacity: 0.9;
+    position: absolute;
+
+    &::before {
+      color: #222;
+      font-size: 14px;
+    }
+
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      opacity: 1;
+      background-color: #fff;
+    }
+  }
+
+  .react-multiple-carousel__arrow--left {
+    left: -40px;
+  }
+
+  .react-multiple-carousel__arrow--right {
+    right: 20px;
   }
 
   ul.react-multi-carousel-track {
     display: flex;
     gap: 15px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: visible;
   }
 
   .labels-scroller-wrapper {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 80px;
+    box-sizing: border-box;
+
+    .react-multi-carousel-list {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
     &.no-arrows {
       .carousel-item-container {
         padding: 0;
@@ -30,35 +85,6 @@
     max-width: 112px;
     width: 100%;
     padding: 0 4px;
-  }
-
-  .react-multiple-carousel__arrow {
-    background: transparent;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    z-index: 10;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    transition: box-shadow 0.2s ease;
-
-    &::before {
-      color: black;
-      font-size: 16px;
-    }
-    &:hover {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      border-color: #ccc;
-      background-color: #fff;
-    }
-  }
-
-  .react-multiple-carousel__arrow--left {
-    left: 0;
-  }
-
-  .react-multiple-carousel__arrow--right {
-    right: 0;
   }
 
   .carousel-wrapper {
@@ -139,4 +165,13 @@
       }
     }
   }
+}
+
+// Force override any library styles
+.react-multi-carousel-list {
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  overflow: visible !important;
 }

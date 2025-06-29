@@ -1,19 +1,28 @@
 import Axios from "axios";
+import CryptoJS from "crypto-js";
 
 var axios = Axios.create({
   withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+    "X-Requested-With": "XMLHttpRequest",
+  },
+  validateStatus: function (status) {
+    return status >= 200 && status < 300;
+  },
 });
 
 const STORAGE_KEY_LOGGEDIN_USER = "loggedinUser";
 
 const BASE_URL =
-  process.env.NODE_ENV == "development"
+  process.env.NODE_ENV === "development"
     ? "http://localhost:3030/api/"
-    : // : "https://airbnb-backend-egt6.onrender.com/api/";
-      "/api/user/";
+    : "https://airbnb-backend-egt6.onrender.com/api/";
 
 const BASE_USER_URL = BASE_URL + "user/";
 const BASE_AUTH_URL = BASE_URL + "auth/";
+
+const ENCRYPTION_KEY = "your-secret-key";
 
 export const userService = {
   login,
@@ -45,33 +54,113 @@ async function remove(userId) {
 }
 
 async function update(userToUpdate) {
-  // const user = await getById(userToUpdate.id)
-  // console.log('user', user)
-
   const updatedUser = await axios.put(BASE_USER_URL, userToUpdate);
   if (getLoggedinUser().id === updatedUser.id) saveLocalUser(updatedUser);
   return updatedUser;
 }
 
+function hashPassword(password) {
+  const hashedPassword = CryptoJS.HmacSHA256(password, ENCRYPTION_KEY);
+  return hashedPassword.toString();
+}
+
+function clearSensitiveData(credentials) {
+  if (credentials) {
+    if (credentials.password) credentials.password = null;
+    if (credentials.token) credentials.token = null;
+  }
+}
+
 async function login(credentials) {
-  const { data: user } = await axios.post(BASE_AUTH_URL + "login", credentials);
-  console.log("user", user);
-  if (user) {
-    return saveLocalUser(user);
+  try {
+    if (!credentials.username || !credentials.password) {
+      throw new Error("Username and password are required");
+    }
+
+    const secureCredentials = {
+      username: credentials.username,
+      password: hashPassword(credentials.password),
+      timestamp: Date.now(),
+    };
+
+    const { data: user } = await axios.post(
+      BASE_AUTH_URL + "login",
+      secureCredentials,
+      {
+        headers: {
+          "X-Auth-Type": "login",
+          "X-Client-Version": "1.0",
+          "X-Request-Timestamp": secureCredentials.timestamp,
+        },
+      }
+    );
+
+    if (user) {
+      clearSensitiveData(credentials);
+      clearSensitiveData(secureCredentials);
+      return saveLocalUser(user);
+    }
+    throw new Error("Login failed");
+  } catch (error) {
+    console.error("Login error:", error.message);
+    throw error;
   }
 }
 
 async function signup(credentials) {
-  const { data: user } = await axios.post(
-    BASE_AUTH_URL + "signup",
-    credentials
-  );
-  return saveLocalUser(user);
+  try {
+    if (!credentials.username || !credentials.password) {
+      throw new Error("Username and password are required");
+    }
+    if (credentials.password.length < 6) {
+      throw new Error("Password must be at least 6 characters long");
+    }
+    if (!/[A-Z]/.test(credentials.password)) {
+      throw new Error("Password must contain at least one uppercase letter");
+    }
+    if (!/[0-9]/.test(credentials.password)) {
+      throw new Error("Password must contain at least one number");
+    }
+
+    const secureCredentials = {
+      username: credentials.username,
+      fullname: credentials.fullname,
+      password: hashPassword(credentials.password),
+      timestamp: Date.now(),
+    };
+
+    const { data: user } = await axios.post(
+      BASE_AUTH_URL + "signup",
+      secureCredentials,
+      {
+        headers: {
+          "X-Auth-Type": "signup",
+          "X-Client-Version": "1.0",
+          "X-Request-Timestamp": secureCredentials.timestamp,
+        },
+      }
+    );
+
+    clearSensitiveData(credentials);
+    clearSensitiveData(secureCredentials);
+    return saveLocalUser(user);
+  } catch (error) {
+    console.error("Signup error:", error.message);
+    throw error;
+  }
 }
 
 async function logout() {
-  await axios.post(BASE_AUTH_URL + "logout");
-  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);
+  try {
+    await axios.post(BASE_AUTH_URL + "logout");
+    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);
+    localStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);
+  } catch (error) {
+    console.error("Logout error:", error.message);
+    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);
+    localStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);
+    throw error;
+  }
 }
 
 function getEmptyUser() {
@@ -84,9 +173,13 @@ function getEmptyUser() {
 }
 
 function saveLocalUser(user) {
-  user = { _id: user._id, fullname: user.fullname, isAdmin: user.isAdmin };
-  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user));
-  return user;
+  const userToSave = {
+    _id: user._id,
+    fullname: user.fullname,
+    isAdmin: user.isAdmin,
+  };
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(userToSave));
+  return userToSave;
 }
 
 function getLoggedinUser() {
