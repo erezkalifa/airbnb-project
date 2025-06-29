@@ -38,8 +38,8 @@ export function LoginSignup({ onClose, onOpenLogin }) {
   }
 
   function handleLogin() {
-    onClose(); // סגור את תפריט ההרשמה
-    onOpenLogin(); // פתח את תפריט ההתחברות
+    onClose();
+    onOpenLogin();
   }
 
   return (

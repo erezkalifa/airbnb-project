@@ -44,12 +44,13 @@ export async function login(credentials) {
 
 export async function signup(credentials) {
   try {
+    console.log(credentials);
     const user = await userService.signup(credentials);
     store.dispatch({
       type: SET_USER,
       user,
     });
-    socketService.login(user);
+    // socketService.login(user);
     return user;
   } catch (err) {
     console.log("Cannot signup", err);

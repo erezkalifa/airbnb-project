@@ -51,7 +51,11 @@ export function ProfileButton() {
           src="/img/Icons/three_lines.svg"
           alt="Menu Icon"
         />
-        {loggedInUser && <div className="first-letter"></div>}
+        {loggedInUser && (
+          <div className="name-letter">
+            {loggedInUser.fullname.charAt(0).toUpperCase()}
+          </div>
+        )}
       </button>
 
       {isUserMenuOpen && (
