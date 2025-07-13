@@ -28,8 +28,9 @@ export function StayIndex() {
       setPage(1);
       setHasMore(true);
       const initialStays = await stayService.query(filterBy, 1, 12);
-      dispatch({ type: SET_FILTER_BY, filterBy });
-      dispatch({ type: SET_STAYS, stays: initialStays });
+
+      dispatch({ type: SET_FILTER_BY, filterBy }); // רק ליתר ביטחון
+      dispatch({ type: "SET_STAYS", stays: initialStays });
     }
     loadInitial();
   }, [filterBy]);
