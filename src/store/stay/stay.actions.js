@@ -21,13 +21,6 @@ export function loadStays(filterBy = {}, page = 1, pageSize = 12) {
         dispatch({ type: APPEND_STAYS, stays });
       }
 
-      // dispatch({ type: SET_FILTER_BY, filterBy });
-      // console.log(
-      //   "🚀 ~ Loaded stays with filters:",
-      //   filterBy,
-      //   "and page:",
-      //   page
-      // );
       return stays;
     } catch (err) {
       console.error("stay action -> Cannot load stays:", err);

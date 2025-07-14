@@ -11,6 +11,7 @@ export function LoginMenu({ onClose, onBackToRegister }) {
   function handleChange(ev) {
     const { name, value } = ev.target;
     setCredentials({ ...credentials, [name]: value });
+    console.log(credentials);
   }
 
   async function handleLogin(ev) {

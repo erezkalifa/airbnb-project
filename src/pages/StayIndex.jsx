@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { StayList } from "../cmps/StayList.jsx";
 import { Filters } from "../cmps/Filters";
 import { LabelsScrollerBar } from "../cmps/LabelsScrollerBar.jsx";
-import { SET_FILTER_BY, APPEND_STAYS } from "../store/stay/stay.reducers.js";
+import {
+  SET_FILTER_BY,
+  SET_STAYS,
+  APPEND_STAYS,
+} from "../store/stay/stay.reducers.js";
 import { stayService } from "../services/stay.service.js";
 
 export function StayIndex() {
@@ -29,8 +33,8 @@ export function StayIndex() {
       setHasMore(true);
       const initialStays = await stayService.query(filterBy, 1, 12);
 
-      dispatch({ type: SET_FILTER_BY, filterBy }); // רק ליתר ביטחון
-      dispatch({ type: "SET_STAYS", stays: initialStays });
+      dispatch({ type: SET_FILTER_BY, filterBy });
+      dispatch({ type: SET_STAYS, stays: initialStays });
     }
     loadInitial();
   }, [filterBy]);

@@ -50,7 +50,7 @@ export async function signup(credentials) {
       type: SET_USER,
       user,
     });
-    // socketService.login(user);
+
     return user;
   } catch (err) {
     console.log("Cannot signup", err);
